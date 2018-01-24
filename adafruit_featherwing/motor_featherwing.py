@@ -31,7 +31,6 @@ Helper for using motors with the `Motor FeatherWing <https://www.adafruit.com/pr
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-from adafruit_motor import motor, stepper
 from adafruit_pca9685 import PCA9685
 
 from adafruit_featherwing import shared
@@ -49,6 +48,23 @@ class MotorFeatherWing:
         self._stepper2 = None
         self._pca = PCA9685(shared.I2C_BUS, address=0x60)
         self._pca.frequency = 1600
+
+    # We can save memory usage (~300 bytes) by deduplicating the construction of the objects for
+    # each motor. This saves both code size and the number of raw strings (the error message)
+    # stored. The same technique is a net loss for stepper because there is less duplication.
+    def _motor(self, motor_name, channels, stepper_name):
+        from adafruit_motor import motor
+        motor_name = "_motor" + str(motor_name)
+        stepper_name = "_stepper" + str(stepper_name)
+        if not getattr(self, motor_name):
+            if getattr(self, stepper_name):
+                raise RuntimeError(
+                    "Cannot use {} at the same time as {}.".format(motor_name[1:],
+                                                                   stepper_name[1:]))
+            self._pca.channels[channels[0]].duty_cycle = 0xffff
+            setattr(self, motor_name, motor.DCMotor(self._pca.channels[channels[1]],
+                                                    self._pca.channels[channels[2]]))
+        return getattr(self, motor_name)
 
     @property
     def motor1(self):
@@ -71,12 +87,7 @@ class MotorFeatherWing:
 
                 wing.motor1.throttle = 0
         """
-        if not self._motor1:
-            if self._stepper1:
-                raise RuntimeError("Cannot use motor1 at the same time as stepper1.")
-            self._pca.channels[8].duty_cycle = 0xffff
-            self._motor1 = motor.DCMotor(self._pca.channels[9], self._pca.channels[10])
-        return self._motor1
+        return self._motor(1, (8, 9, 10), 1)
 
     @property
     def motor2(self):
@@ -99,12 +110,7 @@ class MotorFeatherWing:
 
                 wing.motor2.throttle = 0
         """
-        if not self._motor2:
-            if self._stepper1:
-                raise RuntimeError("Cannot use motor2 at the same time as stepper1.")
-            self._pca.channels[13].duty_cycle = 0xffff
-            self._motor2 = motor.DCMotor(self._pca.channels[11], self._pca.channels[12])
-        return self._motor2
+        return self._motor(2, (13, 11, 12), 1)
 
     @property
     def motor3(self):
@@ -127,12 +133,7 @@ class MotorFeatherWing:
 
                 wing.motor3.throttle = 0
         """
-        if not self._motor3:
-            if self._stepper2:
-                raise RuntimeError("Cannot use motor3 at the same time as stepper2.")
-            self._pca.channels[2].duty_cycle = 0xffff
-            self._motor3 = motor.DCMotor(self._pca.channels[3], self._pca.channels[4])
-        return self._motor3
+        return self._motor(3, (2, 3, 4), 2)
 
     @property
     def motor4(self):
@@ -155,12 +156,7 @@ class MotorFeatherWing:
 
                 wing.motor4.throttle = 0
         """
-        if not self._motor4:
-            if self._stepper2:
-                raise RuntimeError("Cannot use motor4 at the same time as stepper2.")
-            self._pca.channels[7].duty_cycle = 0xffff
-            self._motor4 = motor.DCMotor(self._pca.channels[5], self._pca.channels[6])
-        return self._motor4
+        return self._motor(4, (7, 5, 6), 2)
 
     @property
     def stepper1(self):
@@ -181,6 +177,7 @@ class MotorFeatherWing:
                 for i in range(100):
                     wing.stepper1.onestep()"""
         if not self._stepper1:
+            from adafruit_motor import stepper
             if self._motor1 or self._motor2:
                 raise RuntimeError("Cannot use stepper1 at the same time as motor1 or motor2.")
             self._pca.channels[8].duty_cycle = 0xffff
@@ -209,6 +206,7 @@ class MotorFeatherWing:
                     wing.stepper2.onestep()
         """
         if not self._stepper2:
+            from adafruit_motor import stepper
             if self._motor3 or self._motor4:
                 raise RuntimeError("Cannot use stepper2 at the same time as motor3 or motor4.")
             self._pca.channels[7].duty_cycle = 0xffff
