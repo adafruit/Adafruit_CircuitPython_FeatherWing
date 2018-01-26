@@ -40,8 +40,6 @@ BUTTON_B = const(1 << 7)
 BUTTON_Y = const(1 << 9)
 BUTTON_X = const(1 << 10)
 BUTTON_SELECT = const(1 << 14)
-# BUTTON_MASK = const((1 << BUTTON_A) | (1 << BUTTON_B) | (1 << BUTTON_Y) | (1 << BUTTON_X) |
-#                      (1 << BUTTON_SELECT))
 
 
 class JoyFeatherWing:
@@ -70,10 +68,10 @@ class JoyFeatherWing:
                 from adafruit_featherwing import joy_featherwing
                 import time
 
-                WING = joy_featherwing.JoyFeatherWing()
+                wing = joy_featherwing.JoyFeatherWing()
 
                 while True:
-                    if WING.button_a:
+                    if wing.button_a:
                     print("Button A pressed!")
 
         """
@@ -93,10 +91,10 @@ class JoyFeatherWing:
                 from adafruit_featherwing import joy_featherwing
                 import time
 
-                WING = joy_featherwing.JoyFeatherWing()
+                wing = joy_featherwing.JoyFeatherWing()
 
                 while True:
-                    if WING.button_b:
+                    if wing.button_b:
                     print("Button B pressed!")
 
         """
@@ -116,10 +114,10 @@ class JoyFeatherWing:
                 from adafruit_featherwing import joy_featherwing
                 import time
 
-                WING = joy_featherwing.JoyFeatherWing()
+                wing = joy_featherwing.JoyFeatherWing()
 
                 while True:
-                    if WING.button_x:
+                    if wing.button_x:
                     print("Button X pressed!")
 
         """
@@ -139,10 +137,10 @@ class JoyFeatherWing:
                 from adafruit_featherwing import joy_featherwing
                 import time
 
-                WING = joy_featherwing.JoyFeatherWing()
+                wing = joy_featherwing.JoyFeatherWing()
 
                 while True:
-                    if WING.button_y:
+                    if wing.button_y:
                     print("Button Y pressed!")
 
         """
@@ -162,10 +160,10 @@ class JoyFeatherWing:
                 from adafruit_featherwing import joy_featherwing
                 import time
 
-                WING = joy_featherwing.JoyFeatherWing()
+                wing = joy_featherwing.JoyFeatherWing()
 
                 while True:
-                    if WING.button_select:
+                    if wing.button_select:
                     print("Button SELECT pressed!")
 
         """
@@ -178,12 +176,7 @@ class JoyFeatherWing:
 
     @property
     def joystick_offset(self):
-        """Returns the joystick offset, set by the `joystick_offset.setter`."""
-        return self._joystick_offset
-
-    @joystick_offset.setter
-    def joystick_offset(self, offset):
-        """Allows for setting explicit numbers to effectively zero the joystick.
+        """Offset used to correctly report (0, 0) when the joystick is centered.
 
             .. image :: /_static/joy_featherwing/joy_featherwing_joystick.jpg
               :alt: Joy FeatherWing Joystick
@@ -202,20 +195,24 @@ class JoyFeatherWing:
                 from adafruit_featherwing import joy_featherwing
                 import time
 
-                WING = joy_featherwing.JoyFeatherWing()
-                LAST_X = 0
-                LAST_Y = 0
+                wing = joy_featherwing.JoyFeatherWing()
+                last_x = 0
+                last_y = 0
 
                 while True:
                     wing.joystick_offset = (-4, 0)
-                    x, y = WING.joystick
-                    if (abs(x - LAST_X) > 3) or (abs(y - LAST_Y) > 3):
-                        LAST_X = x
-                        LAST_Y = y
+                    x, y = wing.joystick
+                    if (abs(x - last_x) > 3) or (abs(y - last_y) > 3):
+                        last_x = x
+                        last_y = y
                         print(x, y)
                     time.sleep(0.01)
 
         """
+        return self._joystick_offset
+
+    @joystick_offset.setter
+    def joystick_offset(self, offset):
         self._joystick_offset = offset
 
     def zero_joystick(self):
@@ -234,16 +231,16 @@ class JoyFeatherWing:
             from adafruit_featherwing import joy_featherwing
             import time
 
-            WING = joy_featherwing.JoyFeatherWing()
-            LAST_X = 0
-            LAST_Y = 0
-            WING.zero_joystick()
+            wing = joy_featherwing.JoyFeatherWing()
+            last_x = 0
+            last_y = 0
+            wing.zero_joystick()
 
             while True:
-                x, y = WING.joystick
-                if (abs(x - LAST_X) > 3) or (abs(y - LAST_Y) > 3):
-                    LAST_X = x
-                    LAST_Y = y
+                x, y = wing.joystick
+                if (abs(x - last_x) > 3) or (abs(y - last_y) > 3):
+                    last_x = x
+                    last_y = y
                     print(x, y)
                 time.sleep(0.01)
 
@@ -266,16 +263,16 @@ class JoyFeatherWing:
             from adafruit_featherwing import joy_featherwing
             import time
 
-            WING = joy_featherwing.JoyFeatherWing()
-            LAST_X = 0
-            LAST_Y = 0
-            WING.zero_joystick()
+            wing = joy_featherwing.JoyFeatherWing()
+            last_x = 0
+            last_y = 0
+            wing.zero_joystick()
 
             while True:
-                x, y = WING.joystick
-                if (abs(x - LAST_X) > 3) or (abs(y - LAST_Y) > 3):
-                    LAST_X = x
-                    LAST_Y = y
+                x, y = wing.joystick
+                if (abs(x - last_x) > 3) or (abs(y - last_y) > 3):
+                    last_x = x
+                    last_y = y
                     print(x, y)
                 time.sleep(0.01)
         """
