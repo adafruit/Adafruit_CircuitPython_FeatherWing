@@ -3,4 +3,5 @@
 
 .. automodule:: adafruit_featherwing.motor_featherwing
 .. automodule:: adafruit_featherwing.ina219_featherwing
+.. automodule:: adafruit_featherwing.joy_featherwing
    :members:
