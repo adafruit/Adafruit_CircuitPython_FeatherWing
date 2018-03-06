@@ -58,7 +58,7 @@ class JoyFeatherWing:
     def button_a(self):
         """Joy featherwing button A.
 
-            .. image :: /_static/joy_featherwing/joy_featherwing_a.jpg
+            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_a.jpg
               :alt: Joy FeatherWing Button A
 
             This example prints when button A is pressed.
@@ -81,7 +81,7 @@ class JoyFeatherWing:
     def button_b(self):
         """Joy featherwing button B.
 
-            .. image :: /_static/joy_featherwing/joy_featherwing_b.jpg
+            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_b.jpg
               :alt: Joy FeatherWing Button B
 
             This example prints when button B is pressed.
@@ -104,7 +104,7 @@ class JoyFeatherWing:
     def button_x(self):
         """Joy featherwing button X.
 
-            .. image :: /_static/joy_featherwing/joy_featherwing_x.jpg
+            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_x.jpg
               :alt: Joy FeatherWing Button X
 
             This example prints when button X is pressed.
@@ -127,7 +127,7 @@ class JoyFeatherWing:
     def button_y(self):
         """Joy featherwing button Y.
 
-            .. image :: /_static/joy_featherwing/joy_featherwing_y.jpg
+            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_y.jpg
               :alt: Joy FeatherWing Button Y
 
             This example prints when button Y is pressed.
@@ -150,7 +150,7 @@ class JoyFeatherWing:
     def button_select(self):
         """Joy featherwing button SELECT.
 
-            .. image :: /_static/joy_featherwing/joy_featherwing_select.jpg
+            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_select.jpg
               :alt: Joy FeatherWing Button SELECT
 
             This example prints when button SELECT is pressed.
@@ -178,7 +178,7 @@ class JoyFeatherWing:
     def joystick_offset(self):
         """Offset used to correctly report (0, 0) when the joystick is centered.
 
-            .. image :: /_static/joy_featherwing/joy_featherwing_joystick.jpg
+            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
               :alt: Joy FeatherWing Joystick
 
             Provide a tuple of (x, y) to set your joystick center to (0, 0).
@@ -220,7 +220,7 @@ class JoyFeatherWing:
         Note: You must not be touching the joystick at the time of zeroing
         for it to be accurate.
 
-        .. image :: /_static/joy_featherwing/joy_featherwing_joystick.jpg
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
           :alt: Joy FeatherWing Joystick
 
         This example zeros the joystick, and prints the coordinates of
@@ -252,7 +252,7 @@ class JoyFeatherWing:
     def joystick(self):
         """Joy FeatherWing joystick.
 
-        .. image :: /_static/joy_featherwing/joy_featherwing_joystick.jpg
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
           :alt: Joy FeatherWing Joystick
 
         This example zeros the joystick, and prints the coordinates of

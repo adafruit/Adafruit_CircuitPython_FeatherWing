@@ -70,7 +70,7 @@ class MotorFeatherWing:
     def motor1(self):
         """:py:class:`~adafruit_motor.motor.DCMotor` controls for motor 1.
 
-            .. image :: /_static/motor_featherwing/m1.jpg
+            .. image :: ../docs/_static/motor_featherwing/m1.jpg
               :alt: Motor 1 location
 
             This example moves the motor forwards for one fifth of a second at full speed.
@@ -93,7 +93,7 @@ class MotorFeatherWing:
     def motor2(self):
         """:py:class:`~adafruit_motor.motor.DCMotor` controls for motor 2.
 
-            .. image :: /_static/motor_featherwing/m2.jpg
+            .. image :: ../docs/_static/motor_featherwing/m2.jpg
               :alt: Motor 2 location
 
             This example moves the motor forwards for one fifth of a second at full speed.
@@ -116,7 +116,7 @@ class MotorFeatherWing:
     def motor3(self):
         """:py:class:`~adafruit_motor.motor.DCMotor` controls for motor 3.
 
-            .. image :: /_static/motor_featherwing/m3.jpg
+            .. image :: ../docs/_static/motor_featherwing/m3.jpg
               :alt: Motor 3 location
 
             This example moves the motor forwards for one fifth of a second at full speed.
@@ -139,7 +139,7 @@ class MotorFeatherWing:
     def motor4(self):
         """:py:class:`~adafruit_motor.motor.DCMotor` controls for motor 4.
 
-            .. image :: /_static/motor_featherwing/m4.jpg
+            .. image :: ../docs/_static/motor_featherwing/m4.jpg
               :alt: Motor 4 location
 
             This example moves the motor forwards for one fifth of a second at full speed.
@@ -163,7 +163,7 @@ class MotorFeatherWing:
         """:py:class:`~adafruit_motor.stepper.StepperMotor` controls for one connected to stepper 1
            (also labeled motor 1 and motor 2).
 
-            .. image :: /_static/motor_featherwing/stepper1.jpg
+            .. image :: ../docs/_static/motor_featherwing/stepper1.jpg
               :alt: Stepper 1 location
 
             This example moves the stepper motor 100 steps forwards.
@@ -191,7 +191,7 @@ class MotorFeatherWing:
         """:py:class:`~adafruit_motor.stepper.StepperMotor` controls for one connected to stepper 2
            (also labeled motor 3 and motor 4).
 
-            .. image :: /_static/motor_featherwing/stepper2.jpg
+            .. image :: ../docs/_static/motor_featherwing/stepper2.jpg
               :alt: Stepper 2 location
 
             This example moves the stepper motor 100 steps forwards.
