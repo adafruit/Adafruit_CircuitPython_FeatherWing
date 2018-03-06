@@ -47,7 +47,7 @@ class INA219FeatherWing:
     def bus_voltage(self):
         """Bus voltage returns volts.
 
-            .. image :: /_static/ina219_featherwing/ina219_featherwing.jpg
+            .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
               :alt: INA219 Featherwing
 
             This example prints the bus voltage with the appropriate units.
@@ -70,7 +70,7 @@ class INA219FeatherWing:
     def shunt_voltage(self):
         """Shunt voltage returns volts.
 
-            .. image :: /_static/ina219_featherwing/ina219_featherwing.jpg
+            .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
               :alt: INA219 Featherwing
 
             This example prints the shunt voltage with the appropriate units.
@@ -93,7 +93,7 @@ class INA219FeatherWing:
     def voltage(self):
         """Voltage, known as load voltage, is bus voltage plus shunt voltage. Returns volts.
 
-            .. image :: /_static/ina219_featherwing/ina219_featherwing.jpg
+            .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
               :alt: INA219 Featherwing
 
             This example prints the voltage with the appropriate units.
@@ -117,7 +117,7 @@ class INA219FeatherWing:
     def current(self):
         """Current returns mA.
 
-            .. image :: /_static/ina219_featherwing/ina219_featherwing.jpg
+            .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
               :alt: INA219 Featherwing
 
             This example prints the current with the appropriate units.
