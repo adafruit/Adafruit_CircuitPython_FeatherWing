@@ -31,7 +31,7 @@ Helper for using the `Joy FeatherWing <https://www.adafruit.com/product/3632>`_.
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import adafruit_seesaw
+import adafruit_seesaw.seesaw
 from adafruit_featherwing import shared
 from micropython import const
 
@@ -47,7 +47,7 @@ class JoyFeatherWing:
 
        Automatically uses the feather's I2C bus."""
     def __init__(self):
-        self._seesaw = adafruit_seesaw.Seesaw(shared.I2C_BUS)
+        self._seesaw = adafruit_seesaw.seesaw.Seesaw(shared.I2C_BUS)
         self._seesaw.pin_mode_bulk(BUTTON_A | BUTTON_B | BUTTON_Y | BUTTON_X | BUTTON_SELECT,
                                    self._seesaw.INPUT_PULLUP)
 
