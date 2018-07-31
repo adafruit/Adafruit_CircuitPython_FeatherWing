@@ -1,32 +1,31 @@
-# This is a common .travis.yml for generating library release zip files for
-# CircuitPython library releases using circuitpython-build-tools.
-# See https://github.com/adafruit/circuitpython-build-tools for detailed setup
-# instructions.
-
 dist: trusty
 sudo: false
 language: python
 python:
-    - "3.6"
-
+- '3.6'
 cache:
-    pip: true
-
+  pip: true
 deploy:
   provider: releases
-  api_key: $GITHUB_TOKEN
+  api_key: "$GITHUB_TOKEN"
   file_glob: true
-  file: $TRAVIS_BUILD_DIR/bundles/*
+  file: "$TRAVIS_BUILD_DIR/bundles/*"
   skip_cleanup: true
   overwrite: true
   on:
     tags: true
-
+- provider: pypi
+  user: adafruit-travis
+  on:
+    tags: true
+  password:
+    secure: liggN+8Qr2kWMo05RbdTSvd/4naNT5Nyq/UjKiU/LQCTRpRGMWk7jVWsX7RWKnwpZAz0FeplfiyB9+UOWDWtgIIRmn1fxGuKLlHEn8LEyGJPqIJcM6SdscIHmr/MAWSY0MujW5OLP5zrERUeeueVMPTZO5SOKLWLbY5AmMd+5VjYp6cChxJYcQoTbPyaoKpn16BNVkCF5HS+l+nPBceLcyrl+p9Au474PVvAZAYjZf/2vsXkPOQrQFB4/zJ4nMNjn1GeSaZP6ESORTEdXkgRYPXUFMNVbEp4qYaXqrVAL5AUDzXRJtNxRcgBXAZ6HLV05x3qUza/hJlujzFAobclP+5piSch2VSp/N05Gcsggv8NLcf4g62MQirwvCM7eW9Mj7HHKW3WcvVyeF/UCiT1YPymCJtASQngq9NcGvlZUOo/eG4UB11RK6EKLd5WoOnP0SWGANbBZ82HkT2sL97k0t8TkLxaDrhMY33JcwbC01V+fNNdFiC3KUZIPeMTlCzrtZ1k2bLg+8WD58q9aVkxt1tIHrS9uMc+7+J/vgA8DyMGhFXRTi9u1+SXUlN63IY9Q3nI0MIuZ+lDIA8799NBwdbT7V7XDLKljogd0kbYrNMbvS1yCVJCBlDTzLuRSxtCttQZXLjvg9DYaQHuGBQMeH2ZGqRUVyhePA+wT402kyc=
 install:
-  - pip install pylint circuitpython-build-tools Sphinx sphinx-rtd-theme
-
+- pip install -r requirements.txt
+- pip install pylint circuitpython-build-tools Sphinx sphinx-rtd-theme
 script:
-  - pylint adafruit_featherwing/*.py
-  - ([[ ! -d "examples" ]] || pylint --disable=missing-docstring,invalid-name examples/**/*.py)
-  - circuitpython-build-bundles --filename_prefix adafruit-circuitpython-featherwing --library_location .
-  - cd docs && sphinx-build -E -W -b html . _build/html
+- pylint adafruit_featherwing/*.py
+- ([[ ! -d "examples" ]] || pylint --disable=missing-docstring,invalid-name examples/**/*.py)
+- circuitpython-build-bundles --filename_prefix adafruit-circuitpython-featherwing
+  --library_location .
+- cd docs && sphinx-build -E -W -b html . _build/html && cd ..
