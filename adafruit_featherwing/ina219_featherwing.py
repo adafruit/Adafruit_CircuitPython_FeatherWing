@@ -31,10 +31,10 @@ Helper for using the `INA219 FeatherWing <https://www.adafruit.com/product/3650>
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import adafruit_ina219
-# from adafruit_featherwing import shared
 import board
 import busio
+import adafruit_ina219
+# from adafruit_featherwing import shared
 
 class INA219FeatherWing:
     """Class representing an `Adafruit INA219 FeatherWing

@@ -31,11 +31,11 @@ Helper for using the `Joy FeatherWing <https://www.adafruit.com/product/3632>`_.
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
+import busio
 from micropython import const
 import adafruit_seesaw.seesaw
 # from adafruit_featherwing import shared
-import board
-import busio
 
 BUTTON_A = const(1 << 6)
 BUTTON_B = const(1 << 7)

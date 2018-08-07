@@ -31,13 +31,11 @@ Helper for using motors with the `Motor FeatherWing <https://www.adafruit.com/pr
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
+import busio
 from adafruit_pca9685 import PCA9685
 
 # from adafruit_featherwing import shared
-
-import board
-import busio
-
 
 
 class MotorFeatherWing:
