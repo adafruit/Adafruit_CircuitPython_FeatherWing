@@ -33,7 +33,12 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 from adafruit_pca9685 import PCA9685
 
-from adafruit_featherwing import shared
+# from adafruit_featherwing import shared
+
+import board
+import busio
+
+
 
 class MotorFeatherWing:
     """Class representing an `Adafruit Motor FeatherWing <https://www.adafruit.com/product/2927>`_.
@@ -46,7 +51,8 @@ class MotorFeatherWing:
         self._motor4 = None
         self._stepper1 = None
         self._stepper2 = None
-        self._pca = PCA9685(shared.I2C_BUS, address=0x60)
+        self._i2c = busio.I2C(board.SCL, board.SDA)
+        self._pca = PCA9685(self._i2c, address=0x60)
         self._pca.frequency = 1600
 
     # We can save memory usage (~300 bytes) by deduplicating the construction of the objects for
