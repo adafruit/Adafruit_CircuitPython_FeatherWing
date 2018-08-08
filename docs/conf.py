@@ -25,7 +25,9 @@ intersphinx_mapping = {
     'BusDevice': ('https://circuitpython.readthedocs.io/projects/bus_device/en/latest/', None),
     'Register': ('https://circuitpython.readthedocs.io/projects/register/en/latest/', None),
     'CircuitPython': ('https://circuitpython.readthedocs.io/en/latest/', None),
-    'motor': ('https://circuitpython.readthedocs.io/projects/motor/en/latest/', None)}
+    'motor': ('https://circuitpython.readthedocs.io/projects/motor/en/latest/', None),
+    'seesae': ('https://circuitpython.readthedocs.io/projects/seesaw/en/latest/', None),
+    'INA219': ('https://circuitpython.readthedocs.io/projects/ina219/en/latest/', None)}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -36,9 +38,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Adafruit featherwing Library'
+project = u'Adafruit Featherwing Library'
 copyright = u'2017 Scott Shawcroft'
-author = u'Scott Shawcroft'
+author = u'Scott Shawcroft, Kattni Rembor'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

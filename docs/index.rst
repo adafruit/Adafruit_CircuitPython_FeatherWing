@@ -26,7 +26,7 @@ Table of Contents
 .. toctree::
     :caption: Related Products
 
-    Adafruit Feather Wings <https://www.adafruit.com/category/945>
+    Adafruit FeatherWings <https://www.adafruit.com/category/945>
 
 .. toctree::
     :caption: Other Links
