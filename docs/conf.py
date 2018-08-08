@@ -26,7 +26,7 @@ intersphinx_mapping = {
     'Register': ('https://circuitpython.readthedocs.io/projects/register/en/latest/', None),
     'CircuitPython': ('https://circuitpython.readthedocs.io/en/latest/', None),
     'motor': ('https://circuitpython.readthedocs.io/projects/motor/en/latest/', None),
-    'seesae': ('https://circuitpython.readthedocs.io/projects/seesaw/en/latest/', None),
+    'seesaw': ('https://circuitpython.readthedocs.io/projects/seesaw/en/latest/', None),
     'INA219': ('https://circuitpython.readthedocs.io/projects/ina219/en/latest/', None)}
 
 # Add any paths that contain templates here, relative to this directory.
