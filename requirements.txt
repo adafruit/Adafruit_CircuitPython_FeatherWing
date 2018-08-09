@@ -1,4 +1,3 @@
-Adafruit-Blinka
 adafruit-circuitpython-bus-device
 adafruit-circuitpython-register
 adafruit-circuitpython-pca9685
