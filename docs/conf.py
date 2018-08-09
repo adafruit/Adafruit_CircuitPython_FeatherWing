@@ -18,16 +18,13 @@ extensions = [
 # Uncomment the below if you use native CircuitPython modules such as
 # digitalio, micropython and busio. List the modules you use. Without it, the
 # autodoc module docs will fail to generate with a warning.
-autodoc_mock_imports = ["adafruit_featherwing"]
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3.4', None),
     'BusDevice': ('https://circuitpython.readthedocs.io/projects/bus_device/en/latest/', None),
     'Register': ('https://circuitpython.readthedocs.io/projects/register/en/latest/', None),
     'CircuitPython': ('https://circuitpython.readthedocs.io/en/latest/', None),
-    'motor': ('https://circuitpython.readthedocs.io/projects/motor/en/latest/', None),
-    'seesaw': ('https://circuitpython.readthedocs.io/projects/seesaw/en/latest/', None),
-    'INA219': ('https://circuitpython.readthedocs.io/projects/ina219/en/latest/', None)}
+    'motor': ('https://circuitpython.readthedocs.io/projects/motor/en/latest/', None)}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -38,9 +35,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Adafruit Featherwing Library'
+project = u'Adafruit featherwing Library'
 copyright = u'2017 Scott Shawcroft'
-author = u'Scott Shawcroft, Kattni Rembor'
+author = u'Scott Shawcroft'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
