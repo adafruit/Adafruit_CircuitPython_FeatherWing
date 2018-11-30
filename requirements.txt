@@ -1,3 +1,7 @@
 Adafruit-Blinka
 adafruit-circuitpython-busdevice
 adafruit-circuitpython-register
+adafruit-circuitpython-motor
+adafruit-circuitpython-pca9685
+adafruit-circuitpython-ina219
+adafruit-circuitpython-seesaw
