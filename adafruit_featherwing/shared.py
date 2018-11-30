@@ -29,7 +29,7 @@ Objects shared amongst all FeatherWings.
 * Author(s): Scott Shawcroft
 """
 
-from board import SCL, SDA
+import board
 import busio
 
-I2C_BUS = busio.I2C(SCL, SDA)
+I2C_BUS = busio.I2C(board.SCL, board.SDA)
