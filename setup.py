@@ -36,8 +36,7 @@ setup(
     author_email='circuitpython@adafruit.com',
 
     install_requires=['Adafruit-Blinka', 'adafruit-circuitpython-busdevice',
-                      'adafruit-circuitpython-register', 'adafruit-circuitpython-pca9685',
-                      'adafruit-circuitpython-motor', 'adafruit-circuitpython-ina219',
+                      'adafruit-circuitpython-register', 'adafruit-circuitpython-ina219',
                       'adafruit-circuitpython-seesaw'],
 
     # Choose your license
@@ -56,7 +55,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='adafruit motor ina219 pca9685 featherwing joy i2c '
+    keywords='adafruit ina219 featherwing joy joywing i2c '
              'hardware micropython circuitpython',
 
     # You can just specify the packages manually here if your project is
