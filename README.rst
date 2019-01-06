@@ -22,8 +22,8 @@ Dependencies
 These drivers depends on:
 
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
-* `PCA9685 <https://github.com/adafruit/Adafruit_CircuitPython_PCA9685>`_
-* `Motor <https://github.com/adafruit/Adafruit_CircuitPython_Motor>`_
+* `INA219 <https://github.com/adafruit/Adafruit_CircuitPython_INA219>`_
+* `Seesaw <https://github.com/adafruit/Adafruit_CircuitPython_seesaw>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
