@@ -3,10 +3,10 @@ Simple tests
 
 Ensure your device works with this simple test.
 
-.. literalinclude:: ../examples/ina219_featherwing/ina219.py
-    :caption: examples/ina219_featherwing/ina219.py
+.. literalinclude:: ../examples/featherwing_ina219_simpletest.py
+    :caption: examples/featherwing_ina219_simpletest.py
     :linenos:
 
-.. literalinclude:: ../examples/joy_featherwing/joy.py
-    :caption: examples/joy_featherwing/joy.py
+.. literalinclude:: ../examples/featherwing_joy_simpletest.py
+    :caption: examples/featherwing_joy_simpletest.py
     :linenos:
