@@ -6,3 +6,7 @@
 
 .. automodule:: adafruit_featherwing.joy_featherwing
    :members:
+
+.. automodule:: adafruit_featherwing.alphanum_featherwing
+   :members:
+
