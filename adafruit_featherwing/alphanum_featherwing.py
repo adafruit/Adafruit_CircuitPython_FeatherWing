@@ -48,14 +48,16 @@ class AlphaNumFeatherWing:
         """
         Print a number or text to the display
 
-        :param value: The text to display
-        :type value: str, int or float
+        :param value: The text or number to display
+        :type value: str or int or float
 
         .. code-block:: python
+
             from adafruit_featherwing import alphanum_featherwing
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
             display.print(1234)
+
         """
         self._seg14x4.print(value)
         self._seg14x4.show()
@@ -75,6 +77,7 @@ class AlphaNumFeatherWing:
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
             display.marquee('This is some really long text  ')
+
         """
         if isinstance(text, str):
             self.fill(False)
@@ -93,7 +96,8 @@ class AlphaNumFeatherWing:
 
     @property
     def blink_rate(self):
-        """Blink Rate returns the current rate that the text blinks.
+        """
+        Blink Rate returns the current rate that the text blinks.
         0 = Off
         1-3 = Successively slower blink rates
 
@@ -101,8 +105,8 @@ class AlphaNumFeatherWing:
 
         .. code-block:: python
 
-            from adafruit_featherwing import alphanum_featherwing
             from time import sleep
+            from adafruit_featherwing import alphanum_featherwing
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
             display.print('Text')
@@ -111,6 +115,7 @@ class AlphaNumFeatherWing:
                 display.blink_rate = blink_rate
                 print("Current Blink Rate is {}".format(display.blink_rate))
                 sleep(4)
+
         """
         return self._seg14x4.blink_rate
 
@@ -120,15 +125,16 @@ class AlphaNumFeatherWing:
 
     @property
     def brightness(self):
-        """Brightness returns the current display brightness.
+        """
+        Brightness returns the current display brightness.
         0-15 = Dimmest to Brightest Setting
 
         This example changes the brightness and prints out the current setting
 
         .. code-block:: python
 
-            from adafruit_featherwing import alphanum_featherwing
             from time import sleep
+            from adafruit_featherwing import alphanum_featherwing
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
             display.print('Text')
@@ -137,6 +143,7 @@ class AlphaNumFeatherWing:
                 display.brightness = brightness
                 print("Current Brightness is {}".format(display.brightness))
                 sleep(0.2)
+
         """
         return self._seg14x4.brightness
 
@@ -152,8 +159,8 @@ class AlphaNumFeatherWing:
 
         .. code-block:: python
 
-            from adafruit_featherwing import alphanum_featherwing
             from time import sleep
+            from adafruit_featherwing import alphanum_featherwing
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
 
@@ -162,6 +169,7 @@ class AlphaNumFeatherWing:
                 sleep(0.5)
                 display.fill(False)
                 sleep(0.5)
+
         """
         if isinstance(fill, bool):
             self._seg14x4.fill(1 if fill else 0)
