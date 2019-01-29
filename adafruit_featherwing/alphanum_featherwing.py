@@ -65,11 +65,12 @@ class AlphaNumFeatherWing:
         Automatically scroll the text at the specified delay between characters
 
         :param str text: The text to display
-        :param float delay: (optional) The delay in seconds to pause
-        before scrolling to the next character (default=0.25)
+        :param float delay: (optional) The delay in seconds to pause before scrolling
+                            to the next character (default=0.25)
         :param bool loop: (optional) Whether to endlessly loop the text (default=True)
 
         .. code-block:: python
+
             from adafruit_featherwing import alphanum_featherwing
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
