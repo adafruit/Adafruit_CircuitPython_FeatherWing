@@ -31,9 +31,9 @@ Helper for using the `14-Segment AlphaNumeric FeatherWing <https://www.adafruit.
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+from time import sleep
 import adafruit_ht16k33.segments as segments
 from adafruit_featherwing import shared
-from time import sleep
 
 class AlphaNumFeatherWing:
     """Class representing an `Adafruit 14-segment AlphaNumeric FeatherWing
@@ -78,7 +78,7 @@ class AlphaNumFeatherWing:
         if isinstance(text, str):
             self.fill(False)
             if loop:
-                while(True):
+                while True:
                     self._scroll_marquee(text, delay)
             else:
                 self._scroll_marquee(text, delay)
