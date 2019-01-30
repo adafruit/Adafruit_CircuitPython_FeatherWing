@@ -90,6 +90,8 @@ class AlphaNumFeatherWing:
     def _scroll_marquee(self, text, delay):
         for character in text:
             self._seg14x4.scroll()
+            if character == '.':
+                self._seg14x4[3] = ' '
             self._seg14x4[3] = character
             sleep(delay)
             self._seg14x4.show()
