@@ -56,7 +56,7 @@ class AlphaNumFeatherWing:
             from adafruit_featherwing import alphanum_featherwing
 
             display = alphanum_featherwing.AlphaNumFeatherWing()
-            display.print(123)
+            display.print(1234)
 
         """
         self._seg14x4.print(value)
