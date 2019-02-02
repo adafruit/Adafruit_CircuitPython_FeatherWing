@@ -1,4 +1,7 @@
-"""This example changes the screen different colors"""
+"""
+This example changes the screen different colors
+and then draws random pixels at random locations
+"""
 
 from time import sleep
 import random
@@ -11,8 +14,14 @@ dotstar = dotstar_featherwing.DotStarFeatherWing()
 def random_color():
     return random.randrange(0, 8) * 32
 
+for i in range(0, 15):
+    dotstar.fill((random_color(), random_color(), random_color()))
+    sleep(.2)
+
 # MAIN LOOP
 while True:
     # Fill screen with a random color
-    dotstar.fill((random_color(), random_color(), random_color()))
-    sleep(.25)
+    x = random.randrange(0, dotstar.columns)
+    y = random.randrange(0, dotstar.rows)
+    dotstar[x, y] = (random_color(), random_color(), random_color())
+    sleep(.1)

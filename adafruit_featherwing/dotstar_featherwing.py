@@ -32,7 +32,6 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
-import time
 import adafruit_dotstar as dotstar
 
 class DotStarFeatherWing:
@@ -46,10 +45,19 @@ class DotStarFeatherWing:
             :param pin data: The data pin for the featherwing
             :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
         """
-        self._rows = 6
-        self._columns = 12
+        self.rows = 6
+        self.columns = 12
         self._brightness = brightness
-        self._dotstar = dotstar.DotStar(clock, data, self._rows * self._columns, brightness=self._brightness)
+        self._dotstar = dotstar.DotStar(clock, data, self.rows * self.columns,
+                                        brightness=self._brightness)
+
+    def __setitem__(self, indices, value):
+        x, y = indices
+        self._dotstar[y * self.columns + x] = value
+
+    def __getitem__(self, indices):
+        x, y = indices
+        return self._dotstar[y * self.columns + x]
 
     def fill(self, color):
         """Fills the wing with a color.
@@ -58,4 +66,3 @@ class DotStarFeatherWing:
            :param (int, int, int) color: the color to fill with
         """
         self._dotstar.fill(color)
-
