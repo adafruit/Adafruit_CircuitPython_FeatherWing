@@ -15,5 +15,9 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_alphanum_simpletest.py
     :linenos:
 
+.. literalinclude:: ../examples/featherwing_dotstar_simpletest.py
+    :caption: examples/featherwing_dotstar_simpletest.py
+    :linenos:
+
 
 
