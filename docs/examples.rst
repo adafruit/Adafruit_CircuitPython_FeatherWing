@@ -19,5 +19,9 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_dotstar_simpletest.py
     :linenos:
 
+.. literalinclude:: ../examples/featherwing_dotstar_palettetest.py
+    :caption: examples/featherwing_dotstar_palettetest.py
+    :linenos:
+
 
 
