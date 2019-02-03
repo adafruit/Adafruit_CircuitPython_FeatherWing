@@ -3,7 +3,7 @@ This creates a palette of colors, draws a pattern and
 rotates through the palette creating a moving rainbow.
 """
 
-from math import sqrt,cos,sin,radians
+from math import sqrt, cos, sin, radians
 from adafruit_featherwing import dotstar_featherwing
 
 dotstar = dotstar_featherwing.DotStarFeatherWing()

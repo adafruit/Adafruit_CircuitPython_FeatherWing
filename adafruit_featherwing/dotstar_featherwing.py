@@ -34,10 +34,6 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import board
 import adafruit_dotstar as dotstar
 
-# Library Function Ideas
-# Gradient (probably just for example)
-#                   20                  40                  60                  80                  100
-
 class DotStarFeatherWing:
     """Class representing a `DotStar FeatherWing
        <https://www.adafruit.com/product/3449>`_.
@@ -163,8 +159,8 @@ class DotStarFeatherWing:
         for y in range(0, self.rows):
             for x in range(self.columns - 1, 0, -1):
                 self._dotstar[y * self.columns + x] = self._dotstar[y * self.columns + x - 1]
-            lastPixel = self._dotstar[(y + 1) * self.columns - 1] if rotate else 0
-            self._dotstar[y * self.columns] = lastPixel
+            last_pixel = self._dotstar[(y + 1) * self.columns - 1] if rotate else 0
+            self._dotstar[y * self.columns] = last_pixel
         self._update()
 
     def shift_left(self, rotate=False):
@@ -172,8 +168,8 @@ class DotStarFeatherWing:
         for y in range(0, self.rows):
             for x in range(0, self.columns - 1):
                 self._dotstar[y * self.columns + x] = self._dotstar[y * self.columns + x + 1]
-            lastPixel = self._dotstar[y * self.columns] if rotate else 0
-            self._dotstar[(y + 1) * self.columns - 1] = lastPixel
+            last_pixel = self._dotstar[y * self.columns] if rotate else 0
+            self._dotstar[(y + 1) * self.columns - 1] = last_pixel
         self._update()
 
     def shift_up(self, rotate=False):
@@ -181,8 +177,8 @@ class DotStarFeatherWing:
         for x in range(0, self.columns):
             for y in range(self.rows - 1, 0, -1):
                 self._dotstar[y * self.columns + x] = self._dotstar[(y - 1) * self.columns + x]
-            lastPixel = self._dotstar[(self.rows - 1) * self.columns + x] if rotate else 0
-            self._dotstar[x] = lastPixel
+            last_pixel = self._dotstar[(self.rows - 1) * self.columns + x] if rotate else 0
+            self._dotstar[x] = last_pixel
         self._update()
 
     def shift_down(self, rotate=False):
@@ -190,8 +186,8 @@ class DotStarFeatherWing:
         for x in range(0, self.columns):
             for y in range(0, self.rows - 1):
                 self._dotstar[y * self.columns + x] = self._dotstar[(y + 1) * self.columns + x]
-            lastPixel = self._dotstar[x] if rotate else 0
-            self._dotstar[(self.rows - 1) * self.columns + x] = lastPixel
+            last_pixel = self._dotstar[x] if rotate else 0
+            self._dotstar[(self.rows - 1) * self.columns + x] = last_pixel
         self._update()
 
     def _update(self):
