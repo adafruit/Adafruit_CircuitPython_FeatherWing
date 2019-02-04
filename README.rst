@@ -25,6 +25,7 @@ These drivers depends on:
 * `INA219 <https://github.com/adafruit/Adafruit_CircuitPython_INA219>`_
 * `Seesaw <https://github.com/adafruit/Adafruit_CircuitPython_seesaw>`_
 * `HT16K33 <https://github.com/adafruit/Adafruit_CircuitPython_HT16K33>`_
+* `DotStar <https://github.com/adafruit/Adafruit_CircuitPython_DotStar>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading

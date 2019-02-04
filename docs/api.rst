@@ -10,3 +10,6 @@
 .. automodule:: adafruit_featherwing.alphanum_featherwing
    :members:
 
+.. automodule:: adafruit_featherwing.dotstar_featherwing
+   :members:
+
