@@ -47,7 +47,6 @@ class DotStarFeatherWing:
         """
         self.rows = 6
         self.columns = 12
-        self._brightness = brightness
         self._auto_write = True
         self._dotstar = dotstar.DotStar(clock, data, self.rows * self.columns,
                                         brightness=self._brightness, auto_write=False)
