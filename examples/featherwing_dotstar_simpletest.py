@@ -47,9 +47,9 @@ for i in range(0, 36):
     dotstar.show()
 dotstar.auto_write = True
 
-# Shift without rotating in bits for an animated screen wipe
+# Shift pixels without rotating for an animated screen wipe
 for i in range(0, 6):
-    dotstar.shift_up()
+    dotstar.shift_down()
 
 # Show pixels in random locations of random color
 # Bottom left corner is (0,0)
