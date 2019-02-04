@@ -362,3 +362,5 @@ class DotStarFeatherWing:
     def brightness(self, brightness):
         self._dotstar.brightness = min(max(brightness, 0.0), 1.0)
         self._update()
+
+
