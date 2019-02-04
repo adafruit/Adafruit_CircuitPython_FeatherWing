@@ -23,7 +23,7 @@
 `adafruit_featherwing.dotstar_featherwing`
 ====================================================
 
-Helper for using the `Dotstar FeatherWing <https://www.adafruit.com/product/3449>`_.
+Helper for using the `DotStar FeatherWing <https://www.adafruit.com/product/3449>`_.
 
 * Author(s): Melissa LeBlanc-Williams
 """
