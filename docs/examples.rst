@@ -30,6 +30,6 @@ Other tests
     :caption: examples/featherwing_dotstar_palette_example.py
     :linenos:
 
-.. literalinclude:: ../examples/featherwing_neopixel_palettetest.py
+.. literalinclude:: ../examples/featherwing_neopixel_palette_example.py
     :caption: examples/featherwing_neopixel_palette_example.py
     :linenos:

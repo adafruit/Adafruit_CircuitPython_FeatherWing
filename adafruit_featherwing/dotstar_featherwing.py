@@ -34,23 +34,12 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import board
 import adafruit_dotstar as dotstar
 
-class DotStarFeatherWing:
-    """Class representing a `DotStar FeatherWing
-       <https://www.adafruit.com/product/3449>`_.
+class PixelDisplayFeatherWing:
+    """Base Class for DotStar and NeoPixel FeatherWings
 
        The feather uses pins D13 and D11"""
-    def __init__(self, clock=board.D13, data=board.D11, brightness=0.2):
-        """
-            :param pin clock: The clock pin for the featherwing
-            :param pin data: The data pin for the featherwing
-            :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
-        """
-        self.rows = 6
-        self.columns = 12
-        self._brightness = brightness
+    def __init__(self):
         self._auto_write = True
-        self._display = dotstar.DotStar(clock, data, self.rows * self.columns,
-                                        brightness=self._brightness, auto_write=False)
 
     def __setitem__(self, indices, value):
         """
@@ -96,6 +85,88 @@ class DotStarFeatherWing:
         else:
             raise ValueError('Index must be 1 or 2 number')
 
+    def _update(self):
+        """
+        Update the Display automatically if auto_write is set to True
+        """
+        if self._auto_write:
+            self._display.show()
+
+    def _fill(self, color=0):
+        """
+        Fills all of the Pixels with a color or unlit if empty.
+        """
+        self._display.fill(color)
+        self._update()
+
+    def _show(self):
+        """
+        Update the Pixels. This is only needed if auto_write is set to False
+        This can be very useful for more advanced graphics effects.
+        """
+        self._display.show()
+
+    def _shift_right(self, rotate=False):
+        """
+        Shift all pixels right
+        """
+        for y in range(0, self.rows):
+            last_pixel = self._display[(y + 1) * self.columns - 1] if rotate else 0
+            for x in range(self.columns - 1, 0, -1):
+                self._display[y * self.columns + x] = self._display[y * self.columns + x - 1]
+            self._display[y * self.columns] = last_pixel
+        self._update()
+
+    def _shift_left(self, rotate=False):
+        """
+        Shift all pixels left
+        """
+        for y in range(0, self.rows):
+            last_pixel = self._display[y * self.columns] if rotate else 0
+            for x in range(0, self.columns - 1):
+                self._display[y * self.columns + x] = self._display[y * self.columns + x + 1]
+            self._display[(y + 1) * self.columns - 1] = last_pixel
+        self._update()
+
+    def _shift_up(self, rotate=False):
+        """
+        Shift all pixels up
+        """
+        for x in range(0, self.columns):
+            last_pixel = self._display[(self.rows - 1) * self.columns + x] if rotate else 0
+            for y in range(self.rows - 1, 0, -1):
+                self._display[y * self.columns + x] = self._display[(y - 1) * self.columns + x]
+            self._display[x] = last_pixel
+        self._update()
+
+    def _shift_down(self, rotate=False):
+        """
+        Shift all pixels down
+        """
+        for x in range(0, self.columns):
+            last_pixel = self._display[x] if rotate else 0
+            for y in range(0, self.rows - 1):
+                self._display[y * self.columns + x] = self._display[(y + 1) * self.columns + x]
+            self._display[(self.rows - 1) * self.columns + x] = last_pixel
+        self._update()
+
+class DotStarFeatherWing(PixelDisplayFeatherWing):
+    """Class representing a `DotStar FeatherWing
+       <https://www.adafruit.com/product/3449>`_.
+
+       The feather uses pins D13 and D11"""
+    def __init__(self, clock=board.D13, data=board.D11, brightness=0.2):
+        """
+            :param pin clock: The clock pin for the featherwing
+            :param pin data: The data pin for the featherwing
+            :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
+        """
+        self.rows = 6
+        self.columns = 12
+        self._display = dotstar.DotStar(clock, data, self.rows * self.columns,
+                                        brightness=brightness, auto_write=False)
+        super().__init__()
+
     def fill(self, color=0):
         """
         Fills all of the DotStars with a color or unlit if empty.
@@ -120,8 +191,7 @@ class DotStarFeatherWing:
             dotstar.fill() # Clear all lit DotStars
 
         """
-        self._display.fill(color)
-        self._update()
+        super()._fill(color)
 
     def show(self):
         """
@@ -143,7 +213,7 @@ class DotStarFeatherWing:
             dotstar.show() # Update the DotStars
 
         """
-        self._display.show()
+        super()._show()
 
     def shift_right(self, rotate=False):
         """
@@ -176,12 +246,7 @@ class DotStarFeatherWing:
                 time.sleep(.1)
 
         """
-        for y in range(0, self.rows):
-            last_pixel = self._display[(y + 1) * self.columns - 1] if rotate else 0
-            for x in range(self.columns - 1, 0, -1):
-                self._display[y * self.columns + x] = self._display[y * self.columns + x - 1]
-            self._display[y * self.columns] = last_pixel
-        self._update()
+        super()._shift_right(rotate)
 
     def shift_left(self, rotate=False):
         """
@@ -214,12 +279,7 @@ class DotStarFeatherWing:
                 time.sleep(.1)
 
         """
-        for y in range(0, self.rows):
-            last_pixel = self._display[y * self.columns] if rotate else 0
-            for x in range(0, self.columns - 1):
-                self._display[y * self.columns + x] = self._display[y * self.columns + x + 1]
-            self._display[(y + 1) * self.columns - 1] = last_pixel
-        self._update()
+        super()._shift_left(rotate)
 
     def shift_up(self, rotate=False):
         """
@@ -252,12 +312,7 @@ class DotStarFeatherWing:
                 time.sleep(.1)
 
         """
-        for x in range(0, self.columns):
-            last_pixel = self._display[(self.rows - 1) * self.columns + x] if rotate else 0
-            for y in range(self.rows - 1, 0, -1):
-                self._display[y * self.columns + x] = self._display[(y - 1) * self.columns + x]
-            self._display[x] = last_pixel
-        self._update()
+        super()._shift_up(rotate)
 
     def shift_down(self, rotate=False):
         """
@@ -290,19 +345,7 @@ class DotStarFeatherWing:
                 time.sleep(.1)
 
         """
-        for x in range(0, self.columns):
-            last_pixel = self._display[x] if rotate else 0
-            for y in range(0, self.rows - 1):
-                self._display[y * self.columns + x] = self._display[(y + 1) * self.columns + x]
-            self._display[(self.rows - 1) * self.columns + x] = last_pixel
-        self._update()
-
-    def _update(self):
-        """
-        Update the Display automatically if auto_write is set to True
-        """
-        if self._auto_write:
-            self._display.show()
+        super()._shift_down(rotate)
 
     @property
     def auto_write(self):

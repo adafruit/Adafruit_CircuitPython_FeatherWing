@@ -33,9 +33,9 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
 import neopixel
-from adafruit_featherwing.dotstar_featherwing import DotStarFeatherWing
+from adafruit_featherwing.dotstar_featherwing import PixelDisplayFeatherWing
 
-class NeoPixelFeatherWing(DotStarFeatherWing):
+class NeoPixelFeatherWing(PixelDisplayFeatherWing):
     """Class representing a `NeoPixel FeatherWing
        <https://www.adafruit.com/product/2945>`_.
 
@@ -51,9 +51,10 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
 
         self.rows = 4
         self.columns = 8
-        self._auto_write = True
-        self._display = neopixel.NeoPixel(pixel_pin, self.rows * self.columns, brightness=brightness,
-                                         auto_write=False, pixel_order=neopixel.GRB)
+        self._display = neopixel.NeoPixel(pixel_pin, self.rows * self.columns,
+                                          brightness=brightness, auto_write=False,
+                                          pixel_order=neopixel.GRB)
+        super().__init__()
 
     def fill(self, color=0):
         """
@@ -77,7 +78,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
             neopixel.fill() # Clear all lit NeoPixels
 
         """
-        super().fill(color)
+        super()._fill(color)
 
     def show(self):
         """
@@ -99,7 +100,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
             neopixel.show() # Update the NeoPixels
 
         """
-        super().show()
+        super()._show()
 
     def shift_right(self, rotate=False):
         """
@@ -132,7 +133,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_right(rotate)
+        super()._shift_right(rotate)
 
     def shift_left(self, rotate=False):
         """
@@ -165,7 +166,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_left(rotate)
+        super()._shift_left(rotate)
 
     def shift_up(self, rotate=False):
         """
@@ -198,7 +199,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_down(rotate) # Up and down are reversed
+        super()._shift_down(rotate) # Up and down are reversed
 
     def shift_down(self, rotate=False):
         """
@@ -231,4 +232,64 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_up(rotate) # Up and down are reversed
+        super()._shift_up(rotate) # Up and down are reversed
+
+    @property
+    def auto_write(self):
+        """
+        Whether or not we are automatically updating
+        If set to false, be sure to call show() to update
+
+        This lights NeoPixels with and without auto_write
+
+        .. code-block:: python
+
+            import time
+            from adafruit_featherwing import neopixel_featherwing
+
+            neopixel = neopixel_featherwing.NeoPixelFeatherWing()
+            neopixel.fill() # Clear any lit NeoPixels
+            neopixel[0, 0] = (255, 255, 255) # Set White
+            time.sleep(1)
+
+            neopixel.auto_write = False
+            neopixel[1, 0] = (255, 255, 255) # Set White
+            time.sleep(1)
+            neopixel.show() # Update the NeoPixels
+
+        """
+        return self._auto_write
+
+    @auto_write.setter
+    def auto_write(self, write):
+        if isinstance(write, bool):
+            self._auto_write = write
+
+    @property
+    def brightness(self):
+        """
+        Overall brightness of the display
+
+        This example changes the brightness
+
+        .. code-block:: python
+
+            import time
+            from adafruit_featherwing import neopixel_featherwing
+
+            neopixel = neopixel_featherwing.NeoPixelFeatherWing()
+            neopixel.brightness = 0
+            neopixel.fill(0xFFFFFF)
+            for i in range(0, 6):
+                neopixel.brightness = (i / 10)
+                time.sleep(.2)
+
+            neopixel.brightness = 0.3
+
+        """
+        return self._display.brightness
+
+    @brightness.setter
+    def brightness(self, brightness):
+        self._display.brightness = min(max(brightness, 0.0), 1.0)
+        self._update()
