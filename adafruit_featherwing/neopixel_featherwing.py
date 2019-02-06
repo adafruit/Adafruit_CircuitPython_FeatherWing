@@ -45,16 +45,12 @@ class NeoPixelFeatherWing(PixelDisplayFeatherWing):
             :param pin pixel_pin: The pin for the featherwing
             :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
         """
-
-        # The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
-        # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
-
+        super().__init__()
         self.rows = 4
         self.columns = 8
         self._display = neopixel.NeoPixel(pixel_pin, self.rows * self.columns,
                                           brightness=brightness, auto_write=False,
                                           pixel_order=neopixel.GRB)
-        super().__init__()
 
     def fill(self, color=0):
         """

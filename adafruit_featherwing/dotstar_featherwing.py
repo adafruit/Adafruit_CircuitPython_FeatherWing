@@ -39,6 +39,9 @@ class PixelDisplayFeatherWing:
 
        The feather uses pins D13 and D11"""
     def __init__(self):
+        self.rows = 0
+        self.columns = 0
+        self._display = None
         self._auto_write = True
 
     def __setitem__(self, indices, value):
@@ -53,8 +56,9 @@ class PixelDisplayFeatherWing:
                 a single, longer int that contains RGB values, like 0xFFFFFF
             brightness, if specified should be a float 0-1
         """
-        self._display[self._get_index(indices)] = value
-        self._update()
+        if self._display is not None:
+            self._display[self._get_index(indices)] = value
+            self._update()
 
     def __getitem__(self, indices):
         """
@@ -63,7 +67,10 @@ class PixelDisplayFeatherWing:
             a slice of DotStar indexes to retrieve
             a single int that specifies the DotStar index
         """
-        return self._display[self._get_index(indices)]
+        if self._display is not None:
+            return self._display[self._get_index(indices)]
+        else:
+            return None
 
     def _get_index(self, indices):
         """
@@ -161,11 +168,11 @@ class DotStarFeatherWing(PixelDisplayFeatherWing):
             :param pin data: The data pin for the featherwing
             :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
         """
+        super().__init__()
         self.rows = 6
         self.columns = 12
         self._display = dotstar.DotStar(clock, data, self.rows * self.columns,
                                         brightness=brightness, auto_write=False)
-        super().__init__()
 
     def fill(self, color=0):
         """
