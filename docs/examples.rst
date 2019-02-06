@@ -26,7 +26,7 @@ Ensure your device works with this simple test.
 Other tests
 ------------
 
-.. literalinclude:: ../examples/featherwing_dotstar_palettetest.py
+.. literalinclude:: ../examples/featherwing_dotstar_palette_example.py
     :caption: examples/featherwing_dotstar_palette_example.py
     :linenos:
 
