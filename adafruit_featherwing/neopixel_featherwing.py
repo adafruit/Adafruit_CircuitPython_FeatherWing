@@ -54,6 +54,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                                           pixel_order=neopixel.GRB)
     #pylint: enable-msg=super-init-not-called
 
+    #pylint: disable-msg=useless-super-delegation
     def fill(self, color=0):
         """
         Fills all of the NeoPixels with a color or unlit if empty.
@@ -165,6 +166,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
 
         """
         super().shift_left(rotate)
+    #pylint: enable-msg=useless-super-delegation
 
     def shift_up(self, rotate=False):
         """
