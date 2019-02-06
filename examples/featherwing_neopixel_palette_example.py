@@ -4,9 +4,9 @@ rotates through the palette creating a moving rainbow.
 """
 
 from math import sqrt, cos, sin, radians
-from adafruit_featherwing import dotstar_featherwing
+from adafruit_featherwing import neopixel_featherwing
 
-dotstar = dotstar_featherwing.DotStarFeatherWing()
+neopixel = neopixel_featherwing.NeoPixelFeatherWing()
 
 # Remap the calculated rotation to 0 - 255
 def remap(vector):
@@ -30,22 +30,22 @@ for degree in range(0, 360):
     palette.append(color[0] << 16 | color[1] << 8 | color[2])
 
 # Create the Pattern
-for y in range(0, dotstar.rows):
-    for x in range(0, dotstar.columns):
+for y in range(0, neopixel.rows):
+    for x in range(0, neopixel.columns):
         pixels.append(x * 30 + y * -30)
 
 # Clear the screen
-dotstar.fill()
+neopixel.fill()
 
 # Start the Animation
-dotstar.auto_write = False
+neopixel.auto_write = False
 while True:
     for color in range(0, 360, 10):
-        for index in range(0, 72):
+        for index in range(0, neopixel.rows * neopixel.columns):
             palette_index = pixels[index] + color
             if palette_index >= 360:
                 palette_index -= 360
             elif palette_index < 0:
                 palette_index += 360
-            dotstar[index] = palette[palette_index]
-        dotstar.show()
+            neopixel[index] = palette[palette_index]
+        neopixel.show()

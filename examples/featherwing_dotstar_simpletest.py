@@ -1,5 +1,5 @@
 """
-This example changes the screen different colors
+This plays various animations
 and then draws random pixels at random locations
 """
 

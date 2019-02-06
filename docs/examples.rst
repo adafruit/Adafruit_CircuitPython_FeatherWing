@@ -19,9 +19,17 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_dotstar_simpletest.py
     :linenos:
 
-.. literalinclude:: ../examples/featherwing_dotstar_palettetest.py
-    :caption: examples/featherwing_dotstar_palettetest.py
+.. literalinclude:: ../examples/featherwing_neopixel_simpletest.py
+    :caption: examples/featherwing_neopixel_simpletest.py
     :linenos:
 
+Other tests
+------------
 
+.. literalinclude:: ../examples/featherwing_dotstar_palettetest.py
+    :caption: examples/featherwing_dotstar_palette_example.py
+    :linenos:
 
+.. literalinclude:: ../examples/featherwing_neopixel_palettetest.py
+    :caption: examples/featherwing_neopixel_palette_example.py
+    :linenos:

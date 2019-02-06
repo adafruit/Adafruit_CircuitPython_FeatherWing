@@ -13,3 +13,5 @@
 .. automodule:: adafruit_featherwing.dotstar_featherwing
    :members:
 
+.. automodule:: adafruit_featherwing.neopixel_featherwing
+   :members:
