@@ -26,6 +26,7 @@ These drivers depends on:
 * `Seesaw <https://github.com/adafruit/Adafruit_CircuitPython_seesaw>`_
 * `HT16K33 <https://github.com/adafruit/Adafruit_CircuitPython_HT16K33>`_
 * `DotStar <https://github.com/adafruit/Adafruit_CircuitPython_DotStar>`_
+* `NeoPixel <https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
