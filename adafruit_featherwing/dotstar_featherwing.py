@@ -48,8 +48,8 @@ class DotStarFeatherWing:
         self.rows = 6
         self.columns = 12
         self._auto_write = True
-        self._display = dotstar.DotStar(clock, data, self.rows * self.columns,
-                                        brightness=brightness, auto_write=False)
+        self._matrix = dotstar.DotStar(clock, data, self.rows * self.columns,
+                                       brightness=brightness, auto_write=False)
 
     def __setitem__(self, indices, value):
         """
@@ -63,7 +63,7 @@ class DotStarFeatherWing:
                 a single, longer int that contains RGB values, like 0xFFFFFF
             brightness, if specified should be a float 0-1
         """
-        self._display[self._get_index(indices)] = value
+        self._matrix[self._get_index(indices)] = value
         self._update()
 
     def __getitem__(self, indices):
@@ -73,7 +73,7 @@ class DotStarFeatherWing:
             a slice of DotStar indexes to retrieve
             a single int that specifies the DotStar index
         """
-        return self._display[self._get_index(indices)]
+        return self._matrix[self._get_index(indices)]
 
     def _get_index(self, indices):
         """
@@ -119,7 +119,7 @@ class DotStarFeatherWing:
             dotstar.fill() # Clear all lit DotStars
 
         """
-        self._display.fill(color)
+        self._matrix.fill(color)
         self._update()
 
     def show(self):
@@ -142,7 +142,7 @@ class DotStarFeatherWing:
             dotstar.show() # Update the DotStars
 
         """
-        self._display.show()
+        self._matrix.show()
 
     def shift_right(self, rotate=False):
         """
@@ -176,10 +176,10 @@ class DotStarFeatherWing:
 
         """
         for y in range(0, self.rows):
-            last_pixel = self._display[(y + 1) * self.columns - 1] if rotate else 0
+            last_pixel = self._matrix[(y + 1) * self.columns - 1] if rotate else 0
             for x in range(self.columns - 1, 0, -1):
-                self._display[y * self.columns + x] = self._display[y * self.columns + x - 1]
-            self._display[y * self.columns] = last_pixel
+                self._matrix[y * self.columns + x] = self._matrix[y * self.columns + x - 1]
+            self._matrix[y * self.columns] = last_pixel
         self._update()
 
     def shift_left(self, rotate=False):
@@ -214,10 +214,10 @@ class DotStarFeatherWing:
 
         """
         for y in range(0, self.rows):
-            last_pixel = self._display[y * self.columns] if rotate else 0
+            last_pixel = self._matrix[y * self.columns] if rotate else 0
             for x in range(0, self.columns - 1):
-                self._display[y * self.columns + x] = self._display[y * self.columns + x + 1]
-            self._display[(y + 1) * self.columns - 1] = last_pixel
+                self._matrix[y * self.columns + x] = self._matrix[y * self.columns + x + 1]
+            self._matrix[(y + 1) * self.columns - 1] = last_pixel
         self._update()
 
     def shift_up(self, rotate=False):
@@ -252,10 +252,10 @@ class DotStarFeatherWing:
 
         """
         for x in range(0, self.columns):
-            last_pixel = self._display[(self.rows - 1) * self.columns + x] if rotate else 0
+            last_pixel = self._matrix[(self.rows - 1) * self.columns + x] if rotate else 0
             for y in range(self.rows - 1, 0, -1):
-                self._display[y * self.columns + x] = self._display[(y - 1) * self.columns + x]
-            self._display[x] = last_pixel
+                self._matrix[y * self.columns + x] = self._matrix[(y - 1) * self.columns + x]
+            self._matrix[x] = last_pixel
         self._update()
 
     def shift_down(self, rotate=False):
@@ -290,10 +290,10 @@ class DotStarFeatherWing:
 
         """
         for x in range(0, self.columns):
-            last_pixel = self._display[x] if rotate else 0
+            last_pixel = self._matrix[x] if rotate else 0
             for y in range(0, self.rows - 1):
-                self._display[y * self.columns + x] = self._display[(y + 1) * self.columns + x]
-            self._display[(self.rows - 1) * self.columns + x] = last_pixel
+                self._matrix[y * self.columns + x] = self._matrix[(y + 1) * self.columns + x]
+            self._matrix[(self.rows - 1) * self.columns + x] = last_pixel
         self._update()
 
     def _update(self):
@@ -301,7 +301,7 @@ class DotStarFeatherWing:
         Update the Display automatically if auto_write is set to True
         """
         if self._auto_write:
-            self._display.show()
+            self._matrix.show()
 
     @property
     def auto_write(self):
@@ -356,9 +356,9 @@ class DotStarFeatherWing:
             dotstar.brightness = 0.3
 
         """
-        return self._display.brightness
+        return self._matrix.brightness
 
     @brightness.setter
     def brightness(self, brightness):
-        self._display.brightness = min(max(brightness, 0.0), 1.0)
+        self._matrix.brightness = min(max(brightness, 0.0), 1.0)
         self._update()
