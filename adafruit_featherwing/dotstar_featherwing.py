@@ -34,7 +34,7 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import board
 import adafruit_dotstar as dotstar
 
-class PixelDisplayFeatherWing:
+class PixelMatrixFeatherWing:
     """Base Class for DotStar and NeoPixel FeatherWings
 
        The feather uses pins D13 and D11"""
@@ -153,67 +153,7 @@ class PixelDisplayFeatherWing:
             self._matrix[(self.rows - 1) * self.columns + x] = last_pixel
         self._update()
 
-    @property
-    def auto_write(self):
-        """
-        Whether or not we are automatically updating
-        If set to false, be sure to call show() to update
-
-        This lights DotStars with and without auto_write
-
-        .. code-block:: python
-
-            import time
-            from adafruit_featherwing import dotstar_featherwing
-
-            dotstar = dotstar_featherwing.DotStarFeatherWing()
-            dotstar.fill() # Clear any lit Dotstars
-            dotstar[0, 0] = (255, 255, 255) # Set White
-            time.sleep(1)
-
-            dotstar.auto_write = False
-            dotstar[1, 0] = (255, 255, 255) # Set White
-            time.sleep(1)
-            dotstar.show() # Update the DotStars
-
-        """
-        return self._auto_write
-
-    @auto_write.setter
-    def auto_write(self, write):
-        if isinstance(write, bool):
-            self._auto_write = write
-
-    @property
-    def brightness(self):
-        """
-        Overall brightness of the display
-
-        This example changes the brightness
-
-        .. code-block:: python
-
-            import time
-            from adafruit_featherwing import dotstar_featherwing
-
-            dotstar = dotstar_featherwing.DotStarFeatherWing()
-            dotstar.brightness = 0
-            dotstar.fill(0xFFFFFF)
-            for i in range(0, 6):
-                dotstar.brightness = (i / 10)
-                time.sleep(.2)
-
-            dotstar.brightness = 0.3
-
-        """
-        return self._matrix.brightness
-
-    @brightness.setter
-    def brightness(self, brightness):
-        self._matrix.brightness = min(max(brightness, 0.0), 1.0)
-        self._update()
-
-class DotStarFeatherWing(PixelDisplayFeatherWing):
+class DotStarFeatherWing(PixelMatrixFeatherWing):
     """Class representing a `DotStar FeatherWing
        <https://www.adafruit.com/product/3449>`_.
 

@@ -35,7 +35,7 @@ import board
 import neopixel
 from adafruit_featherwing.dotstar_featherwing import PixelDisplayFeatherWing
 
-class NeoPixelFeatherWing(PixelDisplayFeatherWing):
+class NeoPixelFeatherWing(PixelMatrixFeatherWing):
     """Class representing a `NeoPixel FeatherWing
        <https://www.adafruit.com/product/2945>`_.
 
