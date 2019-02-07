@@ -33,28 +33,25 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
 import neopixel
-from adafruit_featherwing.dotstar_featherwing import DotStarFeatherWing
+from adafruit_featherwing.dotstar_featherwing import PixelDisplayFeatherWing
 
-class NeoPixelFeatherWing(DotStarFeatherWing):
+class NeoPixelFeatherWing(PixelDisplayFeatherWing):
     """Class representing a `NeoPixel FeatherWing
        <https://www.adafruit.com/product/2945>`_.
 
        The feather uses pins D6 by default"""
-    #pylint: disable-msg=super-init-not-called
     def __init__(self, pixel_pin=board.D6, brightness=0.1):
         """
             :param pin pixel_pin: The pin for the featherwing
             :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
         """
+        super().__init__()
         self.rows = 4
         self.columns = 8
-        self._auto_write = True
-        self._display = neopixel.NeoPixel(pixel_pin, self.rows * self.columns,
-                                          brightness=brightness, auto_write=False,
-                                          pixel_order=neopixel.GRB)
-    #pylint: enable-msg=super-init-not-called
+        self._matrix = neopixel.NeoPixel(pixel_pin, self.rows * self.columns,
+                                         brightness=brightness, auto_write=False,
+                                         pixel_order=neopixel.GRB)
 
-    #pylint: disable-msg=useless-super-delegation
     def fill(self, color=0):
         """
         Fills all of the NeoPixels with a color or unlit if empty.
@@ -77,7 +74,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
             neopixel.fill() # Clear all lit NeoPixels
 
         """
-        super().fill(color)
+        super()._fill(color)
 
     def show(self):
         """
@@ -99,7 +96,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
             neopixel.show() # Update the NeoPixels
 
         """
-        super().show()
+        super()._show()
 
     def shift_right(self, rotate=False):
         """
@@ -132,7 +129,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_right(rotate)
+        super()._shift_right(rotate)
 
     def shift_left(self, rotate=False):
         """
@@ -165,8 +162,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_left(rotate)
-    #pylint: enable-msg=useless-super-delegation
+        super()._shift_left(rotate)
 
     def shift_up(self, rotate=False):
         """
@@ -199,7 +195,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_down(rotate) # Up and down are reversed
+        super()._shift_down(rotate) # Up and down are reversed
 
     def shift_down(self, rotate=False):
         """
@@ -232,7 +228,7 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
                 time.sleep(.1)
 
         """
-        super().shift_up(rotate) # Up and down are reversed
+        super()._shift_up(rotate) # Up and down are reversed
 
     @property
     def auto_write(self):
@@ -258,7 +254,12 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
             neopixel.show() # Update the NeoPixels
 
         """
-        return super().auto_write
+        return self._auto_write
+
+    @auto_write.setter
+    def auto_write(self, write):
+        if isinstance(write, bool):
+            self._auto_write = write
 
     @property
     def brightness(self):
@@ -282,4 +283,9 @@ class NeoPixelFeatherWing(DotStarFeatherWing):
             neopixel.brightness = 0.3
 
         """
-        return super().brightness
+        return self._matrix.brightness
+
+    @brightness.setter
+    def brightness(self, brightness):
+        self._matrix.brightness = min(max(brightness, 0.0), 1.0)
+        self._update()
