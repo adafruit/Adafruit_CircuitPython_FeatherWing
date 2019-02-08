@@ -33,8 +33,7 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
 import neopixel
-from adafruit_featherwing.dotstar_featherwing import PixelMatrixFeatherWing
-#pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+from adafruit_featherwing.pixelmatrix_featherwing import PixelMatrixFeatherWing
 
 class NeoPixelFeatherWing(PixelMatrixFeatherWing):
     """Class representing a `NeoPixel FeatherWing
