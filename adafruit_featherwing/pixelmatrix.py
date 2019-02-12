@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 """
-`adafruit_featherwing.pixelmatrix_featherwing`
+`adafruit_featherwing.pixelmatrix`
 ====================================================
 
 Base Class for the `NeoPixel FeatherWing <https://www.adafruit.com/product/2945>` and
@@ -34,7 +34,7 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 #pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
 
-class PixelMatrixFeatherWing:
+class PixelMatrix:
     """Base Class for DotStar and NeoPixel FeatherWings
 
        The feather uses pins D13 and D11"""
@@ -95,23 +95,28 @@ class PixelMatrixFeatherWing:
         if self._auto_write:
             self._matrix.show()
 
-    def _fill(self, color=0):
+    def fill(self, color=0):
         """
         Fills all of the Pixels with a color or unlit if empty.
+
+        :param color: (Optional) The text or number to display (default=0)
+        :type color: list/tuple or int
         """
         self._matrix.fill(color)
         self._update()
 
-    def _show(self):
+    def show(self):
         """
         Update the Pixels. This is only needed if auto_write is set to False
         This can be very useful for more advanced graphics effects.
         """
         self._matrix.show()
 
-    def _shift_right(self, rotate=False):
+    def shift_right(self, rotate=False):
         """
         Shift all pixels right
+
+        :param rotate: (Optional) Rotate the shifted pixels to the left side (default=False)
         """
         for y in range(0, self.rows):
             last_pixel = self._matrix[(y + 1) * self.columns - 1] if rotate else 0
@@ -120,9 +125,11 @@ class PixelMatrixFeatherWing:
             self._matrix[y * self.columns] = last_pixel
         self._update()
 
-    def _shift_left(self, rotate=False):
+    def shift_left(self, rotate=False):
         """
         Shift all pixels left
+
+        :param rotate: (Optional) Rotate the shifted pixels to the right side (default=False)
         """
         for y in range(0, self.rows):
             last_pixel = self._matrix[y * self.columns] if rotate else 0
@@ -131,9 +138,11 @@ class PixelMatrixFeatherWing:
             self._matrix[(y + 1) * self.columns - 1] = last_pixel
         self._update()
 
-    def _shift_up(self, rotate=False):
+    def shift_up(self, rotate=False):
         """
         Shift all pixels up
+
+        :param rotate: (Optional) Rotate the shifted pixels to bottom (default=False)
         """
         for x in range(0, self.columns):
             last_pixel = self._matrix[(self.rows - 1) * self.columns + x] if rotate else 0
@@ -142,13 +151,40 @@ class PixelMatrixFeatherWing:
             self._matrix[x] = last_pixel
         self._update()
 
-    def _shift_down(self, rotate=False):
+    def shift_down(self, rotate=False):
         """
         Shift all pixels down
+
+        :param rotate: (Optional) Rotate the shifted pixels to top (default=False)
         """
         for x in range(0, self.columns):
             last_pixel = self._matrix[x] if rotate else 0
             for y in range(0, self.rows - 1):
                 self._matrix[y * self.columns + x] = self._matrix[(y + 1) * self.columns + x]
             self._matrix[(self.rows - 1) * self.columns + x] = last_pixel
+        self._update()
+
+    @property
+    def auto_write(self):
+        """
+        Whether or not we are automatically updating
+        If set to false, be sure to call show() to update
+        """
+        return self._auto_write
+
+    @auto_write.setter
+    def auto_write(self, write):
+        if isinstance(write, bool):
+            self._auto_write = write
+
+    @property
+    def brightness(self):
+        """
+        Overall brightness of the display
+        """
+        return self._matrix.brightness
+
+    @brightness.setter
+    def brightness(self, brightness):
+        self._matrix.brightness = min(max(brightness, 0.0), 1.0)
         self._update()
