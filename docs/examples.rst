@@ -23,6 +23,10 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_neopixel_simpletest.py
     :linenos:
 
+.. literalinclude:: ../examples/featherwing_sevensegment_simpletest.py
+    :caption: examples/featherwing_sevensegment_simpletest.py
+    :linenos:
+
 Other tests
 ------------
 
