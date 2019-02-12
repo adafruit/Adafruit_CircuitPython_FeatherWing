@@ -41,4 +41,6 @@ class SevenSegmentFeatherWing(Segments):
 
        Automatically uses the feather's I2C bus."""
     def __init__(self, address=0x70):
+        super().__init__()
         self._segments = segments.Seg7x4(shared.I2C_BUS, address)
+        self._segments.auto_write = False

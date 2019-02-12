@@ -43,9 +43,8 @@ class Segments:
        <https://www.adafruit.com/product/3139>`_.
 
        Automatically uses the feather's I2C bus."""
-    def __init__(self, address=0x70):
+    def __init__(self):
         self._segments = None
-        self._segments.auto_write = False
 
     def print(self, value):
         """
