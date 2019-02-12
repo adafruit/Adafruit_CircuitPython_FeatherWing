@@ -23,8 +23,7 @@
 `adafruit_featherwing.led_segments`
 ====================================================
 
-Base Class for using the `14-Segment AlphaNumeric FeatherWing <https://www.adafruit.com/product/3139>`
-and `7-Segment LED HT16K33 FeatherWing <https://www.adafruit.com/product/3140>`_.
+Base Class for the AlphaNumeric FeatherWing and 7-Segment FeatherWing helpers_.
 
 * Author(s): Melissa LeBlanc-Williams
 """
@@ -33,8 +32,6 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 from time import sleep
-import adafruit_ht16k33.segments as segments
-from adafruit_featherwing import shared
 
 #pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
 
