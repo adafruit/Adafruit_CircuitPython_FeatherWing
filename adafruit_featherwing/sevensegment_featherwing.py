@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 """
-`adafruit_featherwing.alphanum_featherwing`
+`adafruit_featherwing.sevensegment_featherwing`
 ====================================================
 
-Helper for using the `14-Segment AlphaNumeric FeatherWing <https://www.adafruit.com/product/3139>`_.
+Helper for using the `7-Segment LED HT16K33 FeatherWing <https://www.adafruit.com/product/3140>`_.
 
 * Author(s): Melissa LeBlanc-Williams
 """
@@ -35,12 +35,12 @@ import adafruit_ht16k33.segments as segments
 from adafruit_featherwing import shared
 from adafruit_featherwing.led_segments import Segments
 
-class AlphaNumFeatherWing(Segments):
-    """Class representing an `Adafruit 14-segment AlphaNumeric FeatherWing
-       <https://www.adafruit.com/product/3139>`_.
+class SevenSegmentFeatherWing(Segments):
+    """Class representing an `Adafruit 7-Segment LED HT16K33 FeatherWing
+       <https://www.adafruit.com/product/3140>`_.
 
        Automatically uses the feather's I2C bus."""
     def __init__(self, address=0x70):
         super().__init__()
-        self._segments = segments.Seg14x4(shared.I2C_BUS, address)
+        self._segments = segments.Seg7x4(shared.I2C_BUS, address)
         self._segments.auto_write = False
