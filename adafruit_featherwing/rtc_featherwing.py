@@ -37,15 +37,6 @@ from collections import namedtuple
 from adafruit_featherwing import shared
 import adafruit_ds3231
 
-"""
-Other things
-Make it 12/24 hour format settable
-Have the return values format appropriately
-Maybe set based on format
-Add all the parameters for RTD
-Add some examples for the functions
-"""
-
 class RTCFeatherWing:
     """Class representing an `DS3231 Precision RTC FeatherWing
        <https://www.adafruit.com/product/3028>`_.
@@ -58,33 +49,33 @@ class RTCFeatherWing:
         """
         Allow updates using setitem if that makes it easier
         """
-        self._set_time_value(self, index, value)
+        self._set_time_value(index, value)
 
     def __getitem__(self, index):
         """
         Allow retrievals using getitem if that makes it easier
         """
-        return self._get_time_value(self, index)
+        return self._get_time_value(index)
 
     def _set_time_value(self, unit, value):
         """
         Set just the specific unit of time
         """
-        date = self._get_now()
-        if unit in date:
-            date[unit] = value
+        now = self._get_now()
+        if unit in now:
+            now[unit] = value
         else:
             raise ValueError('The specified unit of time is invalid')
 
-        self._rtc.datetime = self._encode(date)
+        self._rtc.datetime = self._encode(now)
 
     def _get_time_value(self, unit):
         """
         Get just the specific unit of time
         """
-        time = self._get_now()
-        if unit in time:
-            return time[unit]
+        now = self._get_now()
+        if unit in now:
+            return now[unit]
         else:
             raise ValueError('The specified unit of time is invalid')
 
@@ -93,7 +84,6 @@ class RTCFeatherWing:
         Return the current date and time in a nice updatable dictionary
         """
         now = self._rtc.datetime
-        MyStruct = namedtuple("MyStruct", "field1 field2 field3")
         return {'second': now.tm_sec, 'minute': now.tm_min, 'hour': now.tm_hour, 'day': now.tm_mday,
                 'month': now.tm_mon, 'year': now.tm_year, 'weekday': now.tm_wday}
 
@@ -106,7 +96,6 @@ class RTCFeatherWing:
                                  date['minute'], date['second'], date['weekday'], now.tm_yday,
                                  now.tm_isdst))
 
-#REMOVE ME          20                  40                  60                  80                  100
     def set_time(self, hour, minute, second):
         """
         Set the time only
@@ -236,5 +225,5 @@ class RTCFeatherWing:
         """
         The Current Date and Time in Named Tuple Style
         """
-        DateTime = namedtuple("DateTime", "second minute hour day month year weekday")
-        return DateTime(**self._get_now())
+        date_time = namedtuple("DateTime", "second minute hour day month year weekday")
+        return date_time(**self._get_now())
