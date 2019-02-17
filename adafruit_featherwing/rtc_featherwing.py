@@ -292,11 +292,7 @@ class RTCFeatherWing:
         try:
             return time.mktime(self._rtc.datetime)
         except (ValueError, RuntimeError) as error:
-<<<<<<< Updated upstream
-            print("There was an error attempting to run time.mktime() on this board")
-=======
             print("Error attempting to run time.mktime() on this board\n", error)
->>>>>>> Stashed changes
 
     @unixtime.setter
     def unixtime(self, unixtime):
@@ -304,8 +300,4 @@ class RTCFeatherWing:
             try:
                 self._rtc.datetime = time.localtime(unixtime)
             except (ValueError, RuntimeError) as error:
-<<<<<<< Updated upstream
-                print("There was an error attempting to run time.localtime() on this board")
-=======
                 print("Error attempting to run time.localtime() on this board\n", error)
->>>>>>> Stashed changes
