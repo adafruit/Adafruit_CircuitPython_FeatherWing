@@ -35,7 +35,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Adafruit featherwing Library'
+project = u'Adafruit FeatherWing Library'
 copyright = u'2017 Scott Shawcroft'
 author = u'Scott Shawcroft'
 

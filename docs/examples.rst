@@ -27,7 +27,11 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_sevensegment_simpletest.py
     :linenos:
 
-Other tests
+.. literalinclude:: ../examples/featherwing_rtc_simpletest.py
+    :caption: examples/featherwing_rtc_simpletest.py
+    :linenos:
+
+Other Tests
 ------------
 
 .. literalinclude:: ../examples/featherwing_dotstar_palette_example.py

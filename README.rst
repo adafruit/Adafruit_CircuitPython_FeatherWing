@@ -27,6 +27,7 @@ These drivers depends on:
 * `HT16K33 <https://github.com/adafruit/Adafruit_CircuitPython_HT16K33>`_
 * `DotStar <https://github.com/adafruit/Adafruit_CircuitPython_DotStar>`_
 * `NeoPixel <https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel>`_
+* `DS3231 <https://github.com/adafruit/Adafruit_CircuitPython_DS3231>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
