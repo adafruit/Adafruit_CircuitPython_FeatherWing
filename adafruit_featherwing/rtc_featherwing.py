@@ -34,8 +34,8 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import time
 from collections import namedtuple
-from adafruit_featherwing import shared
 import adafruit_ds3231
+from adafruit_featherwing import shared
 
 class RTCFeatherWing:
     """Class representing an `DS3231 Precision RTC FeatherWing
@@ -119,7 +119,7 @@ class RTCFeatherWing:
         max_days = (31, 29 if leap_year else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
         return max_days[month - 1]
 
-    def set_time(self, hour, minute, second = 0):
+    def set_time(self, hour, minute, second=0):
         """
         Set the time only
 
