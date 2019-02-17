@@ -34,8 +34,8 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import time
 from collections import namedtuple
-import adafruit_ds3231
 from adafruit_featherwing import shared
+import adafruit_ds3231
 
 class RTCFeatherWing:
     """Class representing an `DS3231 Precision RTC FeatherWing
@@ -291,7 +291,7 @@ class RTCFeatherWing:
         """
         try:
             return time.mktime(self._rtc.datetime)
-        except (ValueError, RuntimeError) as error:
+        except (AttributeError, RuntimeError) as error:
             print("Error attempting to run time.mktime() on this board\n", error)
 
     @unixtime.setter
@@ -299,5 +299,5 @@ class RTCFeatherWing:
         if isinstance(unixtime, int):
             try:
                 self._rtc.datetime = time.localtime(unixtime)
-            except (ValueError, RuntimeError) as error:
+            except (AttributeError, RuntimeError) as error:
                 print("Error attempting to run time.localtime() on this board\n", error)
