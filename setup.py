@@ -38,7 +38,8 @@ setup(
     install_requires=['Adafruit-Blinka', 'adafruit-circuitpython-busdevice',
                       'adafruit-circuitpython-register', 'adafruit-circuitpython-ina219',
                       'adafruit-circuitpython-seesaw', 'adafruit-circuitpython-ht16k33',
-                      'adafruit-circuitpython-dotstar', 'adafruit-circuitpython-neopixel'],
+                      'adafruit-circuitpython-dotstar', 'adafruit-circuitpython-neopixel',
+                      'adafruit-circuitpython-ds3231'],
 
     # Choose your license
     license='MIT',

@@ -96,14 +96,46 @@ class RTCFeatherWing:
                                  date['minute'], date['second'], date['weekday'], now.tm_yday,
                                  now.tm_isdst))
 
-    def set_time(self, hour, minute, second):
+    def is_leap_year(self, year=None):
+        """
+        Check if the year is a leap year
+
+        :param int year: (Optional) The year to check. If none is provided, current year is used.
+        """
+        if year is None:
+            year = self._get_time_value('year')
+        return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
+    def get_month_days(self, month=None, year=None):
+        """
+        Return the number of days for the month of the given year
+
+        :param int month: (Optional) The month to use. If none is provided, current month is used.
+        :param int year: (Optional) The year to check. If none is provided, current year is used.
+        """
+        if month is None:
+            month = self._get_time_value('month')
+        leap_year = self.is_leap_year(year)
+        max_days = (31, 29 if leap_year else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+        return max_days[month - 1]
+
+    def set_time(self, hour, minute, second = 0):
         """
         Set the time only
 
         :param int hour: The hour we want to set the time to
         :param int minute: The minute we want to set the time to
-        :param int second: The second we want to set the time to
+        :param int second: (Optional) The second we want to set the time to (default=0)
         """
+        if not isinstance(second, int) or not 0 <= second < 60:
+            raise ValueError('The second must be an integer in the range of 0-59')
+
+        if not isinstance(minute, int) or not 0 <= minute < 60:
+            raise ValueError('The minute must be an integer in the range of 0-59')
+
+        if not isinstance(hour, int) or not 0 <= hour < 24:
+            raise ValueError('The hour must be an integer in the range of 0-23')
+
         now = self._get_now()
         now['hour'] = hour
         now['minute'] = minute
@@ -118,6 +150,16 @@ class RTCFeatherWing:
         :param int month: The month we want to set the date to
         :param int year: The year we want to set the date to
         """
+        if not isinstance(year, int):
+            raise ValueError('The year must be an integer')
+
+        if not isinstance(month, int) or not 1 <= month <= 12:
+            raise ValueError('The month must be an integer in the range of 1-12')
+
+        month_days = self.get_month_days(month, year)
+        if not isinstance(day, int) or not 1 <= day <= month_days:
+            raise ValueError('The day must be an integer in the range of 1-{}'.format(month_days))
+
         now = self._get_now()
         now['day'] = day
         now['month'] = month
@@ -144,7 +186,10 @@ class RTCFeatherWing:
 
     @year.setter
     def year(self, year):
-        self._set_time_value('year', year)
+        if isinstance(year, int):
+            self._set_time_value('year', year)
+        else:
+            raise ValueError('The year must be an integer')
 
     @property
     def month(self):
@@ -155,7 +200,10 @@ class RTCFeatherWing:
 
     @month.setter
     def month(self, month):
-        self._set_time_value('month', month)
+        if isinstance(month, int) and 1 <= month <= 12:
+            self._set_time_value('month', month)
+        else:
+            raise ValueError('The month must be an integer in the range of 1-12')
 
     @property
     def day(self):
@@ -166,7 +214,11 @@ class RTCFeatherWing:
 
     @day.setter
     def day(self, day):
-        self._set_time_value('day', day)
+        month_days = self.get_month_days()
+        if isinstance(day, int) and 1 <= day <= month_days:
+            self._set_time_value('day', day)
+        else:
+            raise ValueError('The day must be an integer in the range of 1-{}'.format(month_days))
 
     @property
     def hour(self):
@@ -177,7 +229,10 @@ class RTCFeatherWing:
 
     @hour.setter
     def hour(self, hour):
-        self._set_time_value('hour', hour)
+        if isinstance(hour, int) and 0 <= hour < 24:
+            self._set_time_value('hour', hour)
+        else:
+            raise ValueError('The hour must be an integer in the range of 0-23')
 
     @property
     def minute(self):
@@ -188,7 +243,10 @@ class RTCFeatherWing:
 
     @minute.setter
     def minute(self, minute):
-        self._set_time_value('minute', minute)
+        if isinstance(minute, int) and 0 <= minute < 60:
+            self._set_time_value('minute', minute)
+        else:
+            raise ValueError('The minute must be an integer in the range of 0-59')
 
     @property
     def second(self):
@@ -199,7 +257,10 @@ class RTCFeatherWing:
 
     @second.setter
     def second(self, second):
-        self._set_time_value('second', second)
+        if isinstance(second, int) and 0 <= second < 60:
+            self._set_time_value('second', second)
+        else:
+            raise ValueError('The second must be an integer in the range of 0-59')
 
     @property
     def weekday(self):
@@ -210,20 +271,27 @@ class RTCFeatherWing:
 
     @weekday.setter
     def weekday(self, weekday):
-        self._set_time_value('weekday', weekday)
-
-    @property
-    def weekday_name(self):
-        """
-        The Name for the Current Day of the Week (Read Only)
-        """
-        days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-        return days[self._get_time_value('weekday')]
+        if isinstance(weekday, int) and 0 <= weekday < 7:
+            self._set_time_value('weekday', weekday)
+        else:
+            raise ValueError('The weekday must be an integer in the range of 0-6')
 
     @property
     def now(self):
         """
-        The Current Date and Time in Named Tuple Style
+        The Current Date and Time in Named Tuple Style (Read Only)
         """
         date_time = namedtuple("DateTime", "second minute hour day month year weekday")
         return date_time(**self._get_now())
+
+    @property
+    def unixtime(self):
+        """
+        The Current Date and Time in Unix Time
+        """
+        return time.mktime(self._rtc.datetime)
+
+    @unixtime.setter
+    def unixtime(self, unixtime):
+        if isinstance(unixtime, int):
+            self._rtc.datetime = time.localtime(unixtime)

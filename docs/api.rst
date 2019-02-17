@@ -15,3 +15,6 @@
 
 .. automodule:: adafruit_featherwing.neopixel_featherwing
    :members:
+
+.. automodule:: adafruit_featherwing.rtc_featherwing
+  :members:
