@@ -289,9 +289,15 @@ class RTCFeatherWing:
         """
         The Current Date and Time in Unix Time
         """
-        return time.mktime(self._rtc.datetime)
+        try:
+            return time.mktime(self._rtc.datetime)
+        except (ValueError, RuntimeError) as error:
+            print("There was an error attempting to run time.mktime() on this board")
 
     @unixtime.setter
     def unixtime(self, unixtime):
         if isinstance(unixtime, int):
-            self._rtc.datetime = time.localtime(unixtime)
+            try:
+                self._rtc.datetime = time.localtime(unixtime)
+            except (ValueError, RuntimeError) as error:
+                print("There was an error attempting to run time.localtime() on this board")
