@@ -10,6 +10,7 @@ days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 # Create the RTC instance:
 rtc = rtc_featherwing.RTCFeatherWing()
 
+#pylint: disable-msg=using-constant-test
 if True:   # Change this to True to set the date and time
     rtc.set_time(13, 34)        # Set the time (seconds are optional)
     print(rtc.now)
