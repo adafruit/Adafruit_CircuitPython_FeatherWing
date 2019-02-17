@@ -34,8 +34,8 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import time
 from collections import namedtuple
-from adafruit_featherwing import shared
 import adafruit_ds3231
+from adafruit_featherwing import shared
 
 class RTCFeatherWing:
     """Class representing an `DS3231 Precision RTC FeatherWing
