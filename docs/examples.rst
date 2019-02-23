@@ -31,6 +31,10 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_rtc_simpletest.py
     :linenos:
 
+.. literalinclude:: ../examples/featherwing_gps_simpletest.py
+    :caption: examples/featherwing_gps_simpletest.py
+    :linenos:
+
 Other Tests
 ------------
 

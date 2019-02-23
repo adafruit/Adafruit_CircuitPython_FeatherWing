@@ -33,3 +33,6 @@ import board
 import busio
 
 I2C_BUS = busio.I2C(board.SCL, board.SDA)
+
+RX = board.RX
+TX = board.TX
