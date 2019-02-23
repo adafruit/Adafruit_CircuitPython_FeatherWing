@@ -170,7 +170,7 @@ class MatrixFeatherWing:
     @property
     def blink_rate(self):
         """
-        Blink Rate returns the current rate that the text blinks.
+        Blink Rate returns the current rate that the pixels blink.
         0 = Not Blinking
         1-3 = Successively slower blink rates
         """
