@@ -21,3 +21,6 @@
 
 .. automodule:: adafruit_featherwing.gps_featherwing
    :members:
+
+.. automodule:: adafruit_featherwing.matrix_featherwing
+   :members:
