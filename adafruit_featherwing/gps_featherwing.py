@@ -62,7 +62,7 @@ class GPSFeatherWing:
 
     def update(self):
         """
-        Make sure to call gps.update() every loop iteration and at least twice
+        Make sure to call ``gps.update()`` every loop iteration and at least twice
         as fast as data comes from the GPS unit (usually every second).
 
         :return: Whether it has parsed new data
