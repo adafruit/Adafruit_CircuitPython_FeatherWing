@@ -17,4 +17,7 @@
    :members:
 
 .. automodule:: adafruit_featherwing.rtc_featherwing
-  :members:
+   :members:
+
+.. automodule:: adafruit_featherwing.gps_featherwing
+   :members:
