@@ -57,8 +57,8 @@ class GPSFeatherWing:
         self._uart = busio.UART(shared.TX, shared.RX, baudrate=baudrate, timeout=timeout)
         self._gps = adafruit_gps.GPS(self._uart, debug=False)
         # Turn on the basic GGA and RMC info
-        self._gps.send_command(bytes('PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','utf-8'))
-        self._gps.send_command(bytes('PMTK220,{}'.format(update_period),'utf-8'))
+        self._gps.send_command(bytes('PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', 'utf-8'))
+        self._gps.send_command(bytes('PMTK220,{}'.format(update_period), 'utf-8'))
 
     def update(self):
         """
