@@ -31,9 +31,9 @@ Helper for using the `Ultimate GPS FeatherWing <https://www.adafruit.com/product
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
 import busio
 import adafruit_gps
-from adafruit_featherwing import shared
 
 class GPSFeatherWing:
     """Class representing an `Ultimate GPS FeatherWing
@@ -54,7 +54,7 @@ class GPSFeatherWing:
         if timeout < 3:
             timeout = 3
 
-        self._uart = busio.UART(shared.TX, shared.RX, baudrate=baudrate, timeout=timeout)
+        self._uart = busio.UART(board.TX, board.RX, baudrate=baudrate, timeout=timeout)
         self._gps = adafruit_gps.GPS(self._uart, debug=False)
         # Turn on the basic GGA and RMC info
         self._gps.send_command(bytes('PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', 'utf-8'))
