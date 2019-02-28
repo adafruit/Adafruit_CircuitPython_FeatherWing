@@ -30,6 +30,8 @@ Objects shared amongst all FeatherWings.
 """
 
 import board
-import busio
-
-I2C_BUS = busio.I2C(board.SCL, board.SDA)
+try:
+    I2C_BUS = board.I2C()
+except AttributeError:
+    import busio
+    I2C_BUS = busio.I2C(board.SCL, board.SDA)
