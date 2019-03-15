@@ -32,16 +32,18 @@ Helper for using the `Adafruit 8x16 LED Matrix FeatherWing
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
 import adafruit_ht16k33.matrix as matrix
-from adafruit_featherwing import shared
 
 class MatrixFeatherWing:
     """Class representing an `Adafruit 8x16 LED Matrix FeatherWing
        <https://www.adafruit.com/product/3155>`_.
 
        Automatically uses the feather's I2C bus."""
-    def __init__(self, address=0x70):
-        self._matrix = matrix.Matrix16x8(shared.I2C_BUS, address)
+    def __init__(self, address=0x70, i2c=None):
+        if i2c is None:
+            i2c = board.I2C()
+        self._matrix = matrix.Matrix16x8(i2c, address)
         self._matrix.auto_write = False
         self.columns = 16
         self.rows = 8
