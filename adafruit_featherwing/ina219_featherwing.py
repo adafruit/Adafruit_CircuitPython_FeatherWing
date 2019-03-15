@@ -31,17 +31,18 @@ Helper for using the `INA219 FeatherWing <https://www.adafruit.com/product/3650>
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
 import adafruit_ina219
-from adafruit_featherwing import shared
-
 
 class INA219FeatherWing:
     """Class representing an `Adafruit INA219 FeatherWing
        <https://www.adafruit.com/product/3650>`_.
 
        Automatically uses the feather's I2C bus."""
-    def __init__(self):
-        self._ina219 = adafruit_ina219.INA219(shared.I2C_BUS)
+    def __init__(self, i2c=None):
+        if i2c is None:
+            i2c = board.I2C()
+        self._ina219 = adafruit_ina219.INA219(i2c)
 
     @property
     def bus_voltage(self):

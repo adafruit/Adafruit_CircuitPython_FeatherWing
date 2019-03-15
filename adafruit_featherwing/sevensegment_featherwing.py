@@ -31,8 +31,8 @@ Helper for using the `7-Segment LED HT16K33 FeatherWing <https://www.adafruit.co
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
 import adafruit_ht16k33.segments as segments
-from adafruit_featherwing import shared
 from adafruit_featherwing.led_segments import Segments
 
 class SevenSegmentFeatherWing(Segments):
@@ -40,7 +40,9 @@ class SevenSegmentFeatherWing(Segments):
        <https://www.adafruit.com/product/3140>`_.
 
        Automatically uses the feather's I2C bus."""
-    def __init__(self, address=0x70):
+    def __init__(self, address=0x70, i2c=None):
         super().__init__()
-        self._segments = segments.Seg7x4(shared.I2C_BUS, address)
+        if i2c is None:
+            i2c = board.I2C()
+        self._segments = segments.Seg7x4(i2c, address)
         self._segments.auto_write = False

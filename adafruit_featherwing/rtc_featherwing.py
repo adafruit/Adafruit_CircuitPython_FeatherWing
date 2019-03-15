@@ -34,16 +34,18 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import time
 from collections import namedtuple
+import board
 import adafruit_ds3231
-from adafruit_featherwing import shared
 
 class RTCFeatherWing:
     """Class representing an `DS3231 Precision RTC FeatherWing
        <https://www.adafruit.com/product/3028>`_.
 
        Automatically uses the feather's I2C bus."""
-    def __init__(self):
-        self._rtc = adafruit_ds3231.DS3231(shared.I2C_BUS)
+    def __init__(self, i2c=None):
+        if i2c is None:
+            i2c = board.I2C()
+        self._rtc = adafruit_ds3231.DS3231(i2c)
 
     def __setitem__(self, index, value):
         """

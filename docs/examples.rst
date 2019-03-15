@@ -39,8 +39,8 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_matrix_simpletest.py
     :linenos:
 
-Other Tests
-------------
+Other Examples
+---------------
 
 .. literalinclude:: ../examples/featherwing_dotstar_palette_example.py
     :caption: examples/featherwing_dotstar_palette_example.py
