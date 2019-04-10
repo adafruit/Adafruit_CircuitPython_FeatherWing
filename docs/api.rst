@@ -24,3 +24,6 @@
 
 .. automodule:: adafruit_featherwing.matrix_featherwing
    :members:
+
+.. automodule:: adafruit_featherwing.minitft_featherwing
+  :members:

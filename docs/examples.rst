@@ -39,6 +39,10 @@ Ensure your device works with this simple test.
     :caption: examples/featherwing_matrix_simpletest.py
     :linenos:
 
+.. literalinclude:: ../examples/featherwing_minitft_simpletest.py
+    :caption: examples/featherwing_minitft_simpletest.py
+    :linenos:
+
 Other Examples
 ---------------
 
