@@ -8,3 +8,4 @@ adafruit-circuitpython-dotstar
 adafruit-circuitpython-neopixel
 adafruit-circuitpython-ds3231
 adafruit-circuitpython-gps
+adafruit-circuitpython-st7735r
