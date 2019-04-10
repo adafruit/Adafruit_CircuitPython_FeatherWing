@@ -1,5 +1,5 @@
 """
-This example display a CircuitPython console and
+This example will display a CircuitPython console and
 print which button that is being pressed if any
 
 Note: This relies on displayio which is only widely
