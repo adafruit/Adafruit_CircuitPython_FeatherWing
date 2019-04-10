@@ -32,15 +32,14 @@ Helper for using the `Mini Color TFT with Joystick FeatherWing
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import time
 import board
-import displayio
 from micropython import const
 from adafruit_seesaw.seesaw import Seesaw
+import displayio
 from adafruit_st7735r import ST7735R
 
 BUTTON_RIGHT = const(7)
-BUTTON_DOWN  = const(4)
+BUTTON_DOWN = const(4)
 BUTTON_LEFT = const(3)
 BUTTON_UP = const(2)
 BUTTON_SEL = const(11)
@@ -70,11 +69,12 @@ class MiniTFTFeatherWing:
         display_bus = displayio.FourWire(spi, command=board.D6, chip_select=board.D5)
         self._ss.pin_mode(8, self._ss.OUTPUT)
         self._ss.digital_write(8, True) # Reset the Display via Seesaw
-        self._display = ST7735R(display_bus, width=160, height=80, colstart=24, rotation=270, bgr=True)
+        self._display = ST7735R(display_bus, width=160, height=80, colstart=24,
+                                rotation=270, bgr=True)
 
     @property
     def _buttons(self):
-       return self._ss.digital_read_bulk(self._button_mask)
+        return self._ss.digital_read_bulk(self._button_mask)
 
     @property
     def display(self):
@@ -84,28 +84,28 @@ class MiniTFTFeatherWing:
         return self._display
 
     @property
-    def right(self):
+    def button_right(self):
         """
         Checks and returns if right is currently being pressed
         """
         return not self._buttons & (1 << BUTTON_RIGHT)
 
     @property
-    def left(self):
+    def button_left(self):
         """
         Checks and returns if left is currently being pressed
         """
         return not self._buttons & (1 << BUTTON_LEFT)
 
     @property
-    def up(self):
+    def button_up(self):
         """
         Checks and returns if up is currently being pressed
         """
         return not self._buttons & (1 << BUTTON_UP)
 
     @property
-    def down(self):
+    def button_down(self):
         """
         Checks and returns if down is currently being pressed
         """
@@ -126,7 +126,7 @@ class MiniTFTFeatherWing:
         return not self._buttons & (1 << BUTTON_B)
 
     @property
-    def select(self):
+    def button_select(self):
         """
         Checks and returns if select is currently being pressed
         """

@@ -11,19 +11,19 @@ from adafruit_featherwing import minitft_featherwing
 minitft = minitft_featherwing.MiniTFTFeatherWing()
 
 while True:
-    if minitft.right:
+    if minitft.button_right:
         print("Button RIGHT!")
 
-    if minitft.down:
+    if minitft.button_down:
         print("Button DOWN!")
 
-    if minitft.left:
+    if minitft.button_left:
         print("Button LEFT!")
 
-    if minitft.up:
+    if minitft.button_up:
         print("Button UP!")
 
-    if minitft.select:
+    if minitft.button_select:
         print("Button SELECT!")
 
     if minitft.button_a:
