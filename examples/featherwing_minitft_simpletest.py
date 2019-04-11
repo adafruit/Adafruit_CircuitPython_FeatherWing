@@ -1,9 +1,6 @@
 """
-This example will display a CircuitPython console and
+This example display a CircuitPython console and
 print which button that is being pressed if any
-
-Note: This relies on displayio which is only widely
-available on CircuitPython 4.0 Beta 5 and later
 """
 import time
 from adafruit_featherwing import minitft_featherwing
@@ -11,25 +8,27 @@ from adafruit_featherwing import minitft_featherwing
 minitft = minitft_featherwing.MiniTFTFeatherWing()
 
 while True:
-    if minitft.button_right:
+    buttons = minitft.buttons
+
+    if buttons.right:
         print("Button RIGHT!")
 
-    if minitft.button_down:
+    if buttons.down:
         print("Button DOWN!")
 
-    if minitft.button_left:
+    if buttons.left:
         print("Button LEFT!")
 
-    if minitft.button_up:
+    if buttons.up:
         print("Button UP!")
 
-    if minitft.button_select:
+    if buttons.select:
         print("Button SELECT!")
 
-    if minitft.button_a:
+    if buttons.a:
         print("Button A!")
 
-    if minitft.button_b:
+    if buttons.b:
         print("Button B!")
 
-    time.sleep(.01)
+    time.sleep(.001)

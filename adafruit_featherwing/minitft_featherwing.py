@@ -32,10 +32,12 @@ Helper for using the `Mini Color TFT with Joystick FeatherWing
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+from collections import namedtuple
 import board
+import displayio
 from micropython import const
 from adafruit_seesaw.seesaw import Seesaw
-import displayio
+from adafruit_seesaw.pwmout import PWMOut
 from adafruit_st7735r import ST7735R
 
 BUTTON_RIGHT = const(7)
@@ -57,13 +59,8 @@ class MiniTFTFeatherWing:
         if spi is None:
             spi = board.SPI()
         self._ss = Seesaw(i2c, address)
-        self._button_mask = const((1 << BUTTON_RIGHT) |
-                                  (1 << BUTTON_DOWN) |
-                                  (1 << BUTTON_LEFT) |
-                                  (1 << BUTTON_UP) |
-                                  (1 << BUTTON_SEL) |
-                                  (1 << BUTTON_A) |
-                                  (1 << BUTTON_B))
+        self._backlight = PWMOut(self._ss, 5)
+        self._backlight.duty_cycle = 0
         self._ss.pin_mode_bulk(self._button_mask, self._ss.INPUT_PULLUP)
         displayio.release_displays()
         display_bus = displayio.FourWire(spi, command=board.D6, chip_select=board.D5)
@@ -73,61 +70,40 @@ class MiniTFTFeatherWing:
                                 rotation=270, bgr=True)
 
     @property
-    def _buttons(self):
-        return self._ss.digital_read_bulk(self._button_mask)
+    def _button_mask(self):
+        return ((1 << BUTTON_RIGHT) |
+                (1 << BUTTON_DOWN) |
+                (1 << BUTTON_LEFT) |
+                (1 << BUTTON_UP) |
+                (1 << BUTTON_SEL) |
+                (1 << BUTTON_A) |
+                (1 << BUTTON_B))
 
     @property
-    def display(self):
+    def backlight(self):
         """
-        Returns the display object for doing fun displayio stuff on
+        Return the current backlight duty cycle value
         """
-        return self._display
+        return self._backlight.duty_cycle / 255
+
+    @backlight.setter
+    def backlight(self, brightness):
+        """
+        Set the backlight duty cycle
+        """
+        self._backlight.duty_cycle = int(255 * min(max(1 - brightness, 0.0), 1.0))
 
     @property
-    def button_right(self):
+    def buttons(self):
         """
-        Checks and returns if right is currently being pressed
+        Return a set of buttons with current push values
         """
-        return not self._buttons & (1 << BUTTON_RIGHT)
-
-    @property
-    def button_left(self):
-        """
-        Checks and returns if left is currently being pressed
-        """
-        return not self._buttons & (1 << BUTTON_LEFT)
-
-    @property
-    def button_up(self):
-        """
-        Checks and returns if up is currently being pressed
-        """
-        return not self._buttons & (1 << BUTTON_UP)
-
-    @property
-    def button_down(self):
-        """
-        Checks and returns if down is currently being pressed
-        """
-        return not self._buttons & (1 << BUTTON_DOWN)
-
-    @property
-    def button_a(self):
-        """
-        Checks and returns if button A is currently being pressed
-        """
-        return not self._buttons & (1 << BUTTON_A)
-
-    @property
-    def button_b(self):
-        """
-        Checks and returns if button B is currently being pressed
-        """
-        return not self._buttons & (1 << BUTTON_B)
-
-    @property
-    def button_select(self):
-        """
-        Checks and returns if select is currently being pressed
-        """
-        return not self._buttons & (1 << BUTTON_SEL)
+        Buttons = namedtuple("Buttons", "up down left right a b select")
+        button_values = self._ss.digital_read_bulk(self._button_mask)
+        return Buttons(up=(not button_values & (1 << BUTTON_UP)),
+                       down=(not button_values & (1 << BUTTON_DOWN)),
+                       left=(not button_values & (1 << BUTTON_LEFT)),
+                       right=(not button_values & (1 << BUTTON_RIGHT)),
+                       a=(not button_values & (1 << BUTTON_A)),
+                       b=(not button_values & (1 << BUTTON_B)),
+                       select=(not button_values & (1 << BUTTON_SEL)))
