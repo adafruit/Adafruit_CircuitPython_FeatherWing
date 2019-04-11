@@ -66,8 +66,8 @@ class MiniTFTFeatherWing:
         display_bus = displayio.FourWire(spi, command=board.D6, chip_select=board.D5)
         self._ss.pin_mode(8, self._ss.OUTPUT)
         self._ss.digital_write(8, True) # Reset the Display via Seesaw
-        self._display = ST7735R(display_bus, width=160, height=80, colstart=24,
-                                rotation=270, bgr=True)
+        self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
+                               rotation=270, bgr=True)
 
     @property
     def _button_mask(self):
