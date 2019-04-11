@@ -34,10 +34,10 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 from collections import namedtuple
 import board
-import displayio
 from micropython import const
 from adafruit_seesaw.seesaw import Seesaw
 from adafruit_seesaw.pwmout import PWMOut
+import displayio
 from adafruit_st7735r import ST7735R
 
 BUTTON_RIGHT = const(7)
@@ -98,9 +98,9 @@ class MiniTFTFeatherWing:
         """
         Return a set of buttons with current push values
         """
-        Buttons = namedtuple("Buttons", "up down left right a b select")
+        buttons = namedtuple("Buttons", "up down left right a b select")
         button_values = self._ss.digital_read_bulk(self._button_mask)
-        return Buttons(up=(not button_values & (1 << BUTTON_UP)),
+        return buttons(up=(not button_values & (1 << BUTTON_UP)),
                        down=(not button_values & (1 << BUTTON_DOWN)),
                        left=(not button_values & (1 << BUTTON_LEFT)),
                        right=(not button_values & (1 << BUTTON_RIGHT)),
