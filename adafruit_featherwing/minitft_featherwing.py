@@ -101,10 +101,6 @@ class MiniTFTFeatherWing:
         Return a set of buttons with current push values
         """
         button_values = self._ss.digital_read_bulk(self._button_mask)
-        return Buttons(up=(not button_values & (1 << BUTTON_UP)),
-                       down=(not button_values & (1 << BUTTON_DOWN)),
-                       left=(not button_values & (1 << BUTTON_LEFT)),
-                       right=(not button_values & (1 << BUTTON_RIGHT)),
-                       a=(not button_values & (1 << BUTTON_A)),
-                       b=(not button_values & (1 << BUTTON_B)),
-                       select=(not button_values & (1 << BUTTON_SEL)))
+        return Buttons(*[not button_values & (1 << button) for button in
+                        (BUTTON_UP, BUTTON_DOWN, BUTTON_LEFT, BUTTON_RIGHT,
+                         BUTTON_A, BUTTON_B, BUTTON_SEL)])
