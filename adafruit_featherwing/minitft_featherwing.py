@@ -55,6 +55,15 @@ class MiniTFTFeatherWing:
        <https://www.adafruit.com/product/3321>`_.
 
        Automatically uses the feather's I2C bus."""
+
+    _button_mask = ((1 << BUTTON_RIGHT) |
+                    (1 << BUTTON_DOWN) |
+                    (1 << BUTTON_LEFT) |
+                    (1 << BUTTON_UP) |
+                    (1 << BUTTON_SEL) |
+                    (1 << BUTTON_A) |
+                    (1 << BUTTON_B))
+
     def __init__(self, address=0x5E, i2c=None, spi=None):
         if i2c is None:
             i2c = board.I2C()
@@ -70,16 +79,6 @@ class MiniTFTFeatherWing:
         self._ss.digital_write(8, True) # Reset the Display via Seesaw
         self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
                                rotation=270, bgr=True)
-
-    @property
-    def _button_mask(self):
-        return ((1 << BUTTON_RIGHT) |
-                (1 << BUTTON_DOWN) |
-                (1 << BUTTON_LEFT) |
-                (1 << BUTTON_UP) |
-                (1 << BUTTON_SEL) |
-                (1 << BUTTON_A) |
-                (1 << BUTTON_B))
 
     @property
     def backlight(self):
