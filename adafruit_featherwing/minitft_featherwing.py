@@ -48,6 +48,8 @@ BUTTON_SEL = const(11)
 BUTTON_A = const(10)
 BUTTON_B = const(9)
 
+Buttons = namedtuple("Buttons", "up down left right a b select")
+
 class MiniTFTFeatherWing:
     """Class representing an `Mini Color TFT with Joystick FeatherWing
        <https://www.adafruit.com/product/3321>`_.
@@ -98,9 +100,8 @@ class MiniTFTFeatherWing:
         """
         Return a set of buttons with current push values
         """
-        buttons = namedtuple("Buttons", "up down left right a b select")
         button_values = self._ss.digital_read_bulk(self._button_mask)
-        return buttons(up=(not button_values & (1 << BUTTON_UP)),
+        return Buttons(up=(not button_values & (1 << BUTTON_UP)),
                        down=(not button_values & (1 << BUTTON_DOWN)),
                        left=(not button_values & (1 << BUTTON_LEFT)),
                        right=(not button_values & (1 << BUTTON_RIGHT)),
