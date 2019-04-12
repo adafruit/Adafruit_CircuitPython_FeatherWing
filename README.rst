@@ -28,6 +28,7 @@ These drivers depends on:
 * `DotStar <https://github.com/adafruit/Adafruit_CircuitPython_DotStar>`_
 * `NeoPixel <https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel>`_
 * `DS3231 <https://github.com/adafruit/Adafruit_CircuitPython_DS3231>`_
+* `ST7735R <https://github.com/adafruit/Adafruit_CircuitPython_ST7735R>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
