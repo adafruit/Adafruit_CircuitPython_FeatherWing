@@ -84,7 +84,7 @@ class MiniTFTFeatherWing:
                                         command=board.D6,
                                         chip_select=board.D5)
         self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
-                                rotation=270, bgr=True)
+                               rotation=270, bgr=True)
 
     @property
     def backlight(self):
