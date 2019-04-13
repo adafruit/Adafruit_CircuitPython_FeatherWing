@@ -85,6 +85,7 @@ class MiniTFTFeatherWing:
                                          chip_select=board.D5)
         self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
                                rotation=270, bgr=True)
+        self._ss.pin_mode_bulk(self._button_mask, self._ss.INPUT_PULLUP)
 
     @property
     def backlight(self):
