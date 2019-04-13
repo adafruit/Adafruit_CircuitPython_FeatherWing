@@ -74,7 +74,8 @@ class MiniTFTFeatherWing:
         self._backlight.duty_cycle = 0
         self._ss.pin_mode_bulk(self._button_mask, self._ss.INPUT_PULLUP)
         displayio.release_displays()
-        spi.try_lock()
+        while not spi.try_lock():
+            pass
         spi.configure(baudrate=24000000)
         spi.unlock()
         self._ss.pin_mode(8, self._ss.OUTPUT)
