@@ -63,7 +63,7 @@ class MiniTFTFeatherWing:
                     (1 << BUTTON_SEL) |
                     (1 << BUTTON_A) |
                     (1 << BUTTON_B))
-
+    #pylint: disable-msg=too-many-arguments
     def __init__(self, address=0x5E, i2c=None, spi=None, cs=None, dc=None):
         if i2c is None:
             i2c = board.I2C()
@@ -88,6 +88,7 @@ class MiniTFTFeatherWing:
         self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
                                rotation=270, bgr=True)
         self._ss.pin_mode_bulk(self._button_mask, self._ss.INPUT_PULLUP)
+    #pylint: enable-msg=too-many-arguments
 
     @property
     def backlight(self):
