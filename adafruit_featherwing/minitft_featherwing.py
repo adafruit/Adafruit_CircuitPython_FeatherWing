@@ -63,12 +63,16 @@ class MiniTFTFeatherWing:
                     (1 << BUTTON_SEL) |
                     (1 << BUTTON_A) |
                     (1 << BUTTON_B))
-
-    def __init__(self, address=0x5E, i2c=None, spi=None):
+    #pylint: disable-msg=too-many-arguments
+    def __init__(self, address=0x5E, i2c=None, spi=None, cs=None, dc=None):
         if i2c is None:
             i2c = board.I2C()
         if spi is None:
             spi = board.SPI()
+        if cs is None:
+            cs = board.D5
+        if dc is None:
+            dc = board.D6
         self._ss = Seesaw(i2c, address)
         self._backlight = PWMOut(self._ss, 5)
         self._backlight.duty_cycle = 0
@@ -80,12 +84,11 @@ class MiniTFTFeatherWing:
         spi.unlock()
         self._ss.pin_mode(8, self._ss.OUTPUT)
         self._ss.digital_write(8, True)  # Reset the Display via Seesaw
-        display_bus = displayio.FourWire(spi,
-                                         command=board.D6,
-                                         chip_select=board.D5)
+        display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
         self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
                                rotation=270, bgr=True)
         self._ss.pin_mode_bulk(self._button_mask, self._ss.INPUT_PULLUP)
+    #pylint: enable-msg=too-many-arguments
 
     @property
     def backlight(self):
