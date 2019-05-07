@@ -39,7 +39,8 @@ setup(
                       'adafruit-circuitpython-register', 'adafruit-circuitpython-ina219',
                       'adafruit-circuitpython-seesaw', 'adafruit-circuitpython-ht16k33',
                       'adafruit-circuitpython-dotstar', 'adafruit-circuitpython-neopixel',
-                      'adafruit-circuitpython-ds3231', 'adafruit-circuitpython-gps'],
+                      'adafruit-circuitpython-ds3231', 'adafruit-circuitpython-gps',
+                      'adafruit-circuitpython-adxl34x', 'adafruit-circuitpython-adt7410'],
 
     # Choose your license
     license='MIT',

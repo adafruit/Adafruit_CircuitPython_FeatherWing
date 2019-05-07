@@ -29,6 +29,8 @@ These drivers depends on:
 * `NeoPixel <https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel>`_
 * `DS3231 <https://github.com/adafruit/Adafruit_CircuitPython_DS3231>`_
 * `ST7735R <https://github.com/adafruit/Adafruit_CircuitPython_ST7735R>`_
+* `ADXL34x <https://github.com/adafruit/Adafruit_CircuitPython_ADXL34x>`_
+* `ADT7410 <https://github.com/adafruit/Adafruit_CircuitPython_ADT7410>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
