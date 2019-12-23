@@ -109,8 +109,8 @@ class MiniTFTFeatherWing:
             button_values = self._ss.digital_read_bulk(self._button_mask)
         except OSError:
             return Buttons(*[False for button in
-                         (BUTTON_UP, BUTTON_DOWN, BUTTON_LEFT, BUTTON_RIGHT,
-                          BUTTON_A, BUTTON_B, BUTTON_SEL)])
+                             (BUTTON_UP, BUTTON_DOWN, BUTTON_LEFT, BUTTON_RIGHT,
+                              BUTTON_A, BUTTON_B, BUTTON_SEL)])
         return Buttons(*[not button_values & (1 << button) for button in
                          (BUTTON_UP, BUTTON_DOWN, BUTTON_LEFT, BUTTON_RIGHT,
                           BUTTON_A, BUTTON_B, BUTTON_SEL)])
