@@ -10,8 +10,8 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
-.. image:: https://travis-ci.com/adafruit/Adafruit_CircuitPython_FeatherWing.svg?branch=master
-    :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_FeatherWing
+.. image:: https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing/workflows/Build%20CI/badge.svg
+    :target: https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing/actions/
     :alt: Build Status
 
 This library provides FeatherWing specific classes for those that require a significant amount of
