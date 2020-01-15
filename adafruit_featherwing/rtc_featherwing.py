@@ -78,8 +78,7 @@ class RTCFeatherWing:
         now = self._get_now()
         if unit in now:
             return now[unit]
-        else:
-            raise ValueError('The specified unit of time is invalid')
+        raise ValueError('The specified unit of time is invalid')
 
     def _get_now(self):
         """

@@ -110,11 +110,7 @@ class MatrixFeatherWing:
 
         :param rotate: (Optional) Rotate the shifted pixels to the left side (default=False)
         """
-        for y in range(0, self.rows):
-            last_pixel = self._matrix[self.columns - 1, y] if rotate else 0
-            for x in range(self.columns - 1, 0, -1):
-                self._matrix[x, y] = self._matrix[x - 1, y]
-            self._matrix[0, y] = last_pixel
+        self._matrix.shift_right(rotate)
         self._update()
 
     def shift_left(self, rotate=False):
@@ -123,11 +119,7 @@ class MatrixFeatherWing:
 
         :param rotate: (Optional) Rotate the shifted pixels to the right side (default=False)
         """
-        for y in range(0, self.rows):
-            last_pixel = self._matrix[0, y] if rotate else 0
-            for x in range(0, self.columns - 1):
-                self._matrix[x, y] = self._matrix[x + 1, y]
-            self._matrix[self.columns - 1, y] = last_pixel
+        self._matrix.shift_left(rotate)
         self._update()
 
     def shift_up(self, rotate=False):
@@ -136,11 +128,7 @@ class MatrixFeatherWing:
 
         :param rotate: (Optional) Rotate the shifted pixels to bottom (default=False)
         """
-        for x in range(0, self.columns):
-            last_pixel = self._matrix[x, self.rows - 1] if rotate else 0
-            for y in range(self.rows - 1, 0, -1):
-                self._matrix[x, y] = self._matrix[x, y - 1]
-            self._matrix[x, 0] = last_pixel
+        self._matrix.shift_up(rotate)
         self._update()
 
     def shift_down(self, rotate=False):
@@ -149,11 +137,7 @@ class MatrixFeatherWing:
 
         :param rotate: (Optional) Rotate the shifted pixels to top (default=False)
         """
-        for x in range(0, self.columns):
-            last_pixel = self._matrix[x, 0] if rotate else 0
-            for y in range(0, self.rows - 1):
-                self._matrix[x, y] = self._matrix[x, y + 1]
-            self._matrix[x, self.rows - 1] = last_pixel
+        self._matrix.shift_down(rotate)
         self._update()
 
     @property

@@ -76,17 +76,16 @@ class PixelMatrix:
             if not 0 <= indices < self.rows * self.columns:
                 raise ValueError('The index of {} is out of range'.format(indices))
             return indices
-        elif isinstance(indices, slice):
+        if isinstance(indices, slice):
             return indices
-        elif len(indices) == 2:
+        if len(indices) == 2:
             x, y = indices
             if not 0 <= x < self.columns:
                 raise ValueError('The X value of {} is out of range'.format(x))
             if not 0 <= y < self.rows:
                 raise ValueError('The Y value of {} is out of range'.format(y))
             return y * self.columns + x
-        else:
-            raise ValueError('Index must be 1 or 2 number')
+        raise ValueError('Index must be 1 or 2 number')
 
     def _update(self):
         """
