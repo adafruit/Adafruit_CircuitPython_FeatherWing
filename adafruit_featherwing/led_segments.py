@@ -31,8 +31,6 @@ Base Class for the AlphaNumeric FeatherWing and 7-Segment FeatherWing helpers_.
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-from time import sleep
-
 #pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
 
 class Segments:
@@ -64,26 +62,7 @@ class Segments:
         :param bool loop: (optional) Whether to endlessly loop the text (default=True)
 
         """
-        if isinstance(text, str):
-            self.fill(False)
-            if loop:
-                while True:
-                    self._scroll_marquee(text, delay)
-            else:
-                self._scroll_marquee(text, delay)
-
-    def _scroll_marquee(self, text, delay):
-        """
-        Scroll through the text string once using the delay
-        """
-        char_is_dot = False
-        for character in text:
-            self._segments.print(character)
-            # Add delay if character is not a dot or more than 2 in a row
-            if character != '.' or char_is_dot:
-                sleep(delay)
-            char_is_dot = (character == '.')
-            self._segments.show()
+        self._segments.marquee(text, delay, loop)
 
     def fill(self, fill):
         """Change all Segments on or off
