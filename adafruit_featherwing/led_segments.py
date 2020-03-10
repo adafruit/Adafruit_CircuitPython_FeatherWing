@@ -49,6 +49,10 @@ class Segments:
         :type value: str or int or float
 
         """
+        # Attempt to round off so we can still display the value
+        if isinstance(value, float) and len(str(value)) > 5:
+            value = round(value)
+
         self._segments.print(value)
         self._segments.show()
 
