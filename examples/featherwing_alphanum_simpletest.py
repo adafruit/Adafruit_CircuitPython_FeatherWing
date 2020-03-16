@@ -7,35 +7,35 @@ from adafruit_featherwing import alphanum_featherwing
 
 display = alphanum_featherwing.AlphaNumFeatherWing()
 
-#Fill and empty all segments
+# Fill and empty all segments
 for count in range(0, 3):
     display.fill(True)
     sleep(0.5)
     display.fill(False)
     sleep(0.5)
 
-#Display a number and text
+# Display a number and text
 display.print(1234)
 sleep(1)
-display.print('Text')
+display.print("Text")
 
-#Change brightness
+# Change brightness
 for brightness in range(0, 16):
     display.brightness = brightness
     sleep(0.1)
 
-#Change blink rate
+# Change blink rate
 for blink_rate in range(3, 0, -1):
     display.blink_rate = blink_rate
     sleep(4)
 display.blink_rate = 0
 
-#Show a counter using decimals
+# Show a counter using decimals
 count = 975.0
 while count < 1025:
     count += 1
     display.print(count)
     sleep(0.1)
 
-#Show the Marquee
-display.marquee('This is a really long message!!!  ', 0.2)
+# Show the Marquee
+display.marquee("This is a really long message!!!  ", 0.2)

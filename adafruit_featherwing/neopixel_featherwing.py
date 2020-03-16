@@ -35,11 +35,13 @@ import board
 import neopixel
 from adafruit_featherwing.pixelmatrix import PixelMatrix
 
+
 class NeoPixelFeatherWing(PixelMatrix):
     """Class representing a `NeoPixel FeatherWing
        <https://www.adafruit.com/product/2945>`_.
 
        The feather uses pins D6 by default"""
+
     def __init__(self, pixel_pin=board.D6, brightness=0.1):
         """
             :param pin pixel_pin: The pin for the featherwing
@@ -48,9 +50,13 @@ class NeoPixelFeatherWing(PixelMatrix):
         super().__init__()
         self.rows = 4
         self.columns = 8
-        self._matrix = neopixel.NeoPixel(pixel_pin, self.rows * self.columns,
-                                         brightness=brightness, auto_write=False,
-                                         pixel_order=neopixel.GRB)
+        self._matrix = neopixel.NeoPixel(
+            pixel_pin,
+            self.rows * self.columns,
+            brightness=brightness,
+            auto_write=False,
+            pixel_order=neopixel.GRB,
+        )
 
     def shift_up(self, rotate=False):
         """
@@ -83,7 +89,7 @@ class NeoPixelFeatherWing(PixelMatrix):
                 time.sleep(.1)
 
         """
-        super().shift_down(rotate) # Up and down are reversed
+        super().shift_down(rotate)  # Up and down are reversed
 
     def shift_down(self, rotate=False):
         """
@@ -116,4 +122,4 @@ class NeoPixelFeatherWing(PixelMatrix):
                 time.sleep(.1)
 
         """
-        super().shift_up(rotate) # Up and down are reversed
+        super().shift_up(rotate)  # Up and down are reversed

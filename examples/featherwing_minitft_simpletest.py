@@ -31,4 +31,4 @@ while True:
     if buttons.b:
         print("Button B!")
 
-    time.sleep(.001)
+    time.sleep(0.001)

@@ -34,11 +34,13 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import board
 import adafruit_ina219
 
+
 class INA219FeatherWing:
     """Class representing an `Adafruit INA219 FeatherWing
        <https://www.adafruit.com/product/3650>`_.
 
        Automatically uses the feather's I2C bus."""
+
     def __init__(self, i2c=None):
         if i2c is None:
             i2c = board.I2C()
