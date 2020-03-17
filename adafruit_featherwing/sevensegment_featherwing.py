@@ -35,11 +35,13 @@ import board
 import adafruit_ht16k33.segments as segments
 from adafruit_featherwing.led_segments import Segments
 
+
 class SevenSegmentFeatherWing(Segments):
     """Class representing an `Adafruit 7-Segment LED HT16K33 FeatherWing
        <https://www.adafruit.com/product/3140>`_.
 
        Automatically uses the feather's I2C bus."""
+
     def __init__(self, address=0x70, i2c=None):
         super().__init__()
         if i2c is None:

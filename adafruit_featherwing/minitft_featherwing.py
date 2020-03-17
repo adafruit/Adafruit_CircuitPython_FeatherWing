@@ -50,20 +50,23 @@ BUTTON_B = const(9)
 
 Buttons = namedtuple("Buttons", "up down left right a b select")
 
+
 class MiniTFTFeatherWing:
     """Class representing an `Mini Color TFT with Joystick FeatherWing
        <https://www.adafruit.com/product/3321>`_.
 
        Automatically uses the feather's I2C bus."""
 
-    _button_mask = ((1 << BUTTON_RIGHT) |
-                    (1 << BUTTON_DOWN) |
-                    (1 << BUTTON_LEFT) |
-                    (1 << BUTTON_UP) |
-                    (1 << BUTTON_SEL) |
-                    (1 << BUTTON_A) |
-                    (1 << BUTTON_B))
-    #pylint: disable-msg=too-many-arguments
+    _button_mask = (
+        (1 << BUTTON_RIGHT)
+        | (1 << BUTTON_DOWN)
+        | (1 << BUTTON_LEFT)
+        | (1 << BUTTON_UP)
+        | (1 << BUTTON_SEL)
+        | (1 << BUTTON_A)
+        | (1 << BUTTON_B)
+    )
+    # pylint: disable-msg=too-many-arguments
     def __init__(self, address=0x5E, i2c=None, spi=None, cs=None, dc=None):
         displayio.release_displays()
         if i2c is None:
@@ -81,9 +84,11 @@ class MiniTFTFeatherWing:
         self._backlight = PWMOut(self._ss, 5)
         self._backlight.duty_cycle = 0
         display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
-        self.display = ST7735R(display_bus, width=160, height=80, colstart=24,
-                               rotation=270, bgr=True)
-    #pylint: enable-msg=too-many-arguments
+        self.display = ST7735R(
+            display_bus, width=160, height=80, colstart=24, rotation=270, bgr=True
+        )
+
+    # pylint: enable-msg=too-many-arguments
 
     @property
     def backlight(self):
@@ -107,9 +112,31 @@ class MiniTFTFeatherWing:
         try:
             button_values = self._ss.digital_read_bulk(self._button_mask)
         except OSError:
-            return Buttons(*[False for button in
-                             (BUTTON_UP, BUTTON_DOWN, BUTTON_LEFT, BUTTON_RIGHT,
-                              BUTTON_A, BUTTON_B, BUTTON_SEL)])
-        return Buttons(*[not button_values & (1 << button) for button in
-                         (BUTTON_UP, BUTTON_DOWN, BUTTON_LEFT, BUTTON_RIGHT,
-                          BUTTON_A, BUTTON_B, BUTTON_SEL)])
+            return Buttons(
+                *[
+                    False
+                    for button in (
+                        BUTTON_UP,
+                        BUTTON_DOWN,
+                        BUTTON_LEFT,
+                        BUTTON_RIGHT,
+                        BUTTON_A,
+                        BUTTON_B,
+                        BUTTON_SEL,
+                    )
+                ]
+            )
+        return Buttons(
+            *[
+                not button_values & (1 << button)
+                for button in (
+                    BUTTON_UP,
+                    BUTTON_DOWN,
+                    BUTTON_LEFT,
+                    BUTTON_RIGHT,
+                    BUTTON_A,
+                    BUTTON_B,
+                    BUTTON_SEL,
+                )
+            ]
+        )

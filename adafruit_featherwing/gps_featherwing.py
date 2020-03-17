@@ -35,11 +35,13 @@ import board
 import busio
 import adafruit_gps
 
+
 class GPSFeatherWing:
     """Class representing an `Ultimate GPS FeatherWing
        <https://www.adafruit.com/product/3133>`_.
 
        Automatically uses the feather's UART bus."""
+
     def __init__(self, update_period=1000, baudrate=9600):
         """
         :param int update_period: (Optional) The amount of time in milliseconds between
@@ -57,8 +59,10 @@ class GPSFeatherWing:
         self._uart = busio.UART(board.TX, board.RX, baudrate=baudrate, timeout=timeout)
         self._gps = adafruit_gps.GPS(self._uart, debug=False)
         # Turn on the basic GGA and RMC info
-        self._gps.send_command(bytes('PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', 'utf-8'))
-        self._gps.send_command(bytes('PMTK220,{}'.format(update_period), 'utf-8'))
+        self._gps.send_command(
+            bytes("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", "utf-8")
+        )
+        self._gps.send_command(bytes("PMTK220,{}".format(update_period), "utf-8"))
 
     def update(self):
         """

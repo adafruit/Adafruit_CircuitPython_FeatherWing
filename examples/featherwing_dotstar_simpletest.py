@@ -14,11 +14,12 @@ dotstar = dotstar_featherwing.DotStarFeatherWing()
 def random_color():
     return random.randrange(0, 8) * 32
 
+
 # Fill screen with random colors at random brightnesses
 for i in range(0, 5):
     dotstar.fill((random_color(), random_color(), random_color()))
     dotstar.brightness = random.randrange(2, 10) / 10
-    sleep(.2)
+    sleep(0.2)
 
 # Set display to 30% brightness
 dotstar.brightness = 0.3
@@ -28,7 +29,7 @@ for x in range(0, dotstar.columns):
     for y in range(dotstar.rows - 1, -1, -1):
         dotstar[x, y] = (y * 42, 255, y * 42, 1)
 
-#Rotate everything left 36 frames
+# Rotate everything left 36 frames
 for i in range(0, 36):
     dotstar.shift_down(True)
 
@@ -57,4 +58,4 @@ while True:
     x = random.randrange(0, dotstar.columns)
     y = random.randrange(0, dotstar.rows)
     dotstar[x, y] = (random_color(), random_color(), random_color())
-    sleep(.1)
+    sleep(0.1)

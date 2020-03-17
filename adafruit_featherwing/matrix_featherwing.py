@@ -35,11 +35,13 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import board
 import adafruit_ht16k33.matrix as matrix
 
+
 class MatrixFeatherWing:
     """Class representing an `Adafruit 8x16 LED Matrix FeatherWing
        <https://www.adafruit.com/product/3155>`_.
 
        Automatically uses the feather's I2C bus."""
+
     def __init__(self, address=0x70, i2c=None):
         if i2c is None:
             i2c = board.I2C()
@@ -102,7 +104,7 @@ class MatrixFeatherWing:
             self._matrix.fill(1 if fill else 0)
             self._update()
         else:
-            raise ValueError('Must set to either True or False.')
+            raise ValueError("Must set to either True or False.")
 
     def shift_right(self, rotate=False):
         """
