@@ -174,10 +174,10 @@ class MatrixFeatherWing:
         Brightness returns the current display brightness.
         0-15 = Dimmest to Brightest Setting
         """
-        return round(self._segments.brightness * 15)
+        return round(self._matrix.brightness * 15)
 
     @brightness.setter
     def brightness(self, brightness):
         if not 0 <= brightness <= 15:
             raise ValueError('Brightness must be a value between 0 and 15')
-        self._segments.brightness = brightness / 15
+        self._matrix.brightness = brightness / 15
