@@ -46,12 +46,15 @@ class JoyFeatherWing:
     """Class representing an `Adafruit Joy FeatherWing <https://www.adafruit.com/product/3632>`_.
 
        Automatically uses the feather's I2C bus."""
+
     def __init__(self, i2c=None):
         if i2c is None:
             i2c = board.I2C()
         self._seesaw = adafruit_seesaw.seesaw.Seesaw(i2c)
-        self._seesaw.pin_mode_bulk(BUTTON_A | BUTTON_B | BUTTON_Y | BUTTON_X | BUTTON_SELECT,
-                                   self._seesaw.INPUT_PULLUP)
+        self._seesaw.pin_mode_bulk(
+            BUTTON_A | BUTTON_B | BUTTON_Y | BUTTON_X | BUTTON_SELECT,
+            self._seesaw.INPUT_PULLUP,
+        )
 
         # Initialise joystick_offset
         self._joystick_offset = (0, 0)

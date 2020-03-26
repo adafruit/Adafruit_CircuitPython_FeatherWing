@@ -35,11 +35,13 @@ import board
 import adafruit_dotstar as dotstar
 from adafruit_featherwing.pixelmatrix import PixelMatrix
 
+
 class DotStarFeatherWing(PixelMatrix):
     """Class representing a `DotStar FeatherWing
        <https://www.adafruit.com/product/3449>`_.
 
        The feather uses pins D13 and D11"""
+
     def __init__(self, clock=board.D13, data=board.D11, brightness=0.2):
         """
             :param pin clock: The clock pin for the featherwing
@@ -49,5 +51,10 @@ class DotStarFeatherWing(PixelMatrix):
         super().__init__()
         self.rows = 6
         self.columns = 12
-        self._matrix = dotstar.DotStar(clock, data, self.rows * self.columns,
-                                       brightness=brightness, auto_write=False)
+        self._matrix = dotstar.DotStar(
+            clock,
+            data,
+            self.rows * self.columns,
+            brightness=brightness,
+            auto_write=False,
+        )

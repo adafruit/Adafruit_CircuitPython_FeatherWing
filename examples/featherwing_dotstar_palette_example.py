@@ -12,14 +12,16 @@ dotstar = dotstar_featherwing.DotStarFeatherWing()
 def remap(vector):
     return int(((255 * vector + 85) * 0.75) + 0.5)
 
+
 # Calculate the Hue rotation starting with Red as 0 degrees
 def rotate(degrees):
     cosA = cos(radians(degrees))
     sinA = sin(radians(degrees))
     red = cosA + (1.0 - cosA) / 3.0
-    green = 1./3. * (1.0 - cosA) + sqrt(1./3.) * sinA
-    blue = 1./3. * (1.0 - cosA) - sqrt(1./3.) * sinA
+    green = 1.0 / 3.0 * (1.0 - cosA) + sqrt(1.0 / 3.0) * sinA
+    blue = 1.0 / 3.0 * (1.0 - cosA) - sqrt(1.0 / 3.0) * sinA
     return (remap(red), remap(green), remap(blue))
+
 
 palette = []
 pixels = []

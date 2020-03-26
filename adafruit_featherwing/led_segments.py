@@ -31,13 +31,15 @@ Base Class for the AlphaNumeric FeatherWing and 7-Segment FeatherWing helpers_.
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-#pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+# pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+
 
 class Segments:
     """Class representing an `Adafruit 14-segment AlphaNumeric FeatherWing
        <https://www.adafruit.com/product/3139>`_.
 
        Automatically uses the feather's I2C bus."""
+
     def __init__(self):
         self._segments = None
 
@@ -78,7 +80,7 @@ class Segments:
             self._segments.fill(1 if fill else 0)
             self._segments.show()
         else:
-            raise ValueError('Must set to either True or False.')
+            raise ValueError("Must set to either True or False.")
 
     @property
     def blink_rate(self):

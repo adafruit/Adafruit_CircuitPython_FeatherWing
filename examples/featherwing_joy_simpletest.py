@@ -23,4 +23,4 @@ while True:
         print("Button Y!")
     if wing.button_select:
         print("Button SELECT!")
-    time.sleep(.01)
+    time.sleep(0.01)

@@ -32,12 +32,14 @@ Base Class for the `NeoPixel FeatherWing <https://www.adafruit.com/product/2945>
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-#pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+# pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+
 
 class PixelMatrix:
     """Base Class for DotStar and NeoPixel FeatherWings
 
        The feather uses pins D13 and D11"""
+
     def __init__(self):
         self.rows = 0
         self.columns = 0
@@ -74,18 +76,18 @@ class PixelMatrix:
         """
         if isinstance(indices, int):
             if not 0 <= indices < self.rows * self.columns:
-                raise ValueError('The index of {} is out of range'.format(indices))
+                raise ValueError("The index of {} is out of range".format(indices))
             return indices
         if isinstance(indices, slice):
             return indices
         if len(indices) == 2:
             x, y = indices
             if not 0 <= x < self.columns:
-                raise ValueError('The X value of {} is out of range'.format(x))
+                raise ValueError("The X value of {} is out of range".format(x))
             if not 0 <= y < self.rows:
-                raise ValueError('The Y value of {} is out of range'.format(y))
+                raise ValueError("The Y value of {} is out of range".format(y))
             return y * self.columns + x
-        raise ValueError('Index must be 1 or 2 number')
+        raise ValueError("Index must be 1 or 2 number")
 
     def _update(self):
         """
@@ -120,7 +122,9 @@ class PixelMatrix:
         for y in range(0, self.rows):
             last_pixel = self._matrix[(y + 1) * self.columns - 1] if rotate else 0
             for x in range(self.columns - 1, 0, -1):
-                self._matrix[y * self.columns + x] = self._matrix[y * self.columns + x - 1]
+                self._matrix[y * self.columns + x] = self._matrix[
+                    y * self.columns + x - 1
+                ]
             self._matrix[y * self.columns] = last_pixel
         self._update()
 
@@ -133,7 +137,9 @@ class PixelMatrix:
         for y in range(0, self.rows):
             last_pixel = self._matrix[y * self.columns] if rotate else 0
             for x in range(0, self.columns - 1):
-                self._matrix[y * self.columns + x] = self._matrix[y * self.columns + x + 1]
+                self._matrix[y * self.columns + x] = self._matrix[
+                    y * self.columns + x + 1
+                ]
             self._matrix[(y + 1) * self.columns - 1] = last_pixel
         self._update()
 
@@ -144,9 +150,13 @@ class PixelMatrix:
         :param rotate: (Optional) Rotate the shifted pixels to bottom (default=False)
         """
         for x in range(0, self.columns):
-            last_pixel = self._matrix[(self.rows - 1) * self.columns + x] if rotate else 0
+            last_pixel = (
+                self._matrix[(self.rows - 1) * self.columns + x] if rotate else 0
+            )
             for y in range(self.rows - 1, 0, -1):
-                self._matrix[y * self.columns + x] = self._matrix[(y - 1) * self.columns + x]
+                self._matrix[y * self.columns + x] = self._matrix[
+                    (y - 1) * self.columns + x
+                ]
             self._matrix[x] = last_pixel
         self._update()
 
@@ -159,7 +169,9 @@ class PixelMatrix:
         for x in range(0, self.columns):
             last_pixel = self._matrix[x] if rotate else 0
             for y in range(0, self.rows - 1):
-                self._matrix[y * self.columns + x] = self._matrix[(y + 1) * self.columns + x]
+                self._matrix[y * self.columns + x] = self._matrix[
+                    (y + 1) * self.columns + x
+                ]
             self._matrix[(self.rows - 1) * self.columns + x] = last_pixel
         self._update()
 

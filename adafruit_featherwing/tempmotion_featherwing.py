@@ -36,11 +36,13 @@ import board
 import adafruit_adxl34x
 import adafruit_adt7410
 
+
 class TempMotionFeatherWing:
     """Class helper representing an `Adafruit ADXL343 + ADT7410 Sensor FeatherWing
        <https://www.adafruit.com/product/4147>`_.
 
        Automatically uses the feather's I2C bus."""
+
     def __init__(self, adxl343_address=0x53, adt7410_address=0x48, i2c=None):
         if i2c is None:
             i2c = board.I2C()
