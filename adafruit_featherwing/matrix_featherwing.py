@@ -179,5 +179,5 @@ class MatrixFeatherWing:
     @brightness.setter
     def brightness(self, brightness):
         if not 0 <= brightness <= 15:
-            raise ValueError('Brightness must be a value between 0 and 15')
+            raise ValueError("Brightness must be a value between 0 and 15")
         self._matrix.brightness = brightness / 15
