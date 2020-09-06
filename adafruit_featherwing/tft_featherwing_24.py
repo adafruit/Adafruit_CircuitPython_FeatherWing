@@ -51,10 +51,8 @@ class TFTFeatherWing24:
 
        """
 
-    def __init__(self, i2c=None, spi=None, cs=None, dc=None):
+    def __init__(self, spi=None, cs=None, dc=None):
         displayio.release_displays()
-        if i2c is None:
-            i2c = board.I2C()
         if spi is None:
             spi = board.SPI()
         if cs is None:
