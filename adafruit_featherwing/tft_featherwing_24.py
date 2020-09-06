@@ -44,7 +44,7 @@ from adafruit_stmpe610 import Adafruit_STMPE610_SPI
 import sdcardio
 import storage
 
-
+# pylint: disable-msg=too-few-public-methods
 class TFTFeatherWing24:
     """Class representing an `TFT FeatherWing 2.4
        <https://www.adafruit.com/product/3315>`_.
@@ -63,9 +63,7 @@ class TFTFeatherWing24:
         ts_cs = digitalio.DigitalInOut(board.D6)
         self.touchscreen = Adafruit_STMPE610_SPI(spi, ts_cs)
 
-        display_bus = displayio.FourWire(
-            spi, command=dc, chip_select=cs
-        )
+        display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
         self.display = adafruit_ili9341.ILI9341(display_bus, width=320, height=240)
 
         sd_cs = board.D5
