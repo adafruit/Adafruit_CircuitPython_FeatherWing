@@ -4,6 +4,7 @@ print the coordinates of touchscreen presses, as well
 as keyboard events from the BBQ10 keyboard.
 It will also try to write and then read a file on the
 SD Card.
+It will also set the color of the neopixel on the featherwing.
 
 """
 from adafruit_featherwing import keyboard_featherwing
