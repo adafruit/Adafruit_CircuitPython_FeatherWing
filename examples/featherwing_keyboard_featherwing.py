@@ -7,8 +7,8 @@ SD Card.
 It will also set the color of the neopixel on the featherwing.
 
 """
-from adafruit_featherwing import keyboard_featherwing
 from bbq10keyboard import STATE_RELEASE, STATE_LONG_PRESS
+from adafruit_featherwing import keyboard_featherwing
 
 kbd_featherwing = keyboard_featherwing.KeyboardFeatherwing()
 
