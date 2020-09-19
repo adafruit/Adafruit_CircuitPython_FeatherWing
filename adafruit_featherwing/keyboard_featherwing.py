@@ -43,7 +43,7 @@ import adafruit_ili9341
 from adafruit_stmpe610 import Adafruit_STMPE610_SPI
 import sdcardio
 import storage
-from bbq10keyboard import BBQ10Keyboard, STATE_PRESS, STATE_RELEASE, STATE_LONG_PRESS
+from bbq10keyboard import BBQ10Keyboard
 import neopixel
 
 

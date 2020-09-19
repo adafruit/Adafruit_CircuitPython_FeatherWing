@@ -7,7 +7,7 @@ SD Card.
 
 """
 from adafruit_featherwing import keyboard_featherwing
-from bbq10keyboard import STATE_PRESS, STATE_RELEASE, STATE_LONG_PRESS
+from bbq10keyboard import STATE_RELEASE, STATE_LONG_PRESS
 
 kbd_featherwing = keyboard_featherwing.KeyboardFeatherwing()
 
@@ -35,9 +35,12 @@ while True:
     key_count = kbd_featherwing.keyboard.key_count
     if key_count > 0:
         key = kbd_featherwing.keyboard.key
-        state = 'pressed'
+        STATE = "pressed"
         if key[0] == STATE_LONG_PRESS:
-            state = 'held down'
+            STATE = "held down"
         elif key[0] == STATE_RELEASE:
-            state = 'released'
-        print("key: '%s' (dec %d, hex %02x) %s" % (key[1], ord(key[1]), ord(key[1]), state))
+            STATE = "released"
+        print(
+            "key: '%s' (dec %d, hex %02x) %s"
+            % (key[1], ord(key[1]), ord(key[1]), STATE)
+        )
