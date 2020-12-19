@@ -70,6 +70,8 @@ class KeyboardFeatherwing:
             spi = board.SPI()
         if cs is None:
             cs = board.D9
+        if dc is None:
+            dc = board.D10
         if i2c is None:
             i2c = board.I2C()
         if ts_cs is None:
