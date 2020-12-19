@@ -48,13 +48,23 @@ import neopixel
 
 
 # pylint: disable-msg=too-few-public-methods
+# pylint: disable-msg=too-many-arguments
 class KeyboardFeatherwing:
     """Class representing a `Keyboard Featherwing`
        <https://www.tindie.com/products/arturo182/keyboard-featherwing-qwerty-keyboard-26-lcd/>`_.
 
        """
 
-    def __init__(self, spi=None, cs=None, dc=None, i2c=None):
+    def __init__(
+        self,
+        spi=None,
+        cs=None,
+        dc=None,
+        i2c=None,
+        ts_cs=None,
+        sd_cs=None,
+        neopixel_pin=None,
+    ):
         displayio.release_displays()
         if spi is None:
             spi = board.SPI()
@@ -64,15 +74,19 @@ class KeyboardFeatherwing:
             dc = board.D10
         if i2c is None:
             i2c = board.I2C()
+        if ts_cs is None:
+            ts_cs = board.D6
+        if sd_cs is None:
+            sd_cs = board.D5
+        if neopixel_pin is None:
+            neopixel_pin = board.D11
 
-        ts_cs = digitalio.DigitalInOut(board.D6)
-        self.touchscreen = Adafruit_STMPE610_SPI(spi, ts_cs)
+        self.touchscreen = Adafruit_STMPE610_SPI(spi, digitalio.DigitalInOut(ts_cs))
 
         display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
         self.display = adafruit_ili9341.ILI9341(display_bus, width=320, height=240)
-        self.neopixel = neopixel.NeoPixel(board.D11, 1)
+        self.neopixel = neopixel.NeoPixel(neopixel_pin, 1)
         self.keyboard = BBQ10Keyboard(i2c)
-        sd_cs = board.D5
         self._sdcard = None
         try:
             self._sdcard = sdcardio.SDCard(spi, sd_cs)
