@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+
 """
 This creates a palette of colors, draws a pattern and
 rotates through the palette creating a moving rainbow.

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+
 """This example zeros the joystick, and prints when the joystick moves
    or the buttons are pressed."""
 import time

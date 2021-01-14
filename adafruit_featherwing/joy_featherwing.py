@@ -1,24 +1,7 @@
-# The MIT License (MIT)
+# SPDX-FileCopyrightText: 2018 Kattni Rembor for Adafruit Industries
 #
-# Copyright (c) 2018 Kattni Rembor for Adafruit Industries LLC
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
+# SPDX-License-Identifier: MIT
+
 """
 `adafruit_featherwing.joy_featherwing`
 ====================================================
@@ -45,7 +28,7 @@ BUTTON_SELECT = const(1 << 14)
 class JoyFeatherWing:
     """Class representing an `Adafruit Joy FeatherWing <https://www.adafruit.com/product/3632>`_.
 
-       Automatically uses the feather's I2C bus."""
+    Automatically uses the feather's I2C bus."""
 
     def __init__(self, i2c=None):
         if i2c is None:
@@ -63,21 +46,21 @@ class JoyFeatherWing:
     def button_a(self):
         """Joy featherwing button A.
 
-            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_a.jpg
-              :alt: Joy FeatherWing Button A
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_a.jpg
+          :alt: Joy FeatherWing Button A
 
-            This example prints when button A is pressed.
+        This example prints when button A is pressed.
 
-            .. code-block:: python
+        .. code-block:: python
 
-                from adafruit_featherwing import joy_featherwing
-                import time
+            from adafruit_featherwing import joy_featherwing
+            import time
 
-                wing = joy_featherwing.JoyFeatherWing()
+            wing = joy_featherwing.JoyFeatherWing()
 
-                while True:
-                    if wing.button_a:
-                    print("Button A pressed!")
+            while True:
+                if wing.button_a:
+                print("Button A pressed!")
 
         """
         return self._check_button(BUTTON_A)
@@ -86,21 +69,21 @@ class JoyFeatherWing:
     def button_b(self):
         """Joy featherwing button B.
 
-            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_b.jpg
-              :alt: Joy FeatherWing Button B
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_b.jpg
+          :alt: Joy FeatherWing Button B
 
-            This example prints when button B is pressed.
+        This example prints when button B is pressed.
 
-            .. code-block:: python
+        .. code-block:: python
 
-                from adafruit_featherwing import joy_featherwing
-                import time
+            from adafruit_featherwing import joy_featherwing
+            import time
 
-                wing = joy_featherwing.JoyFeatherWing()
+            wing = joy_featherwing.JoyFeatherWing()
 
-                while True:
-                    if wing.button_b:
-                    print("Button B pressed!")
+            while True:
+                if wing.button_b:
+                print("Button B pressed!")
 
         """
         return self._check_button(BUTTON_B)
@@ -109,21 +92,21 @@ class JoyFeatherWing:
     def button_x(self):
         """Joy featherwing button X.
 
-            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_x.jpg
-              :alt: Joy FeatherWing Button X
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_x.jpg
+          :alt: Joy FeatherWing Button X
 
-            This example prints when button X is pressed.
+        This example prints when button X is pressed.
 
-            .. code-block:: python
+        .. code-block:: python
 
-                from adafruit_featherwing import joy_featherwing
-                import time
+            from adafruit_featherwing import joy_featherwing
+            import time
 
-                wing = joy_featherwing.JoyFeatherWing()
+            wing = joy_featherwing.JoyFeatherWing()
 
-                while True:
-                    if wing.button_x:
-                    print("Button X pressed!")
+            while True:
+                if wing.button_x:
+                print("Button X pressed!")
 
         """
         return self._check_button(BUTTON_X)
@@ -132,21 +115,21 @@ class JoyFeatherWing:
     def button_y(self):
         """Joy featherwing button Y.
 
-            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_y.jpg
-              :alt: Joy FeatherWing Button Y
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_y.jpg
+          :alt: Joy FeatherWing Button Y
 
-            This example prints when button Y is pressed.
+        This example prints when button Y is pressed.
 
-            .. code-block:: python
+        .. code-block:: python
 
-                from adafruit_featherwing import joy_featherwing
-                import time
+            from adafruit_featherwing import joy_featherwing
+            import time
 
-                wing = joy_featherwing.JoyFeatherWing()
+            wing = joy_featherwing.JoyFeatherWing()
 
-                while True:
-                    if wing.button_y:
-                    print("Button Y pressed!")
+            while True:
+                if wing.button_y:
+                print("Button Y pressed!")
 
         """
         return self._check_button(BUTTON_Y)
@@ -155,21 +138,21 @@ class JoyFeatherWing:
     def button_select(self):
         """Joy featherwing button SELECT.
 
-            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_select.jpg
-              :alt: Joy FeatherWing Button SELECT
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_select.jpg
+          :alt: Joy FeatherWing Button SELECT
 
-            This example prints when button SELECT is pressed.
+        This example prints when button SELECT is pressed.
 
-            .. code-block:: python
+        .. code-block:: python
 
-                from adafruit_featherwing import joy_featherwing
-                import time
+            from adafruit_featherwing import joy_featherwing
+            import time
 
-                wing = joy_featherwing.JoyFeatherWing()
+            wing = joy_featherwing.JoyFeatherWing()
 
-                while True:
-                    if wing.button_select:
-                    print("Button SELECT pressed!")
+            while True:
+                if wing.button_select:
+                print("Button SELECT pressed!")
 
         """
         return self._check_button(BUTTON_SELECT)
@@ -183,35 +166,35 @@ class JoyFeatherWing:
     def joystick_offset(self):
         """Offset used to correctly report (0, 0) when the joystick is centered.
 
-            .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
-              :alt: Joy FeatherWing Joystick
+        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
+          :alt: Joy FeatherWing Joystick
 
-            Provide a tuple of (x, y) to set your joystick center to (0, 0).
-            The offset you provide is subtracted from the current reading.
-            For example, if your joystick reads as (-4, 0), you would enter
-            (-4, 0) as the offset. The code will subtract -4 from -4, and 0
-            from 0, returning (0, 0).
+        Provide a tuple of (x, y) to set your joystick center to (0, 0).
+        The offset you provide is subtracted from the current reading.
+        For example, if your joystick reads as (-4, 0), you would enter
+        (-4, 0) as the offset. The code will subtract -4 from -4, and 0
+        from 0, returning (0, 0).
 
-            This example supplies an offset for zeroing, and prints the
-            coordinates of the joystick when it is moved.
+        This example supplies an offset for zeroing, and prints the
+        coordinates of the joystick when it is moved.
 
-            .. code-block:: python
+        .. code-block:: python
 
-                from adafruit_featherwing import joy_featherwing
-                import time
+            from adafruit_featherwing import joy_featherwing
+            import time
 
-                wing = joy_featherwing.JoyFeatherWing()
-                last_x = 0
-                last_y = 0
+            wing = joy_featherwing.JoyFeatherWing()
+            last_x = 0
+            last_y = 0
 
-                while True:
-                    wing.joystick_offset = (-4, 0)
-                    x, y = wing.joystick
-                    if (abs(x - last_x) > 3) or (abs(y - last_y) > 3):
-                        last_x = x
-                        last_y = y
-                        print(x, y)
-                    time.sleep(0.01)
+            while True:
+                wing.joystick_offset = (-4, 0)
+                x, y = wing.joystick
+                if (abs(x - last_x) > 3) or (abs(y - last_y) > 3):
+                    last_x = x
+                    last_y = y
+                    print(x, y)
+                time.sleep(0.01)
 
         """
         return self._joystick_offset

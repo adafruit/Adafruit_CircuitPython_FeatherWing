@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+
 """ Example to print out the voltage and current using the INA219 """
 import time
 from adafruit_featherwing import ina219_featherwing
