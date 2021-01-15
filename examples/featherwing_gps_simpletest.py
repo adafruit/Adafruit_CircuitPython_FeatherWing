@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+
 """
 This example will connect to the GPS at the default 9600 baudrate and
 update once per second. Initialization is automatically handled and there

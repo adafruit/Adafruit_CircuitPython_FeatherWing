@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+
 """
 This example will show the current temperature in the Serial Console
 whenever the FeatherWing senses that it has been tapped

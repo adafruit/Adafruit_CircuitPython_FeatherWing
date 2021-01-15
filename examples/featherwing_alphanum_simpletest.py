@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+
 """This example changes the fill, brightness, blink rates,
 shows number and text printing, displays a counter
 and then shows off the new marquee features."""
