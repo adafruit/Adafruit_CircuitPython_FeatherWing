@@ -22,14 +22,15 @@ from adafruit_stmpe610 import Adafruit_STMPE610_SPI
 import sdcardio
 import storage
 
-# pylint: disable-msg=too-few-public-methods
+
+# pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing:
     """Class representing an `TFT FeatherWing 2.4
     <https://www.adafruit.com/product/3315>`_.
 
     """
 
-    def __init__(self, spi=None, cs=None, dc=None):
+    def __init__(self, spi=None, cs=None, dc=None, ts_cs=None, sd_cs=None):
         displayio.release_displays()
         if spi is None:
             spi = board.SPI()
@@ -38,12 +39,16 @@ class TFTFeatherWing:
         if dc is None:
             dc = board.D10
 
-        ts_cs = digitalio.DigitalInOut(board.D6)
+        if ts_cs is None:
+            ts_cs = board.D6
+        if sd_cs is None:
+            sd_cs = board.D5
+
+        ts_cs = digitalio.DigitalInOut(ts_cs)
         self.touchscreen = Adafruit_STMPE610_SPI(spi, ts_cs)
 
         self._display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
 
-        sd_cs = board.D5
         self._sdcard = None
         try:
             self._sdcard = sdcardio.SDCard(spi, sd_cs)
