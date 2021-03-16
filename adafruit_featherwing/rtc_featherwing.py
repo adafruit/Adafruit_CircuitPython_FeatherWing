@@ -300,6 +300,7 @@ class RTCFeatherWing:
             return time.mktime(self._rtc.datetime)
         except (AttributeError, RuntimeError) as error:
             print("Error attempting to run time.mktime() on this board\n", error)
+            return None
 
     @unixtime.setter
     def unixtime(self, unixtime):
