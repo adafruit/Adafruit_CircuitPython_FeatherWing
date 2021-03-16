@@ -16,9 +16,10 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 # pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+from adafruit_featherwing.auto_writeable import AutoWriteable
 
 
-class PixelMatrix:
+class PixelMatrix(AutoWriteable):
     """Base Class for DotStar and NeoPixel FeatherWings
 
     The feather uses pins D13 and D11"""
@@ -27,7 +28,7 @@ class PixelMatrix:
         self.rows = 0
         self.columns = 0
         self._matrix = None
-        self._auto_write = True
+        super().__init__()
 
     def __setitem__(self, indices, value):
         """
@@ -157,19 +158,6 @@ class PixelMatrix:
                 ]
             self._matrix[(self.rows - 1) * self.columns + x] = last_pixel
         self._update()
-
-    @property
-    def auto_write(self):
-        """
-        Whether or not we are automatically updating
-        If set to false, be sure to call show() to update
-        """
-        return self._auto_write
-
-    @auto_write.setter
-    def auto_write(self, write):
-        if isinstance(write, bool):
-            self._auto_write = write
 
     @property
     def brightness(self):

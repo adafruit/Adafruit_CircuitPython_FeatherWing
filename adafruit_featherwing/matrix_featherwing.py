@@ -18,21 +18,24 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import board
 import adafruit_ht16k33.matrix as matrix
 
+from adafruit_featherwing.auto_writeable import AutoWriteable
 
-class MatrixFeatherWing:
+
+class MatrixFeatherWing(AutoWriteable):
     """Class representing an `Adafruit 8x16 LED Matrix FeatherWing
     <https://www.adafruit.com/product/3155>`_.
 
     Automatically uses the feather's I2C bus."""
 
     def __init__(self, address=0x70, i2c=None):
+
         if i2c is None:
             i2c = board.I2C()
         self._matrix = matrix.Matrix16x8(i2c, address)
         self._matrix.auto_write = False
         self.columns = 16
         self.rows = 8
-        self._auto_write = True
+        super().__init__()
 
     def __getitem__(self, key):
         """
@@ -124,19 +127,6 @@ class MatrixFeatherWing:
         """
         self._matrix.shift_down(rotate)
         self._update()
-
-    @property
-    def auto_write(self):
-        """
-        Whether or not we are automatically updating
-        If set to false, be sure to call show() to update
-        """
-        return self._auto_write
-
-    @auto_write.setter
-    def auto_write(self, write):
-        if isinstance(write, bool):
-            self._auto_write = write
 
     @property
     def blink_rate(self):
