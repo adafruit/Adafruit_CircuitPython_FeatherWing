@@ -15,6 +15,7 @@ see tft_featherwng_24 and tft_featherwing_35
 Requires:
 * adafruit_stmpe610
 """
+import time
 import board
 import digitalio
 import displayio
@@ -45,7 +46,6 @@ class TFTFeatherWing:
             sd_cs = board.D5
 
         ts_cs = digitalio.DigitalInOut(ts_cs)
-        self.touchscreen = Adafruit_STMPE610_SPI(spi, ts_cs)
 
         self._display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
 
@@ -56,3 +56,12 @@ class TFTFeatherWing:
             storage.mount(vfs, "/sd")
         except OSError as error:
             print("No SD card found:", error)
+
+        try:
+            # the screen might not be ready from cold boot
+            time.sleep(0.8)
+            self.touchscreen = Adafruit_STMPE610_SPI(spi, ts_cs)
+        except RuntimeError:
+            # wait and try once more
+            time.sleep(1.0)
+            self.touchscreen = Adafruit_STMPE610_SPI(spi, ts_cs)
