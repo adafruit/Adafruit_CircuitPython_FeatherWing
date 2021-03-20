@@ -20,19 +20,17 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
-import digitalio
-import displayio
 import adafruit_ili9341
-from adafruit_stmpe610 import Adafruit_STMPE610_SPI
-import sdcardio
-import storage
 from bbq10keyboard import BBQ10Keyboard
 import neopixel
 
 
 # pylint: disable-msg=too-few-public-methods
 # pylint: disable-msg=too-many-arguments
-class KeyboardFeatherwing:
+from adafruit_featherwing.tft_featherwing import TFTFeatherWing
+
+
+class KeyboardFeatherwing(TFTFeatherWing):
     """Class representing a `Keyboard Featherwing`
     <https://www.tindie.com/products/arturo182/keyboard-featherwing-qwerty-keyboard-26-lcd/>`_.
 
@@ -48,32 +46,15 @@ class KeyboardFeatherwing:
         sd_cs=None,
         neopixel_pin=None,
     ):
-        displayio.release_displays()
-        if spi is None:
-            spi = board.SPI()
-        if cs is None:
-            cs = board.D9
-        if dc is None:
-            dc = board.D10
+        super().__init__(spi, cs, dc, ts_cs, sd_cs)
+
         if i2c is None:
             i2c = board.I2C()
-        if ts_cs is None:
-            ts_cs = board.D6
-        if sd_cs is None:
-            sd_cs = board.D5
         if neopixel_pin is None:
             neopixel_pin = board.D11
 
-        self.touchscreen = Adafruit_STMPE610_SPI(spi, digitalio.DigitalInOut(ts_cs))
-
-        display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
-        self.display = adafruit_ili9341.ILI9341(display_bus, width=320, height=240)
+        self.display = adafruit_ili9341.ILI9341(
+            self._display_bus, width=320, height=240
+        )
         self.neopixel = neopixel.NeoPixel(neopixel_pin, 1)
         self.keyboard = BBQ10Keyboard(i2c)
-        self._sdcard = None
-        try:
-            self._sdcard = sdcardio.SDCard(spi, sd_cs)
-            vfs = storage.VfsFat(self._sdcard)
-            storage.mount(vfs, "/sd")
-        except OSError as error:
-            print("No SD card found:", error)
