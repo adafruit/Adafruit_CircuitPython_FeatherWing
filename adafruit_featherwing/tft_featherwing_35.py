@@ -21,17 +21,15 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 from adafruit_hx8357 import HX8357
-
-# pylint: disable-msg=too-few-public-methods
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
-
+# pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing35(TFTFeatherWing):
     """Class representing an `TFT FeatherWing 3.5
     <https://www.adafruit.com/product/3651>`_.
 
     """
 
-    def __init__(self, spi=None, cs=None, dc=None):
-        super().__init__(spi, cs, dc)
+    def __init__(self, spi=None, cs=None, dc=None, ts_cs=None, sd_cs=None):
+        super().__init__(spi, cs, dc, ts_cs, sd_cs)
         self.display = HX8357(self._display_bus, width=480, height=320)
