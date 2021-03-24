@@ -20,21 +20,18 @@ Requires:
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-
 import adafruit_ili9341
-
-# pylint: disable-msg=too-few-public-methods
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
-
+# pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing24(TFTFeatherWing):
     """Class representing an `TFT FeatherWing 2.4
     <https://www.adafruit.com/product/3315>`_.
 
     """
 
-    def __init__(self, spi=None, cs=None, dc=None):
-        super().__init__(spi, cs, dc)
+    def __init__(self, spi=None, cs=None, dc=None, ts_cs=None, sd_cs=None):
+        super().__init__(spi, cs, dc, ts_cs, sd_cs)
         self.display = adafruit_ili9341.ILI9341(
             self._display_bus, width=320, height=240
         )
