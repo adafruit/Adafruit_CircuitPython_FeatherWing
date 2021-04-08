@@ -48,6 +48,10 @@ setup(
         "adafruit-circuitpython-gps",
         "adafruit-circuitpython-adxl34x",
         "adafruit-circuitpython-adt7410",
+        "adafruit-circuitpython-ili9341",
+        "adafruit-circuitpython-st7735r",
+        "adafruit-circuitpython-hx8357",
+        "adafruit-circuitpython-stmpe610",
     ],
     # Choose your license
     license="MIT",
