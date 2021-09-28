@@ -13,11 +13,15 @@ from adafruit_featherwing import tft_featherwing_35
 tft_featherwing = tft_featherwing_35.TFTFeatherWing35()
 
 try:
-    f = open("/sd/tft_featherwing.txt", "w")
+    f = open(  # pylint: disable=unspecified-encoding,consider-using-with
+        "/sd/tft_featherwing.txt", "w"
+    )
     f.write("Blinka\nBlackberry Q10 Keyboard")
     f.close()
 
-    f = open("/sd/tft_featherwing.txt", "r")
+    f = open(  # pylint: disable=unspecified-encoding,consider-using-with
+        "/sd/tft_featherwing.txt", "r"
+    )
     print(f.read())
     f.close()
 except OSError as error:

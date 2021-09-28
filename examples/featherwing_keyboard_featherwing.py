@@ -20,11 +20,15 @@ kbd_featherwing.neopixel.brightness = 0.1
 kbd_featherwing.neopixel[0] = 0x002244
 
 try:
-    f = open("/sd/tft_featherwing.txt", "w")
+    f = open(  # pylint: disable=unspecified-encoding,consider-using-with
+        "/sd/tft_featherwing.txt", "w"
+    )
     f.write("Blinka\nBlackberry Q10 Keyboard")
     f.close()
 
-    f = open("/sd/tft_featherwing.txt", "r")
+    f = open(  # pylint: disable=unspecified-encoding,consider-using-with
+        "/sd/tft_featherwing.txt", "r"
+    )
     print(f.read())
     f.close()
 except OSError as error:
