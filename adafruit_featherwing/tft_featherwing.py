@@ -23,6 +23,13 @@ from adafruit_stmpe610 import Adafruit_STMPE610_SPI
 import sdcardio
 import storage
 
+try:
+    from typing import Optional
+    from busio import SPI
+    from microcontroller import Pin
+except ImportError:
+    pass
+
 
 # pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing:
@@ -31,7 +38,14 @@ class TFTFeatherWing:
 
     """
 
-    def __init__(self, spi=None, cs=None, dc=None, ts_cs=None, sd_cs=None):
+    def __init__(
+        self,
+        spi: Optional[SPI] = None,
+        cs: Optional[Pin] = None,
+        dc: Optional[Pin] = None,
+        ts_cs: Optional[Pin] = None,
+        sd_cs: Optional[Pin] = None,
+    ):
         displayio.release_displays()
         if spi is None:
             spi = board.SPI()

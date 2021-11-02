@@ -16,6 +16,11 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 # pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
 
+try:
+    from typing import Union
+except ImportError:
+    pass
+
 
 class Segments:
     """Class representing an `Adafruit 14-segment AlphaNumeric FeatherWing
@@ -26,7 +31,7 @@ class Segments:
     def __init__(self):
         self._segments = None
 
-    def print(self, value):
+    def print(self, value: Union[str, int]):
         """
         Print a number or text to the display
 
@@ -41,7 +46,7 @@ class Segments:
         self._segments.print(value)
         self._segments.show()
 
-    def marquee(self, text, delay=0.25, loop=True):
+    def marquee(self, text: str, delay: float = 0.25, loop: bool = True):
         """
         Automatically scroll the text at the specified delay between characters
 
@@ -53,7 +58,7 @@ class Segments:
         """
         self._segments.marquee(text, delay, loop)
 
-    def fill(self, fill):
+    def fill(self, fill: bool):
         """Change all Segments on or off
 
         :param bool fill: True turns all segments on, False turns all segments off
@@ -75,7 +80,7 @@ class Segments:
         return self._segments.blink_rate
 
     @blink_rate.setter
-    def blink_rate(self, rate):
+    def blink_rate(self, rate: int):
         self._segments.blink_rate = rate
 
     @property
@@ -87,7 +92,7 @@ class Segments:
         return round(self._segments.brightness * 15)
 
     @brightness.setter
-    def brightness(self, brightness):
+    def brightness(self, brightness: int):
         if not 0 <= brightness <= 15:
             raise ValueError("Brightness must be a value between 0 and 15")
         self._segments.brightness = brightness / 15

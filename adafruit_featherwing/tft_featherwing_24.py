@@ -23,6 +23,14 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 import adafruit_ili9341
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
+try:
+    from typing import Optional
+    from busio import SPI
+    from microcontroller import Pin
+except ImportError:
+    pass
+
+
 # pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing24(TFTFeatherWing):
     """Class representing an `TFT FeatherWing 2.4
@@ -30,7 +38,14 @@ class TFTFeatherWing24(TFTFeatherWing):
 
     """
 
-    def __init__(self, spi=None, cs=None, dc=None, ts_cs=None, sd_cs=None):
+    def __init__(
+        self,
+        spi: Optional[SPI] = None,
+        cs: Optional[Pin] = None,
+        dc: Optional[Pin] = None,
+        ts_cs: Optional[Pin] = None,
+        sd_cs: Optional[Pin] = None,
+    ):
         super().__init__(spi, cs, dc, ts_cs, sd_cs)
         self.display = adafruit_ili9341.ILI9341(
             self._display_bus, width=320, height=240

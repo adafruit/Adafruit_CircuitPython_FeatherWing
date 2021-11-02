@@ -16,7 +16,18 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 # pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
+from typing import Sequence
 from adafruit_featherwing.auto_writeable import AutoWriteable
+
+try:
+    from typing import Union, Tuple, List
+
+    IndexUnion = Union[Tuple[int, int], slice, int]
+    RGBSequence = Union[List[int, int, int], Tuple(int, int, int)]
+    RGBBSequence = Union[List[int, int, int, int], Tuple(int, int, int, int)]
+    ValueUnion = Union[RGBBSequence, RGBBSequence, int]
+except ImportError:
+    pass
 
 
 class PixelMatrix(AutoWriteable):
@@ -30,7 +41,7 @@ class PixelMatrix(AutoWriteable):
         self._matrix = None
         super().__init__()
 
-    def __setitem__(self, indices, value):
+    def __setitem__(self, indices: IndexUnion, value: ValueUnion):
         """
         indices can be one of three things:
             x and y ints that are calculated to the DotStar index
@@ -45,7 +56,7 @@ class PixelMatrix(AutoWriteable):
         self._matrix[self._get_index(indices)] = value
         self._update()
 
-    def __getitem__(self, indices):
+    def __getitem__(self, indices: IndexUnion) -> Tuple[int, int, int]:
         """
         indices can be one of three things:
             x and y ints that are calculated to the DotStar index
@@ -54,7 +65,7 @@ class PixelMatrix(AutoWriteable):
         """
         return self._matrix[self._get_index(indices)]
 
-    def _get_index(self, indices):
+    def _get_index(self, indices: IndexUnion) -> Union[int, slice]:
         """
         Figure out which DotStar to address based on what was passed in
         """
@@ -80,7 +91,7 @@ class PixelMatrix(AutoWriteable):
         if self._auto_write:
             self._matrix.show()
 
-    def fill(self, color=0):
+    def fill(self, color: Sequence[int] = 0):
         """
         Fills all of the Pixels with a color or unlit if empty.
 
@@ -97,7 +108,7 @@ class PixelMatrix(AutoWriteable):
         """
         self._matrix.show()
 
-    def shift_right(self, rotate=False):
+    def shift_right(self, rotate: bool = False):
         """
         Shift all pixels right
 
@@ -112,7 +123,7 @@ class PixelMatrix(AutoWriteable):
             self._matrix[y * self.columns] = last_pixel
         self._update()
 
-    def shift_left(self, rotate=False):
+    def shift_left(self, rotate: bool = False):
         """
         Shift all pixels left
 
@@ -127,7 +138,7 @@ class PixelMatrix(AutoWriteable):
             self._matrix[(y + 1) * self.columns - 1] = last_pixel
         self._update()
 
-    def shift_up(self, rotate=False):
+    def shift_up(self, rotate: bool = False):
         """
         Shift all pixels up
 
@@ -144,7 +155,7 @@ class PixelMatrix(AutoWriteable):
             self._matrix[x] = last_pixel
         self._update()
 
-    def shift_down(self, rotate=False):
+    def shift_down(self, rotate: bool = False):
         """
         Shift all pixels down
 
@@ -167,6 +178,6 @@ class PixelMatrix(AutoWriteable):
         return self._matrix.brightness
 
     @brightness.setter
-    def brightness(self, brightness):
+    def brightness(self, brightness: float):
         self._matrix.brightness = min(max(brightness, 0.0), 1.0)
         self._update()

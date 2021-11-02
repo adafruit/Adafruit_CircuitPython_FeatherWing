@@ -18,6 +18,11 @@ import board
 import busio
 import adafruit_gps
 
+try:
+    from typing import Optional
+except ImportError:
+    pass
+
 
 class GPSFeatherWing:
     """Class representing an `Ultimate GPS FeatherWing
@@ -25,7 +30,7 @@ class GPSFeatherWing:
 
     Automatically uses the feather's UART bus."""
 
-    def __init__(self, update_period=1000, baudrate=9600):
+    def __init__(self, update_period: int = 1000, baudrate: int = 9600):
         """
         :param int update_period: (Optional) The amount of time in milliseconds between
                                   updates (default=1000)
@@ -47,7 +52,7 @@ class GPSFeatherWing:
         )
         self._gps.send_command(bytes("PMTK220,{}".format(update_period), "utf-8"))
 
-    def update(self):
+    def update(self) -> bool:
         """
         Make sure to call ``gps.update()`` every loop iteration and at least twice
         as fast as data comes from the GPS unit (usually every second).
@@ -57,7 +62,7 @@ class GPSFeatherWing:
         """
         return self._gps.update()
 
-    def read(self, size):
+    def read(self, size: int) -> Optional[bytearray]:
         """
         Read the UART for any information that may be on it
 
@@ -69,7 +74,7 @@ class GPSFeatherWing:
             return self._uart.read(size)
         return None
 
-    def send_command(self, command):
+    def send_command(self, command: bytearray):
         """
         Send a bytearray command to the GPS module
 

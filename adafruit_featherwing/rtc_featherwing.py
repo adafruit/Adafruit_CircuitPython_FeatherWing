@@ -20,6 +20,12 @@ from collections import namedtuple
 import board
 import adafruit_ds3231
 
+try:
+    from typing import Optional, Dict
+    from busio import I2C
+except ImportError:
+    pass
+
 
 class RTCFeatherWing:
     """Class representing an `DS3231 Precision RTC FeatherWing
@@ -27,24 +33,24 @@ class RTCFeatherWing:
 
     Automatically uses the feather's I2C bus."""
 
-    def __init__(self, i2c=None):
+    def __init__(self, i2c: Optional[I2C] = None):
         if i2c is None:
             i2c = board.I2C()
         self._rtc = adafruit_ds3231.DS3231(i2c)
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: str, value: int):
         """
         Allow updates using setitem if that makes it easier
         """
         self._set_time_value(index, value)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: str):
         """
         Allow retrievals using getitem if that makes it easier
         """
         return self._get_time_value(index)
 
-    def _set_time_value(self, unit, value):
+    def _set_time_value(self, unit: str, value: int):
         """
         Set just the specific unit of time
         """
@@ -56,7 +62,7 @@ class RTCFeatherWing:
 
         self._rtc.datetime = self._encode(now)
 
-    def _get_time_value(self, unit):
+    def _get_time_value(self, unit: str):
         """
         Get just the specific unit of time
         """
@@ -65,7 +71,7 @@ class RTCFeatherWing:
             return now[unit]
         raise ValueError("The specified unit of time is invalid")
 
-    def _get_now(self):
+    def _get_now(self) -> Dict[str, int]:
         """
         Return the current date and time in a nice updatable dictionary
         """
@@ -80,7 +86,7 @@ class RTCFeatherWing:
             "weekday": now.tm_wday,
         }
 
-    def _encode(self, date):
+    def _encode(self, date: Dict[str, int]) -> Dict[str, int]:
         """
         Encode the updatable dictionary back into a time struct
         """
@@ -99,7 +105,7 @@ class RTCFeatherWing:
             )
         )
 
-    def is_leap_year(self, year=None):
+    def is_leap_year(self, year: Optional[int] = None) -> bool:
         """
         Check if the year is a leap year
 
@@ -109,7 +115,9 @@ class RTCFeatherWing:
             year = self._get_time_value("year")
         return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-    def get_month_days(self, month=None, year=None):
+    def get_month_days(
+        self, month: Optional[int] = None, year: Optional[int] = None
+    ) -> int:
         """
         Return the number of days for the month of the given year
 
@@ -122,7 +130,7 @@ class RTCFeatherWing:
         max_days = (31, 29 if leap_year else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
         return max_days[month - 1]
 
-    def set_time(self, hour, minute, second=0):
+    def set_time(self, hour: int, minute: int, second: int = 0):
         """
         Set the time only
 
@@ -145,7 +153,7 @@ class RTCFeatherWing:
         now["second"] = second
         self._rtc.datetime = self._encode(now)
 
-    def set_date(self, day, month, year):
+    def set_date(self, day: int, month: int, year: int):
         """
         Set the date only
 
@@ -179,7 +187,7 @@ class RTCFeatherWing:
         return self._rtc.datetime
 
     @datetime.setter
-    def datetime(self, datetime):
+    def datetime(self, datetime: time.struct_time):
         self._rtc.datetime = datetime
 
     @property
@@ -190,7 +198,7 @@ class RTCFeatherWing:
         return self._get_time_value("year")
 
     @year.setter
-    def year(self, year):
+    def year(self, year: int):
         if isinstance(year, int):
             self._set_time_value("year", year)
         else:
@@ -204,7 +212,7 @@ class RTCFeatherWing:
         return self._get_time_value("month")
 
     @month.setter
-    def month(self, month):
+    def month(self, month: int):
         if isinstance(month, int) and 1 <= month <= 12:
             self._set_time_value("month", month)
         else:
@@ -218,7 +226,7 @@ class RTCFeatherWing:
         return self._get_time_value("day")
 
     @day.setter
-    def day(self, day):
+    def day(self, day: int):
         month_days = self.get_month_days()
         if isinstance(day, int) and 1 <= day <= month_days:
             self._set_time_value("day", day)
@@ -235,7 +243,7 @@ class RTCFeatherWing:
         return self._get_time_value("hour")
 
     @hour.setter
-    def hour(self, hour):
+    def hour(self, hour: int):
         if isinstance(hour, int) and 0 <= hour < 24:
             self._set_time_value("hour", hour)
         else:
@@ -249,7 +257,7 @@ class RTCFeatherWing:
         return self._get_time_value("minute")
 
     @minute.setter
-    def minute(self, minute):
+    def minute(self, minute: int):
         if isinstance(minute, int) and 0 <= minute < 60:
             self._set_time_value("minute", minute)
         else:
@@ -263,7 +271,7 @@ class RTCFeatherWing:
         return self._get_time_value("second")
 
     @second.setter
-    def second(self, second):
+    def second(self, second: int):
         if isinstance(second, int) and 0 <= second < 60:
             self._set_time_value("second", second)
         else:
@@ -277,7 +285,7 @@ class RTCFeatherWing:
         return self._get_time_value("weekday")
 
     @weekday.setter
-    def weekday(self, weekday):
+    def weekday(self, weekday: int):
         if isinstance(weekday, int) and 0 <= weekday < 7:
             self._set_time_value("weekday", weekday)
         else:
@@ -303,7 +311,7 @@ class RTCFeatherWing:
             return None
 
     @unixtime.setter
-    def unixtime(self, unixtime):
+    def unixtime(self, unixtime: int):
         if isinstance(unixtime, int):
             try:
                 self._rtc.datetime = time.localtime(unixtime)

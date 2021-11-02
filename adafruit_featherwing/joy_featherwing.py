@@ -18,6 +18,13 @@ import board
 from micropython import const
 import adafruit_seesaw.seesaw
 
+try:
+    from typing import Optional, Tuple
+    from busio import I2C
+except ImportError:
+    pass
+
+
 BUTTON_A = const(1 << 6)
 BUTTON_B = const(1 << 7)
 BUTTON_Y = const(1 << 9)
@@ -30,7 +37,7 @@ class JoyFeatherWing:
 
     Automatically uses the feather's I2C bus."""
 
-    def __init__(self, i2c=None):
+    def __init__(self, i2c: Optional[I2C] = None):
         if i2c is None:
             i2c = board.I2C()
         self._seesaw = adafruit_seesaw.seesaw.Seesaw(i2c)
@@ -157,7 +164,7 @@ class JoyFeatherWing:
         """
         return self._check_button(BUTTON_SELECT)
 
-    def _check_button(self, button):
+    def _check_button(self, button: int) -> bool:
         """Utilises the seesaw to determine which button is being pressed."""
         buttons = self._seesaw.digital_read_bulk(button)
         return not buttons != 0
@@ -200,7 +207,7 @@ class JoyFeatherWing:
         return self._joystick_offset
 
     @joystick_offset.setter
-    def joystick_offset(self, offset):
+    def joystick_offset(self, offset: Tuple[int, int]):
         self._joystick_offset = offset
 
     def zero_joystick(self):
