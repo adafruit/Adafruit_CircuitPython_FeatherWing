@@ -23,8 +23,8 @@ try:
     from typing import Union, Tuple, List
 
     IndexUnion = Union[Tuple[int, int], slice, int]
-    RGBSequence = Union[List[int, int, int], Tuple(int, int, int)]
-    RGBBSequence = Union[List[int, int, int, int], Tuple(int, int, int, int)]
+    RGBSequence = Union[List[int], Tuple[int, int, int]]
+    RGBBSequence = Union[List[int], Tuple[int, int, int, int]]
     ValueUnion = Union[RGBBSequence, RGBBSequence, int]
 except ImportError:
     pass
