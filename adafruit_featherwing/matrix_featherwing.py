@@ -16,7 +16,7 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
-import adafruit_ht16k33.matrix as matrix
+from adafruit_ht16k33 import matrix
 
 from adafruit_featherwing.auto_writeable import AutoWriteable
 

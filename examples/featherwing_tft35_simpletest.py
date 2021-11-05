@@ -13,17 +13,15 @@ from adafruit_featherwing import tft_featherwing_35
 tft_featherwing = tft_featherwing_35.TFTFeatherWing35()
 
 try:
-    f = open(  # pylint: disable=unspecified-encoding,consider-using-with
+    with open(  # pylint: disable=unspecified-encoding
         "/sd/tft_featherwing.txt", "w"
-    )
-    f.write("Blinka\nBlackberry Q10 Keyboard")
-    f.close()
+    ) as f:
+        f.write("Blinka\nBlackberry Q10 Keyboard")
 
-    f = open(  # pylint: disable=unspecified-encoding,consider-using-with
+    with open(  # pylint: disable=unspecified-encoding
         "/sd/tft_featherwing.txt", "r"
-    )
-    print(f.read())
-    f.close()
+    ) as f:
+        print(f.read())
 except OSError as error:
     print("Unable to write to SD Card.")
 
