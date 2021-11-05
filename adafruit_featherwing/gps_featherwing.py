@@ -36,8 +36,7 @@ class GPSFeatherWing:
         if update_period < 250:
             raise ValueError("Update Frequency be at least 250 milliseconds")
         timeout = update_period // 1000 + 2
-        if timeout < 3:
-            timeout = 3
+        timeout = max(timeout, 3)
 
         self._uart = busio.UART(board.TX, board.RX, baudrate=baudrate, timeout=timeout)
         self._gps = adafruit_gps.GPS(self._uart, debug=False)
