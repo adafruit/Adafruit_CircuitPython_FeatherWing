@@ -13,13 +13,11 @@ from adafruit_featherwing import tft_featherwing_35
 tft_featherwing = tft_featherwing_35.TFTFeatherWing35()
 
 try:
-    f = open("/sd/tft_featherwing.txt", "w")
-    f.write("Blinka\nBlackberry Q10 Keyboard")
-    f.close()
+    with open("/sd/tft_featherwing.txt", "w") as f:
+        f.write("Blinka\nBlackberry Q10 Keyboard")
 
-    f = open("/sd/tft_featherwing.txt", "r")
-    print(f.read())
-    f.close()
+    with open("/sd/tft_featherwing.txt", "r") as f:
+        print(f.read())
 except OSError as error:
     print("Unable to write to SD Card.")
 

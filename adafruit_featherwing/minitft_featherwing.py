@@ -23,6 +23,14 @@ from adafruit_seesaw.pwmout import PWMOut
 import displayio
 from adafruit_st7735r import ST7735R
 
+try:
+    from typing import Optional
+    from busio import I2C, SPI
+    from microcontroller import Pin
+except ImportError:
+    pass
+
+
 BUTTON_RIGHT = const(7)
 BUTTON_DOWN = const(4)
 BUTTON_LEFT = const(3)
@@ -50,7 +58,14 @@ class MiniTFTFeatherWing:
         | (1 << BUTTON_B)
     )
     # pylint: disable-msg=too-many-arguments
-    def __init__(self, address=0x5E, i2c=None, spi=None, cs=None, dc=None):
+    def __init__(
+        self,
+        address: int = 0x5E,
+        i2c: Optional[I2C] = None,
+        spi: Optional[SPI] = None,
+        cs: Optional[Pin] = None,
+        dc: Optional[Pin] = None,
+    ):
         displayio.release_displays()
         if i2c is None:
             i2c = board.I2C()
@@ -81,7 +96,7 @@ class MiniTFTFeatherWing:
         return self._backlight.duty_cycle / 255
 
     @backlight.setter
-    def backlight(self, brightness):
+    def backlight(self, brightness: float):
         """
         Set the backlight duty cycle
         """

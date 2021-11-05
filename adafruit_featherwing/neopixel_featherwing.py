@@ -18,6 +18,12 @@ import board
 import neopixel
 from adafruit_featherwing.pixelmatrix import PixelMatrix
 
+try:
+    import typing  # pylint: disable=unused-import
+    from microcontroller import Pin
+except ImportError:
+    pass
+
 
 class NeoPixelFeatherWing(PixelMatrix):
     """Class representing a `NeoPixel FeatherWing
@@ -25,7 +31,7 @@ class NeoPixelFeatherWing(PixelMatrix):
 
     The feather uses pins D6 by default"""
 
-    def __init__(self, pixel_pin=board.D6, brightness=0.1):
+    def __init__(self, pixel_pin: Pin = board.D6, brightness: float = 0.1):
         """
         :param pin pixel_pin: The pin for the featherwing
         :param float brightness: Optional brightness (0.0-1.0) that defaults to 1.0
@@ -41,7 +47,7 @@ class NeoPixelFeatherWing(PixelMatrix):
             pixel_order=neopixel.GRB,
         )
 
-    def shift_up(self, rotate=False):
+    def shift_up(self, rotate: bool = False):
         """
         Shift all pixels up
 
@@ -74,7 +80,7 @@ class NeoPixelFeatherWing(PixelMatrix):
         """
         super().shift_down(rotate)  # Up and down are reversed
 
-    def shift_down(self, rotate=False):
+    def shift_down(self, rotate: bool = False):
         """
         Shift all pixels down.
 

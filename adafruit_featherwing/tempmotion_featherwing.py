@@ -19,6 +19,11 @@ import board
 import adafruit_adxl34x
 import adafruit_adt7410
 
+try:
+    from typing import Optional
+except ImportError:
+    pass
+
 
 class TempMotionFeatherWing:
     """Class helper representing an `Adafruit ADXL343 + ADT7410 Sensor FeatherWing
@@ -26,7 +31,12 @@ class TempMotionFeatherWing:
 
     Automatically uses the feather's I2C bus."""
 
-    def __init__(self, adxl343_address=0x53, adt7410_address=0x48, i2c=None):
+    def __init__(
+        self,
+        adxl343_address: int = 0x53,
+        adt7410_address: int = 0x48,
+        i2c: Optional[int] = None,
+    ):
         if i2c is None:
             i2c = board.I2C()
         self._adxl343 = adafruit_adxl34x.ADXL345(i2c, address=adxl343_address)
@@ -48,7 +58,7 @@ class TempMotionFeatherWing:
         return self._adt7410.configuration
 
     @configuration.setter
-    def configuration(self, val):
+    def configuration(self, val: int):
         self._adt7410.configuration = val
 
     @property
@@ -61,7 +71,7 @@ class TempMotionFeatherWing:
         """Returns the ADXL343 Enabled Events"""
         return self._adxl343.events
 
-    def enable_motion_detection(self, **kwargs):
+    def enable_motion_detection(self, **kwargs: int):
         """Enable motion detection"""
         self._adxl343.enable_motion_detection(**kwargs)
 
@@ -69,7 +79,7 @@ class TempMotionFeatherWing:
         """Disable motion detection"""
         self._adxl343.disable_motion_detection()
 
-    def enable_freefall_detection(self, **kwargs):
+    def enable_freefall_detection(self, **kwargs: int):
         """Enable freefall detection"""
         self._adxl343.enable_freefall_detection(**kwargs)
 
@@ -77,7 +87,7 @@ class TempMotionFeatherWing:
         """Disable freefall detection"""
         self._adxl343.disable_freefall_detection()
 
-    def enable_tap_detection(self, **kwargs):
+    def enable_tap_detection(self, **kwargs: int):
         """Enable freefall detection"""
         self._adxl343.enable_tap_detection(**kwargs)
 
@@ -91,7 +101,7 @@ class TempMotionFeatherWing:
         return self._adxl343.data_rate
 
     @data_rate.setter
-    def data_rate(self, val):
+    def data_rate(self, val: int):
         self._adxl343.data_rate = val
 
     @property
@@ -100,5 +110,5 @@ class TempMotionFeatherWing:
         return self._adxl343.range
 
     @range.setter
-    def range(self, val):
+    def range(self, val: int):
         self._adxl343.range = val

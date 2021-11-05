@@ -20,13 +20,12 @@ kbd_featherwing.neopixel.brightness = 0.1
 kbd_featherwing.neopixel[0] = 0x002244
 
 try:
-    f = open("/sd/tft_featherwing.txt", "w")
-    f.write("Blinka\nBlackberry Q10 Keyboard")
-    f.close()
+    with open("/sd/tft_featherwing.txt", "w") as f:
+        f.write("Blinka\nBlackberry Q10 Keyboard")
 
-    f = open("/sd/tft_featherwing.txt", "r")
-    print(f.read())
-    f.close()
+    with open("/sd/tft_featherwing.txt", "r") as f:
+        print(f.read())
+
 except OSError as error:
     print("Unable to write to SD Card.")
 

@@ -29,6 +29,13 @@ import neopixel
 # pylint: disable-msg=too-many-arguments
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
+try:
+    from typing import Optional
+    from busio import SPI, I2C
+    from microcontroller import Pin
+except ImportError:
+    pass
+
 
 class KeyboardFeatherwing(TFTFeatherWing):
     """Class representing a `Keyboard Featherwing`
@@ -38,13 +45,13 @@ class KeyboardFeatherwing(TFTFeatherWing):
 
     def __init__(
         self,
-        spi=None,
-        cs=None,
-        dc=None,
-        i2c=None,
-        ts_cs=None,
-        sd_cs=None,
-        neopixel_pin=None,
+        spi: Optional[SPI] = None,
+        cs: Optional[Pin] = None,
+        dc: Optional[Pin] = None,
+        i2c: Optional[I2C] = None,
+        ts_cs: Optional[Pin] = None,
+        sd_cs: Optional[Pin] = None,
+        neopixel_pin: Optional[Pin] = None,
     ):
         super().__init__(spi, cs, dc, ts_cs, sd_cs)
 

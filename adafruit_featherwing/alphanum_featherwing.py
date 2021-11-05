@@ -15,8 +15,14 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
-import adafruit_ht16k33.segments as segments
+from adafruit_ht16k33 import segments
 from adafruit_featherwing.led_segments import Segments
+
+try:
+    from typing import Optional
+    from busio import I2C
+except ImportError:
+    pass
 
 
 class AlphaNumFeatherWing(Segments):
@@ -25,7 +31,7 @@ class AlphaNumFeatherWing(Segments):
 
     Automatically uses the feather's I2C bus."""
 
-    def __init__(self, address=0x70, i2c=None):
+    def __init__(self, address: int = 0x70, i2c: Optional[I2C] = None):
         super().__init__()
         if i2c is None:
             i2c = board.I2C()

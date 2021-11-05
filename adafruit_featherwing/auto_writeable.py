@@ -27,6 +27,6 @@ class AutoWriteable:
         return self._auto_write
 
     @auto_write.setter
-    def auto_write(self, write):
+    def auto_write(self, write: bool):
         if isinstance(write, bool):
             self._auto_write = write
