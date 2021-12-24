@@ -21,6 +21,7 @@ from adafruit_featherwing.auto_writeable import AutoWriteable
 
 try:
     from typing import Union, Tuple, List, Sequence
+
     IndexUnion = Union[Tuple[int, int], slice, int]
     RGBSequence = Union[List[int], Tuple[int, int, int]]
     RGBBSequence = Union[List[int], Tuple[int, int, int, int]]
