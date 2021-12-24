@@ -16,11 +16,11 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 # pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation
-from typing import Sequence
+
 from adafruit_featherwing.auto_writeable import AutoWriteable
 
 try:
-    from typing import Union, Tuple, List
+    from typing import Union, Tuple, List, Sequence
 
     IndexUnion = Union[Tuple[int, int], slice, int]
     RGBSequence = Union[List[int], Tuple[int, int, int]]
