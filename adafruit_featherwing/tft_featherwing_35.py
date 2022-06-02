@@ -7,7 +7,7 @@
 `adafruit_featherwing.tft_featherwing_35`
 ====================================================
 
-Helper for using the `TFT FeatherWing 3.5"`
+Helper for using the `TFT FeatherWing 3.5"
 <https://www.adafruit.com/product/3651>`_.
 
 * Author(s): Melissa LeBlanc-Williams, Foamyguy
@@ -33,9 +33,9 @@ except ImportError:
 
 # pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing35(TFTFeatherWing):
-    """Class representing an `TFT FeatherWing 3.5
+    """Class representing a `TFT FeatherWing 3.5
     <https://www.adafruit.com/product/3651>`_.
-
+    Attempts to mount the SD card to /sd.
     """
 
     def __init__(
@@ -48,3 +48,4 @@ class TFTFeatherWing35(TFTFeatherWing):
     ):
         super().__init__(spi, cs, dc, ts_cs, sd_cs)
         self.display = HX8357(self._display_bus, width=480, height=320)
+        """Display object for the FeatherWing's screen."""

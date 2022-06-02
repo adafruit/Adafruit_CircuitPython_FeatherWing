@@ -173,9 +173,6 @@ class JoyFeatherWing:
     def joystick_offset(self):
         """Offset used to correctly report (0, 0) when the joystick is centered.
 
-        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
-          :alt: Joy FeatherWing Joystick
-
         Provide a tuple of (x, y) to set your joystick center to (0, 0).
         The offset you provide is subtracted from the current reading.
         For example, if your joystick reads as (-4, 0), you would enter
@@ -214,9 +211,6 @@ class JoyFeatherWing:
         """Zeros the joystick by using current reading as (0, 0).
         Note: You must not be touching the joystick at the time of zeroing
         for it to be accurate.
-
-        .. image :: ../docs/_static/joy_featherwing/joy_featherwing_joystick.jpg
-          :alt: Joy FeatherWing Joystick
 
         This example zeros the joystick, and prints the coordinates of
         joystick when it is moved.

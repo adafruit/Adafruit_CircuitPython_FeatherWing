@@ -6,7 +6,7 @@
 `adafruit_featherwing.led_segments`
 ====================================================
 
-Base Class for the AlphaNumeric FeatherWing and 7-Segment FeatherWing helpers_.
+Base Class for the AlphaNumeric FeatherWing and 7-Segment FeatherWing helpers.
 
 * Author(s): Melissa LeBlanc-Williams
 """
@@ -23,10 +23,7 @@ except ImportError:
 
 
 class Segments:
-    """Class representing an `Adafruit 14-segment AlphaNumeric FeatherWing
-    <https://www.adafruit.com/product/3139>`_.
-
-    Automatically uses the feather's I2C bus."""
+    """Base Class for the AlphaNumeric FeatherWing and 7-Segment FeatherWing helpers."""
 
     def __init__(self):
         self._segments = None

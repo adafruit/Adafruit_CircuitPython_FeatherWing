@@ -7,7 +7,7 @@
 `adafruit_featherwing.tft_featherwing_24`
 ====================================================
 
-Helper for using the `TFT FeatherWing 2.4"`
+Helper for using the `TFT FeatherWing 2.4"
 <https://www.adafruit.com/product/3315>`_.
 
 * Author(s): Melissa LeBlanc-Williams, Foamyguy
@@ -35,7 +35,7 @@ except ImportError:
 class TFTFeatherWing24(TFTFeatherWing):
     """Class representing an `TFT FeatherWing 2.4
     <https://www.adafruit.com/product/3315>`_.
-
+    Attempts to mount the SD card to /sd.
     """
 
     def __init__(
@@ -50,3 +50,4 @@ class TFTFeatherWing24(TFTFeatherWing):
         self.display = adafruit_ili9341.ILI9341(
             self._display_bus, width=320, height=240
         )
+        """Display object for the FeatherWing's screen."""
