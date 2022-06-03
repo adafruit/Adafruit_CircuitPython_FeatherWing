@@ -8,6 +8,9 @@
 
 Helper for using the `INA219 FeatherWing <https://www.adafruit.com/product/3650>`_.
 
+.. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
+  :alt: INA219 Featherwing
+
 * Author(s): Kattni Rembor
 """
 
@@ -39,9 +42,6 @@ class INA219FeatherWing:
     def bus_voltage(self):
         """Bus voltage returns volts.
 
-        .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
-          :alt: INA219 Featherwing
-
         This example prints the bus voltage with the appropriate units.
 
         .. code-block:: python
@@ -61,9 +61,6 @@ class INA219FeatherWing:
     @property
     def shunt_voltage(self):
         """Shunt voltage returns volts.
-
-        .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
-          :alt: INA219 Featherwing
 
         This example prints the shunt voltage with the appropriate units.
 
@@ -85,9 +82,6 @@ class INA219FeatherWing:
     def voltage(self):
         """Voltage, known as load voltage, is bus voltage plus shunt voltage. Returns volts.
 
-        .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
-          :alt: INA219 Featherwing
-
         This example prints the voltage with the appropriate units.
 
         .. code-block:: python
@@ -108,9 +102,6 @@ class INA219FeatherWing:
     @property
     def current(self):
         """Current returns mA.
-
-        .. image :: ../docs/_static/ina219_featherwing/ina219_featherwing.jpg
-          :alt: INA219 Featherwing
 
         This example prints the current with the appropriate units.
 

@@ -6,7 +6,7 @@
 `adafruit_featherwing.keyboard_featherwing`
 ====================================================
 
-Helper for using the `Keyboard Featherwing`
+Helper for using the `Keyboard Featherwing
 <https://www.tindie.com/products/arturo182/keyboard-featherwing-qwerty-keyboard-26-lcd/>`_.
 
 * Author(s): Foamyguy
@@ -38,9 +38,8 @@ except ImportError:
 
 
 class KeyboardFeatherwing(TFTFeatherWing):
-    """Class representing a `Keyboard Featherwing`
+    """Class representing a `Keyboard Featherwing
     <https://www.tindie.com/products/arturo182/keyboard-featherwing-qwerty-keyboard-26-lcd/>`_.
-
     """
 
     def __init__(
@@ -64,4 +63,6 @@ class KeyboardFeatherwing(TFTFeatherWing):
             self._display_bus, width=320, height=240
         )
         self.neopixel = neopixel.NeoPixel(neopixel_pin, 1)
+        """Status NeoPixel."""
         self.keyboard = BBQ10Keyboard(i2c)
+        """BBQ10Keyboard instance."""

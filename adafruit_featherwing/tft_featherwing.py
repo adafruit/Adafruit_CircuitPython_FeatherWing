@@ -33,10 +33,7 @@ except ImportError:
 
 # pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing:
-    """Class representing an `TFT FeatherWing 2.4
-    <https://www.adafruit.com/product/3315>`_.
-
-    """
+    """Base class for TFT FeatherWings."""
 
     def __init__(
         self,
@@ -71,6 +68,8 @@ class TFTFeatherWing:
         except OSError as error:
             print("No SD card found:", error)
 
+        self.touchscreen = None
+        """Controller for the resistive touchscreen."""
         try:
             # the screen might not be ready from cold boot
             time.sleep(0.8)
