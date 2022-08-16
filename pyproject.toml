@@ -12,7 +12,7 @@ requires = [
 [project]
 name = "adafruit-circuitpython-featherwing"
 description = "CircuitPython library that provides FeatherWing specific classes for those that require a significant amount of initialization."
-version = "0.0.0-auto.0"
+version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
     {name = "Adafruit Industries", email = "circuitpython@adafruit.com"}

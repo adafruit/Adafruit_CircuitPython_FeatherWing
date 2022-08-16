@@ -14,7 +14,7 @@ Helper for using the `INA219 FeatherWing <https://www.adafruit.com/product/3650>
 * Author(s): Kattni Rembor
 """
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board

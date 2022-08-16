@@ -12,7 +12,7 @@ Base Class for the `NeoPixel FeatherWing <https://www.adafruit.com/product/2945>
 * Author(s): Melissa LeBlanc-Williams
 """
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 # pylint: disable-msg=unsubscriptable-object, unsupported-assignment-operation

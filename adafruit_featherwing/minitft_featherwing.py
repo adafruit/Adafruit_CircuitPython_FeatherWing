@@ -12,7 +12,7 @@ Helper for using the `Mini Color TFT with Joystick FeatherWing
 * Author(s): Melissa LeBlanc-Williams
 """
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 from collections import namedtuple
