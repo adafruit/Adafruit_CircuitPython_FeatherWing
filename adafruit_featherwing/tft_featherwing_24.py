@@ -41,8 +41,8 @@ class TFTFeatherWing24(TFTFeatherWing):
     def __init__(
         self,
         spi: Optional[SPI] = None,
-        cs: Optional[Pin] = None,  # pylint: disable=invalid-name
-        dc: Optional[Pin] = None,  # pylint: disable=invalid-name
+        cs: Optional[Pin] = None,
+        dc: Optional[Pin] = None,
         ts_cs: Optional[Pin] = None,
         sd_cs: Optional[Pin] = None,
     ):
