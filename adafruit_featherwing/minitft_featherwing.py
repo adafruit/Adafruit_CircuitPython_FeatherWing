@@ -63,8 +63,8 @@ class MiniTFTFeatherWing:
         address: int = 0x5E,
         i2c: Optional[I2C] = None,
         spi: Optional[SPI] = None,
-        cs: Optional[Pin] = None,
-        dc: Optional[Pin] = None,
+        cs: Optional[Pin] = None,  # pylint: disable=invalid-name
+        dc: Optional[Pin] = None,  # pylint: disable=invalid-name
     ):
         displayio.release_displays()
         if i2c is None:
