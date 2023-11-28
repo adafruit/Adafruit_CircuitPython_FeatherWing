@@ -20,12 +20,13 @@ Requires:
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import board
 from adafruit_hx8357 import HX8357
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
 try:
     from typing import Optional
-    from busio import SPI
+    from busio import SPI, I2C
     from microcontroller import Pin
 except ImportError:
     pass
@@ -33,8 +34,7 @@ except ImportError:
 
 # pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing35(TFTFeatherWing):
-    """Class representing a `TFT FeatherWing 3.5
-    <https://www.adafruit.com/product/3651>`_.
+    """Class representing a TFT FeatherWing 3.5 V1
     Attempts to mount the SD card to /sd.
     """
 
@@ -46,6 +46,28 @@ class TFTFeatherWing35(TFTFeatherWing):
         ts_cs: Optional[Pin] = None,
         sd_cs: Optional[Pin] = None,
     ):
-        super().__init__(spi, cs, dc, ts_cs, sd_cs)
+        super().__init__(spi, cs=cs, dc=dc, ts_cs=ts_cs, sd_cs=sd_cs, resistive=True)
+        self.display = HX8357(self._display_bus, width=480, height=320)
+        """Display object for the FeatherWing's screen."""
+
+
+# pylint: disable-msg=too-few-public-methods, too-many-arguments
+class TFTFeatherWing35V2(TFTFeatherWing):
+    """Class representing a `TFT FeatherWing 3.5 V2
+    <https://www.adafruit.com/product/3651>`_.
+    Attempts to mount the SD card to /sd.
+    """
+
+    def __init__(
+        self,
+        spi: Optional[SPI] = None,
+        cs: Optional[Pin] = None,
+        dc: Optional[Pin] = None,
+        sd_cs: Optional[Pin] = None,
+        i2c: Optional[I2C] = None,
+    ):
+        if i2c is None:
+            i2c = board.I2C()
+        super().__init__(spi, cs=cs, dc=dc, sd_cs=sd_cs, i2c=i2c, resistive=True)
         self.display = HX8357(self._display_bus, width=480, height=320)
         """Display object for the FeatherWing's screen."""
