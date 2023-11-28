@@ -18,3 +18,5 @@ adafruit-circuitpython-hx8357
 adafruit-circuitpython-st7735r
 adafruit-circuitpython-adxl34x
 adafruit-circuitpython-seesaw
+adafruit-circuitpython-tsc2007
+adafruit-circuitpython-focaltouch
