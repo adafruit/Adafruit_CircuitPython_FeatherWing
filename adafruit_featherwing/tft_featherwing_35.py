@@ -46,7 +46,9 @@ class TFTFeatherWing35(TFTFeatherWing):
         ts_cs: Optional[Pin] = None,
         sd_cs: Optional[Pin] = None,
     ):
-        super().__init__(spi, cs=cs, dc=dc, ts_cs=ts_cs, sd_cs=sd_cs, resistive=True)
+        super().__init__(
+            spi, cs_pin=cs, dc_pin=dc, ts_cs_pin=ts_cs, sd_cs_pin=sd_cs, resistive=True
+        )
         self.display = HX8357(self._display_bus, width=480, height=320)
         """Display object for the FeatherWing's screen."""
 
@@ -61,13 +63,20 @@ class TFTFeatherWing35V2(TFTFeatherWing):
     def __init__(
         self,
         spi: Optional[SPI] = None,
-        cs: Optional[Pin] = None,
-        dc: Optional[Pin] = None,
-        sd_cs: Optional[Pin] = None,
+        cs_pin: Optional[Pin] = None,
+        dc_pin: Optional[Pin] = None,
+        sd_cs_pin: Optional[Pin] = None,
         i2c: Optional[I2C] = None,
     ):
         if i2c is None:
             i2c = board.I2C()
-        super().__init__(spi, cs=cs, dc=dc, sd_cs=sd_cs, i2c=i2c, resistive=True)
+        super().__init__(
+            spi,
+            cs_pin=cs_pin,
+            dc_pin=dc_pin,
+            sd_cs_pin=sd_cs_pin,
+            i2c=i2c,
+            resistive=True,
+        )
         self.display = HX8357(self._display_bus, width=480, height=320)
         """Display object for the FeatherWing's screen."""
