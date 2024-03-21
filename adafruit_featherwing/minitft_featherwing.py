@@ -63,25 +63,25 @@ class MiniTFTFeatherWing:
         address: int = 0x5E,
         i2c: Optional[I2C] = None,
         spi: Optional[SPI] = None,
-        cs: Optional[Pin] = None,  # pylint: disable=invalid-name
-        dc: Optional[Pin] = None,  # pylint: disable=invalid-name
+        cs_pin: Optional[Pin] = None,
+        dc_pin: Optional[Pin] = None,
     ):
         displayio.release_displays()
         if i2c is None:
             i2c = board.I2C()
         if spi is None:
             spi = board.SPI()
-        if cs is None:
-            cs = board.D5
-        if dc is None:
-            dc = board.D6
+        if cs_pin is None:
+            cs_pin = board.D5
+        if dc_pin is None:
+            dc_pin = board.D6
         self._ss = Seesaw(i2c, address)
         self._ss.pin_mode_bulk(self._button_mask, self._ss.INPUT_PULLUP)
         self._ss.pin_mode(8, self._ss.OUTPUT)
         self._ss.digital_write(8, True)  # Reset the Display via Seesaw
         self._backlight = PWMOut(self._ss, 5)
         self._backlight.duty_cycle = 0
-        display_bus = displayio.FourWire(spi, command=dc, chip_select=cs)
+        display_bus = displayio.FourWire(spi, command=dc_pin, chip_select=cs_pin)
         self.display = ST7735R(
             display_bus, width=160, height=80, colstart=24, rotation=270, bgr=True
         )
