@@ -27,8 +27,11 @@ extensions = [
 # autodoc module docs will fail to generate with a warning.
 autodoc_mock_imports = [
     "board",
+    "busdisplay",
     "busio",
     "bbq10keyboard",
+    "displayio",
+    "epaperdisplay",
     "sdcardio",
     "storage",
 ]
