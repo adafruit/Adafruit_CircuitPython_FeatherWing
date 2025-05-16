@@ -22,6 +22,7 @@ from adafruit_featherwing.auto_writeable import AutoWriteable
 
 try:
     from typing import Optional, Tuple, Union
+
     from busio import I2C
 except ImportError:
     pass
@@ -34,7 +35,6 @@ class MatrixFeatherWing(AutoWriteable):
     Automatically uses the feather's I2C bus."""
 
     def __init__(self, address: int = 0x70, i2c: Optional[I2C] = None):
-
         if i2c is None:
             i2c = board.I2C()
         self._matrix = matrix.Matrix16x8(i2c, address)

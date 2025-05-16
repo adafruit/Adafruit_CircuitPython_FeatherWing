@@ -17,11 +17,13 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import time
 from collections import namedtuple
-import board
+
 import adafruit_ds3231
+import board
 
 try:
-    from typing import Optional, Dict
+    from typing import Dict, Optional
+
     from busio import I2C
 except ImportError:
     pass
@@ -115,9 +117,7 @@ class RTCFeatherWing:
             year = self._get_time_value("year")
         return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-    def get_month_days(
-        self, month: Optional[int] = None, year: Optional[int] = None
-    ) -> int:
+    def get_month_days(self, month: Optional[int] = None, year: Optional[int] = None) -> int:
         """
         Return the number of days for the month of the given year
 
@@ -169,9 +169,7 @@ class RTCFeatherWing:
 
         month_days = self.get_month_days(month, year)
         if not isinstance(day, int) or not 1 <= day <= month_days:
-            raise ValueError(
-                "The day must be an integer in the range of 1-{}".format(month_days)
-            )
+            raise ValueError(f"The day must be an integer in the range of 1-{month_days}")
 
         now = self._get_now()
         now["day"] = day
@@ -231,9 +229,7 @@ class RTCFeatherWing:
         if isinstance(day, int) and 1 <= day <= month_days:
             self._set_time_value("day", day)
         else:
-            raise ValueError(
-                "The day must be an integer in the range of 1-{}".format(month_days)
-            )
+            raise ValueError(f"The day must be an integer in the range of 1-{month_days}")
 
     @property
     def hour(self):

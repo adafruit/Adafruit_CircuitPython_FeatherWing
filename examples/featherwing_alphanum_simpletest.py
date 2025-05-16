@@ -6,6 +6,7 @@ shows number and text printing, displays a counter
 and then shows off the new marquee features."""
 
 from time import sleep
+
 from adafruit_featherwing import alphanum_featherwing
 
 display = alphanum_featherwing.AlphaNumFeatherWing()

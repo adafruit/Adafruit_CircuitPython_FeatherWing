@@ -6,11 +6,13 @@ This plays various animations
 and then draws random pixels at random locations
 """
 
-from time import sleep
 import random
+from time import sleep
+
 from adafruit_featherwing import dotstar_featherwing
 
 dotstar = dotstar_featherwing.DotStarFeatherWing()
+
 
 # HELPERS
 # a random color 0 -> 224

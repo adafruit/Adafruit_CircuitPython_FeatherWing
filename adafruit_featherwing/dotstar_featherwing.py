@@ -14,12 +14,14 @@ Helper for using the `DotStar FeatherWing <https://www.adafruit.com/product/3449
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import board
 import adafruit_dotstar as dotstar
+import board
+
 from adafruit_featherwing.pixelmatrix import PixelMatrix
 
 try:
-    import typing  # pylint: disable=unused-import
+    import typing
+
     from microcontroller import Pin
 except ImportError:
     pass
@@ -31,9 +33,7 @@ class DotStarFeatherWing(PixelMatrix):
 
     The feather uses pins D13 and D11"""
 
-    def __init__(
-        self, clock: Pin = board.D13, data: Pin = board.D11, brightness: float = 0.2
-    ):
+    def __init__(self, clock: Pin = board.D13, data: Pin = board.D11, brightness: float = 0.2):
         """
         :param pin clock: The clock pin for the featherwing
         :param pin data: The data pin for the featherwing

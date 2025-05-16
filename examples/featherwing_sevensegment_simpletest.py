@@ -6,6 +6,7 @@ shows number and text printing, displays a counter
 and then shows off the new marquee features."""
 
 from time import sleep
+
 from adafruit_featherwing import sevensegment_featherwing
 
 display = sevensegment_featherwing.SevenSegmentFeatherWing()
@@ -43,7 +44,7 @@ while count < 1025:
 # Display a Time
 hour = 12
 for minute in range(15, 26):
-    display.print("{}:{}".format(hour, minute))
+    display.print(f"{hour}:{minute}")
     sleep(1)
 
 # Show the Marquee

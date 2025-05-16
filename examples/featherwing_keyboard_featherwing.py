@@ -10,7 +10,9 @@ SD Card.
 It will also set the color of the neopixel on the featherwing.
 
 """
-from bbq10keyboard import STATE_RELEASE, STATE_LONG_PRESS
+
+from bbq10keyboard import STATE_LONG_PRESS, STATE_RELEASE
+
 from adafruit_featherwing import keyboard_featherwing
 
 kbd_featherwing = keyboard_featherwing.KeyboardFeatherwing()
@@ -23,10 +25,10 @@ try:
     with open("/sd/tft_featherwing.txt", "w") as f:
         f.write("Blinka\nBlackberry Q10 Keyboard")
 
-    with open("/sd/tft_featherwing.txt", "r") as f:
+    with open("/sd/tft_featherwing.txt") as f:
         print(f.read())
 
-except OSError as error:
+except OSError:
     print("Unable to write to SD Card.")
 
 while True:
@@ -43,7 +45,4 @@ while True:
             STATE = "held down"
         elif key[0] == STATE_RELEASE:
             STATE = "released"
-        print(
-            "key: '%s' (dec %d, hex %02x) %s"
-            % (key[1], ord(key[1]), ord(key[1]), STATE)
-        )
+        print("key: '%s' (dec %d, hex %02x) %s" % (key[1], ord(key[1]), ord(key[1]), STATE))

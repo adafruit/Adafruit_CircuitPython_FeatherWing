@@ -17,11 +17,12 @@ Helper for using the `INA219 FeatherWing <https://www.adafruit.com/product/3650>
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import board
 import adafruit_ina219
+import board
 
 try:
     from typing import Optional
+
     from busio import I2C
 except ImportError:
     pass
