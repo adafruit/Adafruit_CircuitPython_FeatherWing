@@ -16,10 +16,12 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
 import neopixel
+
 from adafruit_featherwing.pixelmatrix import PixelMatrix
 
 try:
-    import typing  # pylint: disable=unused-import
+    import typing
+
     from microcontroller import Pin
 except ImportError:
     pass

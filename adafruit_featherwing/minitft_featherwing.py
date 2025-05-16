@@ -16,15 +16,17 @@ __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 from collections import namedtuple
+
 import board
-from micropython import const
-from adafruit_seesaw.seesaw import Seesaw
-from adafruit_seesaw.pwmout import PWMOut
 import displayio
+from adafruit_seesaw.pwmout import PWMOut
+from adafruit_seesaw.seesaw import Seesaw
 from adafruit_st7735r import ST7735R
+from micropython import const
 
 try:
     from typing import Optional
+
     from busio import I2C, SPI
     from microcontroller import Pin
 except ImportError:
@@ -57,7 +59,7 @@ class MiniTFTFeatherWing:
         | (1 << BUTTON_A)
         | (1 << BUTTON_B)
     )
-    # pylint: disable-msg=too-many-arguments
+
     def __init__(
         self,
         address: int = 0x5E,
@@ -85,8 +87,6 @@ class MiniTFTFeatherWing:
         self.display = ST7735R(
             display_bus, width=160, height=80, colstart=24, rotation=270, bgr=True
         )
-
-    # pylint: enable-msg=too-many-arguments
 
     @property
     def backlight(self):

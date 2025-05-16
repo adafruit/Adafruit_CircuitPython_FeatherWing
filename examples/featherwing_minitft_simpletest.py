@@ -5,7 +5,9 @@
 This example display a CircuitPython console and
 print which button that is being pressed if any
 """
+
 import time
+
 from adafruit_featherwing import minitft_featherwing
 
 minitft = minitft_featherwing.MiniTFTFeatherWing()

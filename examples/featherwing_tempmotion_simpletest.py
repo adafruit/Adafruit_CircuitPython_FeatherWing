@@ -7,6 +7,7 @@ whenever the FeatherWing senses that it has been tapped
 """
 
 import time
+
 from adafruit_featherwing import tempmotion_featherwing
 
 temp_motion = tempmotion_featherwing.TempMotionFeatherWing()

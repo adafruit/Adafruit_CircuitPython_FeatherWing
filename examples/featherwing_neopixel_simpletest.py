@@ -6,11 +6,13 @@ This example plays various animations
 and then draws random pixels at random locations
 """
 
-from time import sleep
 import random
+from time import sleep
+
 from adafruit_featherwing import neopixel_featherwing
 
 neopixel = neopixel_featherwing.NeoPixelFeatherWing()
+
 
 # HELPERS
 # a random color 0 -> 224

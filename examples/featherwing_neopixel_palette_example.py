@@ -6,10 +6,12 @@ This creates a palette of colors, draws a pattern and
 rotates through the palette creating a moving rainbow.
 """
 
-from math import sqrt, cos, sin, radians
+from math import cos, radians, sin, sqrt
+
 from adafruit_featherwing import neopixel_featherwing
 
 neopixel = neopixel_featherwing.NeoPixelFeatherWing()
+
 
 # Remap the calculated rotation to 0 - 255
 def remap(vector):

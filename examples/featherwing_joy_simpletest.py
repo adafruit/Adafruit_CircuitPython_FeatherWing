@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: MIT
 
 """This example zeros the joystick, and prints when the joystick moves
-   or the buttons are pressed."""
+or the buttons are pressed."""
+
 import time
+
 from adafruit_featherwing import joy_featherwing
 
 wing = joy_featherwing.JoyFeatherWing()

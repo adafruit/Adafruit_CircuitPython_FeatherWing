@@ -16,10 +16,12 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
 import board
 from adafruit_ht16k33 import segments
+
 from adafruit_featherwing.led_segments import Segments
 
 try:
     from typing import Optional
+
     from busio import I2C
 except ImportError:
     pass

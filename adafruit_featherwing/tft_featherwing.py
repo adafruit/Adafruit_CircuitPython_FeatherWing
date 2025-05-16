@@ -15,7 +15,9 @@ see tft_featherwng_24 and tft_featherwing_35
 Requires:
 * adafruit_stmpe610
 """
+
 import time
+
 import board
 import digitalio
 import displayio
@@ -38,13 +40,13 @@ import storage
 
 try:
     from typing import Optional
-    from busio import SPI, I2C
+
+    from busio import I2C, SPI
     from microcontroller import Pin
 except ImportError:
     pass
 
 
-# pylint: disable-msg=too-few-public-methods, too-many-arguments, too-many-branches
 class TFTFeatherWing:
     """Base class for TFT FeatherWings."""
 

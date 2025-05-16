@@ -5,7 +5,9 @@
 This example will demonstrate some graphic effects and then
 draw a smiley face and shift it around the display
 """
+
 import time
+
 from adafruit_featherwing import matrix_featherwing
 
 matrix = matrix_featherwing.MatrixFeatherWing()

@@ -19,19 +19,17 @@ Requires:
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import board
 import adafruit_ili9341
-from bbq10keyboard import BBQ10Keyboard
+import board
 import neopixel
+from bbq10keyboard import BBQ10Keyboard
 
-
-# pylint: disable-msg=too-few-public-methods
-# pylint: disable-msg=too-many-arguments
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
 try:
     from typing import Optional
-    from busio import SPI, I2C
+
+    from busio import I2C, SPI
     from microcontroller import Pin
 except ImportError:
     pass
@@ -59,9 +57,7 @@ class KeyboardFeatherwing(TFTFeatherWing):
         if neopixel_pin is None:
             neopixel_pin = board.D11
 
-        self.display = adafruit_ili9341.ILI9341(
-            self._display_bus, width=320, height=240
-        )
+        self.display = adafruit_ili9341.ILI9341(self._display_bus, width=320, height=240)
         self.neopixel = neopixel.NeoPixel(neopixel_pin, 1)
         """Status NeoPixel."""
         self.keyboard = BBQ10Keyboard(i2c)

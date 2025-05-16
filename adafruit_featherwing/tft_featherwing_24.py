@@ -20,19 +20,20 @@ Requires:
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
-import board
 import adafruit_ili9341
+import board
+
 from adafruit_featherwing.tft_featherwing import TFTFeatherWing
 
 try:
     from typing import Optional
-    from busio import SPI, I2C
+
+    from busio import I2C, SPI
     from microcontroller import Pin
 except ImportError:
     pass
 
 
-# pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing24(TFTFeatherWing):
     """Class representing a TFT FeatherWing 2.4 V1
     Attempts to mount the SD card to /sd.
@@ -49,13 +50,10 @@ class TFTFeatherWing24(TFTFeatherWing):
         super().__init__(
             spi, cs_pin=cs, dc_pin=dc, ts_cs_pin=ts_cs, sd_cs_pin=sd_cs, resistive=True
         )
-        self.display = adafruit_ili9341.ILI9341(
-            self._display_bus, width=320, height=240
-        )
+        self.display = adafruit_ili9341.ILI9341(self._display_bus, width=320, height=240)
         """Display object for the FeatherWing's screen."""
 
 
-# pylint: disable-msg=too-few-public-methods, too-many-arguments
 class TFTFeatherWing24V2(TFTFeatherWing):
     """Class representing a `TFT FeatherWing 2.4 V2
     <https://www.adafruit.com/product/3315>`_.
@@ -80,7 +78,5 @@ class TFTFeatherWing24V2(TFTFeatherWing):
             i2c=i2c,
             resistive=True,
         )
-        self.display = adafruit_ili9341.ILI9341(
-            self._display_bus, width=320, height=240
-        )
+        self.display = adafruit_ili9341.ILI9341(self._display_bus, width=320, height=240)
         """Display object for the FeatherWing's screen."""

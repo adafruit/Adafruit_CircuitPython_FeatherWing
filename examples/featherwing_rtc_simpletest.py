@@ -5,7 +5,9 @@
 This example will allow you to set the date and time
 and then loop through and display the current time
 """
+
 import time
+
 from adafruit_featherwing import rtc_featherwing
 
 days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
@@ -13,7 +15,6 @@ days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 # Create the RTC instance:
 rtc = rtc_featherwing.RTCFeatherWing()
 
-# pylint: disable-msg=using-constant-test
 if True:  # Change this to True to set the date and time
     rtc.set_time(13, 34)  # Set the time (seconds are optional)
     print(rtc.now)
@@ -32,14 +33,10 @@ if True:  # Change this to True to set the date and time
 # Main loop:
 while True:
     now = rtc.now
-    print(
-        "The date is {} {}/{}/{}".format(
-            days[now.weekday], now.day, now.month, now.year
-        )
-    )
-    print("The time is {}:{:02}:{:02}".format(now.hour, now.minute, now.second))
-    print("The UNIX timestamp is {}".format(rtc.unixtime))
-    print("The number of days in the current month is {}".format(rtc.get_month_days()))
+    print(f"The date is {days[now.weekday]} {now.day}/{now.month}/{now.year}")
+    print(f"The time is {now.hour}:{now.minute:02}:{now.second:02}")
+    print(f"The UNIX timestamp is {rtc.unixtime}")
+    print(f"The number of days in the current month is {rtc.get_month_days()}")
     if rtc.is_leap_year():
         print("This year is a leap year")
     else:

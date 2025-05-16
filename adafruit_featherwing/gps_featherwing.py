@@ -14,9 +14,9 @@ Helper for using the `Ultimate GPS FeatherWing <https://www.adafruit.com/product
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import adafruit_gps
 import board
 import busio
-import adafruit_gps
 
 try:
     from typing import Optional
@@ -46,10 +46,8 @@ class GPSFeatherWing:
         self._uart = busio.UART(board.TX, board.RX, baudrate=baudrate, timeout=timeout)
         self._gps = adafruit_gps.GPS(self._uart, debug=False)
         # Turn on the basic GGA and RMC info
-        self._gps.send_command(
-            bytes("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", "utf-8")
-        )
-        self._gps.send_command(bytes("PMTK220,{}".format(update_period), "utf-8"))
+        self._gps.send_command(bytes("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", "utf-8"))
+        self._gps.send_command(bytes(f"PMTK220,{update_period}", "utf-8"))
 
     def update(self) -> bool:
         """

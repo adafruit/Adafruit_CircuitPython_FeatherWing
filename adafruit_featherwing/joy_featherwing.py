@@ -14,12 +14,13 @@ Helper for using the `Joy FeatherWing <https://www.adafruit.com/product/3632>`_.
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FeatherWing.git"
 
+import adafruit_seesaw.seesaw
 import board
 from micropython import const
-import adafruit_seesaw.seesaw
 
 try:
     from typing import Optional, Tuple
+
     from busio import I2C
 except ImportError:
     pass
