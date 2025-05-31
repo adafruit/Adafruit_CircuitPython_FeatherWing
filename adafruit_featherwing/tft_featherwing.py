@@ -21,6 +21,7 @@ import time
 import board
 import digitalio
 import displayio
+import fourwire
 
 try:
     from adafruit_stmpe610 import Adafruit_STMPE610_SPI
@@ -70,7 +71,7 @@ class TFTFeatherWing:
         if dc_pin is None:
             dc_pin = board.D10
 
-        self._display_bus = displayio.FourWire(spi, command=dc_pin, chip_select=cs_pin)
+        self._display_bus = fourwire.FourWire(spi, command=dc_pin, chip_select=cs_pin)
 
         # Initialize SD Card
         if sd_cs_pin is None:
