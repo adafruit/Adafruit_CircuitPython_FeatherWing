@@ -19,6 +19,7 @@ from collections import namedtuple
 
 import board
 import displayio
+import fourwire
 from adafruit_seesaw.pwmout import PWMOut
 from adafruit_seesaw.seesaw import Seesaw
 from adafruit_st7735r import ST7735R
@@ -83,7 +84,7 @@ class MiniTFTFeatherWing:
         self._ss.digital_write(8, True)  # Reset the Display via Seesaw
         self._backlight = PWMOut(self._ss, 5)
         self._backlight.duty_cycle = 0
-        display_bus = displayio.FourWire(spi, command=dc_pin, chip_select=cs_pin)
+        display_bus = fourwire.FourWire(spi, command=dc_pin, chip_select=cs_pin)
         self.display = ST7735R(
             display_bus, width=160, height=80, colstart=24, rotation=270, bgr=True
         )
