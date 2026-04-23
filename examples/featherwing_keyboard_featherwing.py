@@ -45,4 +45,4 @@ while True:
             STATE = "held down"
         elif key[0] == STATE_RELEASE:
             STATE = "released"
-        print("key: '%s' (dec %d, hex %02x) %s" % (key[1], ord(key[1]), ord(key[1]), STATE))
+        print(f"key: '{key[1]}' (dec {ord(key[1])}, hex {ord(key[1]):02x}) {STATE}")

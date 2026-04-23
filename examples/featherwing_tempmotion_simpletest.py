@@ -14,5 +14,5 @@ temp_motion = tempmotion_featherwing.TempMotionFeatherWing()
 temp_motion.enable_tap_detection()
 while True:
     if temp_motion.events["tap"]:
-        print("The temperature is %f" % temp_motion.temperature)
+        print(f"The temperature is {temp_motion.temperature}")
     time.sleep(1)
